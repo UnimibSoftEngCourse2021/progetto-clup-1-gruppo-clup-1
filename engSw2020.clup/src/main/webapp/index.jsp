@@ -15,7 +15,7 @@ try
 
 	Class.forName("com.mysql.jdbc.Driver"); 
 	
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020","root","ProvaPassoword"); 
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020","root", ""); 
 	if(request.getParameter("btn_login")!=null) 
 	{
 		String dbemail, dbpassword;
@@ -90,7 +90,7 @@ catch(Exception e)
 			if (password.value == null || password.value == "") 
 			{
 				window.alert("Inserire la password"); 
-				password.style.background = '#f08080'; 
+				password.style.background = '#f08080';
 				password.focus();
 				return false;
 			}
