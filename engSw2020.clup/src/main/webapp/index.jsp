@@ -13,9 +13,9 @@ try
 	
 	
 
-	Class.forName("com.mysql.jdbc.Driver"); 
+	Class.forName("com.mysql.jdbc.Driver");  
 	
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020","root", ""); 
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020?serverTimezone=UTC", "root", ""); 
 	if(request.getParameter("btn_login")!=null) 
 	{
 		String dbemail, dbpassword;
