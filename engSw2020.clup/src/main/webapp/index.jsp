@@ -12,7 +12,7 @@ try
 {
 	Class.forName("com.mysql.jdbc.Driver"); 
 	
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020","root","@Gug4ueik.nasic"); 
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020","root","1234"); 
 	if(request.getParameter("btn_login")!=null) 
 	{
 		String dbemail, dbpassword;
