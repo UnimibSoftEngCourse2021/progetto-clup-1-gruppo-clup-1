@@ -7,58 +7,6 @@ if(session.getAttribute("login")!= null)
 }
 %>
 
-<%
-try
-{
-	
-	
-
-	Class.forName("com.mysql.jdbc.Driver");  
-	
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Clup_engsw2020?serverTimezone=UTC", "root", ""); 
-	if(request.getParameter("btn_login")!=null) 
-	{
-		String dbemail, dbpassword;
-		
-		String email, password;
-		
-		email=request.getParameter("txt_email"); 
-		password=request.getParameter("txt_password"); 
-		
-		PreparedStatement pstmt=null; 
-		
-		pstmt=con.prepareStatement("select * from user where email=? AND password=?"); 
-		pstmt.setString(1,email);
-		pstmt.setString(2,password);
-		
-		ResultSet rs=pstmt.executeQuery(); 
-		
-		if(rs.next())
-		{
-			dbemail=rs.getString("email");
-			dbpassword=rs.getString("password");
-			
-			if(email.equals(dbemail) && password.equals(dbpassword))
-			{
-				session.setAttribute("login", dbemail); 
-				response.sendRedirect("welcome.jsp"); 
-			}
-		}
-		else
-		{
-			request.setAttribute("errorMsg","Email o Password errati."); 
-		}
-		
-		con.close();
-	}
-	
-}
-catch(Exception e)
-{
-	out.println(e);
-}
-%>
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -101,11 +49,9 @@ catch(Exception e)
 </head>
 
 <body>
-
-   
     <div class="main-content">
 
-        <form class="form-register" method="post" name="indexForm" onsubmit="return validate();">
+        <form class="form-register" action="loginServlet" method="post" name="indexForm" onsubmit="return validate();">
 
             <div class="form-register-with-email">
 
