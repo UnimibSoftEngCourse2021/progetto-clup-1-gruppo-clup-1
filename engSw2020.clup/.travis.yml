@@ -5,7 +5,7 @@ jdk:
 addons:
   sonarcloud:
       organization: "unimibsoftengcourse2021" # the key of the org you chose at step #3
-      token: ${SONAR_TOKEN} # encrypted value of your token
+      token: ${SONAR} # encrypted value of your token
 script:
 # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=UnimibSoftEngCourse2021_travis-exercise-Nasic-Elvis
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=UnimibSoftEngCourse2021_progetto-clup-1-gruppo-clup-1
