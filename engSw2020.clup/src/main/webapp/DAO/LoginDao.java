@@ -52,7 +52,7 @@ public class LoginDao {
             }
         	
          finally {
-        	 if(con!=null) {con.close();}        	 
+        	 if(con!=null) {con.close();}
         	 if(statement!=null) {statement.close();}
         	 if(resultSet!=null) {resultSet.close();}        		
         	}
