@@ -34,12 +34,12 @@ public class LoginDao {
 
             con = DBConnection.createConnection(); 
             statement = con.createStatement(); 
-            resultSet = statement.executeQuery("select userName,password from users"); 
+            resultSet = statement.executeQuery("select Username, Password from user"); 
 
             while(resultSet.next()) 
             {
-             userNameDB = resultSet.getString("userName"); 
-             passwordDB = PasswordHashing.doHashing(resultSet.getString("password"));
+             userNameDB = resultSet.getString("Username"); 
+             passwordDB = PasswordHashing.doHashing(resultSet.getString("Password"));
 
               if(userName.equals(userNameDB) && password.equals(passwordDB))
               {

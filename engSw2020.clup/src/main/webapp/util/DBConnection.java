@@ -10,7 +10,7 @@ public class DBConnection {
 	     Connection con = null;
 	     String url = "jdbc:mysql://localhost:3306/Clup_engsw2020?serverTimezone=UTC"; 
 	     String username = "root"; 
-	     String password = ""; 
+	     String password = "@Gug4ueik.nasic"; 
 	     Logger logger = Logger.getLogger(DBConnection.class.getName());
 	     try 
 	     {
