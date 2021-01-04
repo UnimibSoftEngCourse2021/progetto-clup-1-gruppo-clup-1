@@ -23,6 +23,7 @@ public class RegistrationDao {
         int result = 0;
 
         try {
+        	//TODO: modify bugs into sonarqube.
         	Class.forName("com.mysql.jdbc.Driver");
         	Connection connection = DBConnection.createConnection();
         	if(connection == null) return 0;
