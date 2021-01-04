@@ -25,14 +25,11 @@ public class RegistrationDao {
         try {
         	Class.forName("com.mysql.jdbc.Driver");
         	Connection connection = DBConnection.createConnection();
-        	Statement statement = null;
-        	String str="2015-03-31";
-        	Date date=Date.valueOf(str);
-        	statement = connection.createStatement();
+        	if(connection == null) return 0;
         	PreparedStatement preparedStatement  = connection.prepareStatement(INSERT_USERS_SQL);
         	preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setDate(3, date);
+            preparedStatement.setDate(3, user.getBirthdayDate());
             preparedStatement.setString(4, user.getSesso());
             preparedStatement.setString(5, user.getTelephoneNumber());
             preparedStatement.setString(6, user.getEmail());
@@ -41,12 +38,15 @@ public class RegistrationDao {
             preparedStatement.setInt(9, 1);
         	result = preparedStatement.executeUpdate();
 	        System.out.println("Printing result insert: " +result);
+	        
 
         }
         catch (SQLException e) {
             // process sql exception
             printSQLException(e);
         }
+       
+        
         return result;
     }
         		
