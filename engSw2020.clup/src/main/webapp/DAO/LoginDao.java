@@ -1,51 +1,61 @@
 package main.webapp.DAO;
 
+import main.webapp.util.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import main.webapp.model.User;
 import main.webapp.util.*;
 
 public class LoginDao {
 	
-    public String authenticateUser(User loginBean)
+    public String authenticateUser(User loginBean) throws Exception 
     {
         String userName = loginBean.getUserName(); 
-        String password = loginBean.getPassword();
-
+        String password = PasswordHashing.doHashing(loginBean.getPassword());
+        Logger log = Logger.getLogger(LoginDao.class.getName());
+       
         Connection con = null;
         Statement statement = null;
         ResultSet resultSet = null;
+        String userNameDB = null;
+        String passwordDB = null;
 
-        String userNameDB = "";
-        String passwordDB = "";
+        try/*(
+        		Connection con = DBConnection.createConnection(); 
+        		Statement statement = con.createStatement(); 
+        		ResultSet resultSet = statement.executeQuery("select userName,password from users")
+        	)*/
+        {	 
 
-        try
-        {
             con = DBConnection.createConnection(); 
-            if(con == null)
-            {
-            	return "Invalid connection";
-            }
             statement = con.createStatement(); 
             resultSet = statement.executeQuery("select userName,password from users"); 
 
             while(resultSet.next()) 
             {
              userNameDB = resultSet.getString("userName"); 
-             passwordDB = resultSet.getString("password");
+             passwordDB = PasswordHashing.doHashing(resultSet.getString("password"));
 
               if(userName.equals(userNameDB) && password.equals(passwordDB))
               {
                  return "SUCCESS"; 
               }
             }}
-            catch(SQLException e)
+            catch(Exception e)
             {
-               e.printStackTrace();
+               log.log(Level.FINE, e.toString());
             }
+        	
+         finally {
+        	 if(con!=null) {con.close();}
+        	 if(statement!=null) {statement.close();}
+        	 if(resultSet!=null) {resultSet.close();}        		
+        	}
             return "Invalid user credentials";
         }
     }
