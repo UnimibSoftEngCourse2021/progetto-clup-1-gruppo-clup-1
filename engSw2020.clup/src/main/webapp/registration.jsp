@@ -25,15 +25,15 @@ if(session.getAttribute("login")!=null) //check login session user not access or
 	
 		function validate()
 		{
-			var first_name= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
-			var last_name= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
-			var email_valid= /^[\w\d\.]+\@[a-zA-Z\.]+\.[A-Za-z]{1,4}$/; //pattern valid email validation
-			var password_valid=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/; //pattern password allowed A to Z, a to z, 0-9, !@#$%&*()<> charecter 
+			var first_name= /^[a-z A-Z]+$/; 
+			var last_name= /^[a-z A-Z]+$/; 
+			var email_valid= /^[\w\d\.]+\@[a-zA-Z\.]+\.[A-Za-z]{1,4}$/; 
+			var password_valid=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/;
 			
-			var fname = document.getElementById("fname"); //textbox id fname
-            var lname = document.getElementById("lname"); //textbox id lname
-            var email = document.getElementById("email"); //textbox id email
-            var password = document.getElementById("password"); //textbox id password
+			var fname = document.getElementById("fname"); 
+            var lname = document.getElementById("lname"); 
+            var email = document.getElementById("email"); 
+            var password = document.getElementById("password"); 
 			
 			if(!first_name.test(fname.value) || fname.value=='') 
             {
@@ -81,6 +81,7 @@ if(session.getAttribute("login")!=null) //check login session user not access or
                     <div class="form-title-row">
                         <h1>Registrazione utente</h1>
                     </div>
+                   
 				   
 					<p style="color:green">				   		
 					<%
@@ -91,24 +92,23 @@ if(session.getAttribute("login")!=null) //check login session user not access or
 					%>
 					</p>
 				   
-				   </br>
 				   
                     <div class="form-row">
                         <label>
                             <span>Nome</span>
-                            <input type="text" name="Name" id="fname" placeholder="Inserisci nome">
+                            <input type="text" name="Name" id="fname" placeholder="Inserisci nome" required>
                         </label>
                     </div>
 					<div class="form-row">
                         <label>
                             <span>Cognome</span>
-                            <input type="text" name="Surname" id="lname" placeholder="Inserisci cognome">
+                            <input type="text" name="Surname" id="lname" placeholder="Inserisci cognome" required>
                         </label>
                     </div>
                     <div class="form-row">
                         <label>
                             <span>Data di nascita</span>
-								<input type="date" value="2017-06-01" id="data" name="BirthdayDate">
+								<input type="date" value="2017-06-01" id="data" name="BirthdayDate" required>
                         </label>
                     </div>
                      <div class="form-row">
@@ -123,27 +123,27 @@ if(session.getAttribute("login")!=null) //check login session user not access or
                     <div class="form-row">
                         <label>
                             <span>Numero di telefono</span>
-                            <input type="text" name="TelephoneNumber" id="phoneNumber" placeholder="Inserisci numero di telefono">
+                            <input type="text" name="TelephoneNumber" id="phoneNumber" placeholder="Inserisci numero di telefono" required>
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
                             <span>Email</span>
-                            <input type="text" name="Email" id="email" placeholder="Inserisci email">
+                            <input type="text" name="Email" id="email" placeholder="Inserisci email" required>
                         </label>
                     </div>
                     <div class="form-row">
                         <label>
                             <span>Username</span>
-                            <input type="text" name="Username" id="username" placeholder="Inserisci username">
+                            <input type="text" name="Username" id="username" placeholder="Inserisci username" required>
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
                             <span>Password</span>
-                            <input type="password" name="Password" id="password" placeholder="Inserisci password">
+                            <input type="password" name="Password" id="password" placeholder="Inserisci password" required>
                         </label>
                     </div>
 
