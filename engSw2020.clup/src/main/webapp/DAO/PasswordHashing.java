@@ -28,4 +28,8 @@ public class PasswordHashing {
 		}
 		return "";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/develop_RegistrationPage

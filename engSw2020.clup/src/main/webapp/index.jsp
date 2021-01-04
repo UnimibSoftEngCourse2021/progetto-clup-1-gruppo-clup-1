@@ -74,14 +74,14 @@ if(session.getAttribute("login")!= null)
                     <div class="form-row">
                         <label>
                             <span>Email</span>
-                            <input type="text" name="txt_email" id="email" placeholder="Inserire username">
+                            <input type="text" name="username" id="email" placeholder="Inserire username">
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
                             <span>Password</span>
-                            <input type="password" name="txt_password" id="password" placeholder="Inserire password">
+                            <input type="password" name="password" id="password" placeholder="Inserire password">
                         </label>
                     </div>
 
@@ -89,7 +89,7 @@ if(session.getAttribute("login")!= null)
                     
                 </div>
 
-				<a href="register.jsp" class="form-log-in-with-existing">Non hai un account? <strong> Registrati qui</strong></a>
+				<a href="registration.jsp" class="form-log-in-with-existing">Non hai un account? <strong> Registrati qui</strong></a>
 
             </div>
 

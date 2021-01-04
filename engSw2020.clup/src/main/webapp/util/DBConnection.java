@@ -1,7 +1,10 @@
 package main.webapp.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
+<<<<<<< HEAD
 import java.util.Properties;
+=======
+>>>>>>> refs/remotes/origin/develop_RegistrationPage
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +16,11 @@ public class DBConnection {
 	     props.setProperty("username", "root");
 	     props.setProperty("password", "");
 	     String url = "jdbc:mysql://localhost:3306/Clup_engsw2020?serverTimezone=UTC"; 
+<<<<<<< HEAD
+=======
+	     String username = "root"; 
+	     String password = ""; 
+>>>>>>> refs/remotes/origin/develop_RegistrationPage
 	     Logger logger = Logger.getLogger(DBConnection.class.getName());
 	     try 
 	     {
