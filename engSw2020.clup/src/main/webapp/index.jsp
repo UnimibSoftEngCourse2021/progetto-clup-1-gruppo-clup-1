@@ -89,7 +89,7 @@ if(session.getAttribute("login")!= null)
                     
                 </div>
 
-				<a href="register.jsp" class="form-log-in-with-existing">Non hai un account? <strong> Registrati qui</strong></a>
+				<a href="registration.jsp" class="form-log-in-with-existing">Non hai un account? <strong> Registrati qui</strong></a>
 
             </div>
 
