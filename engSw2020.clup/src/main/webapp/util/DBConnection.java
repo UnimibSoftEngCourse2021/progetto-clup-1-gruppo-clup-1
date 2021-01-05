@@ -8,9 +8,9 @@ public class DBConnection {
 	public static Connection createConnection()
 	 {
 	     Connection con = null;
-	     String url = "jdbc:mysql://localhost:3306/Clup_engsw2020?serverTimezone=UTC"; 
-	     String username = "root"; 
-	     String password = ""; 
+	     String url ="jdbc:mysql://clup.mysql.database.azure.com:3306/clup_engsw2020?serverTimezone=UTC&useSSL=true&requireSSL=false";
+	     String username = "t.zanelli"; 
+	     String password = "pwd"; 
 	     Logger logger = Logger.getLogger(DBConnection.class.getName());
 	     try 
 	     {
