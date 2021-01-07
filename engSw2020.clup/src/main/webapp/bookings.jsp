@@ -6,7 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bookings.css">
-    <link rel="stylesheet" href="css/homepageManager.css">
+<link rel="stylesheet" href="css/footer.css">
+
+    <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
