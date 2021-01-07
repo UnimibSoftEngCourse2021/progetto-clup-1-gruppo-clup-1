@@ -30,14 +30,15 @@
     </script>
   </head>
   <header>
-    <nav>
+    <nav role="navigation">
       <div class="logo">
         <h4>customer line up</h4>
       </div>
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#">Prenota</a></li>
-        <li><a href="#">Esplora</a></li>
+        
+        <li><a href="#">Preferenze negozio</a></li>
         <li><a href="#">User</a></li>
 
       </ul>
