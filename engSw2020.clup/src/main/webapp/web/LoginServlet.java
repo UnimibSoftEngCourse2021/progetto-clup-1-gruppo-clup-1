@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
  
         User loginBean = new User(); 
         loginBean.setUserName(userName); 
-         loginBean.setPassword(password);
+        loginBean.setPassword(password);
  
         LoginDao loginDao = new LoginDao(); 
         
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         if(userValidate.equals("SUCCESS")) 
          {
              request.setAttribute("userName", userName); 
-             request.getRequestDispatcher("/Home.jsp").forward(request, response);
+             request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
          }
         else if (userValidate.equals("Invalid connection"))
         {

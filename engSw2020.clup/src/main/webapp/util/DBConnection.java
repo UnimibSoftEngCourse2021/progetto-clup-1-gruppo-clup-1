@@ -9,14 +9,14 @@ public class DBConnection {
 	 {
 	     Connection con = null;
 	     String url ="jdbc:mysql://clup.mysql.database.azure.com:3306/clup_engsw2020?serverTimezone=UTC&useSSL=true&requireSSL=false";
-	     String username = "t.zanelli"; 
-	     String password = "pwd"; 
+	     String username = "elvis@clup"; 
+	     String password = "@Engsw2020"; 
 	     Logger logger = Logger.getLogger(DBConnection.class.getName());
 	     try 
 	     {
 	         try 
 	         {
-	            Class.forName("com.mysql.jdbc.Driver"); 
+	            Class.forName("com.mysql.cj.jdbc.Driver"); 
 	         } 
 	         catch (ClassNotFoundException e)
 	         {
