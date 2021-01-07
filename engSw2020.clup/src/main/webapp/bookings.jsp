@@ -3,12 +3,11 @@
 <%@ page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html onload="display_c()">
+<html>
 <head>
 <link rel="stylesheet" href="css/bookings.css">
     <link rel="stylesheet" href="css/homepageManager.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -63,8 +62,14 @@
         		</tr>
     		</c:forEach>
         <tbody>
-    </table>
+    </table> 
 </div>
+
+  <div id="my_centered_buttons">
+            <button class="btn"><i class="fa fa-download"></i> Download</button>
+  
+  </div>
+
 </body>
 <footer class="footer">
   <div class="l-footer">
