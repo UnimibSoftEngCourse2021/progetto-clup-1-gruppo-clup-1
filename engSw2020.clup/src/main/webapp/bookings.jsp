@@ -50,7 +50,17 @@
     </nav>
   </header>
   <div>
-  <h2 style="text-align:center; color:black" id="currentDate"><strong>Prenotazioni del 08 Gennaio 2021</strong> </h2>
+  <p ></p>
+    <h2 style="text-align:center; color:black; font-size: 16pt;" ><strong id="date"></strong> </h2>
+  
+  <script>
+  n =  new Date();
+  const month = n.toLocaleString('default', { month: 'long' });
+
+  y = n.getFullYear();
+  d = n.getDate();
+  document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
+  </script>
   </div>
 
 
