@@ -97,6 +97,7 @@
             <button class="btn"><i class="fa fa-download"></i> Download</button>
   
   </div>
+  <br>
 
 </body>
 <footer class="footer">

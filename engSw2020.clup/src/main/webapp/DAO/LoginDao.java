@@ -2,6 +2,7 @@ package main.webapp.DAO;
 
 import main.webapp.util.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +19,7 @@ public class LoginDao {
         String userName = loginBean.getUserName(); 
         String password = PasswordHashing.doHashing(loginBean.getPassword());
         Logger log = Logger.getLogger(LoginDao.class.getName());
+        String email = null;
        
         Connection con = null;
         Statement statement = null;
@@ -25,18 +27,26 @@ public class LoginDao {
         String userNameDB = null;
         String passwordDB = null;
 
-        try{        
+        try{
+        	String query_login = "SELECT Username, Email, Password FROM user where Username = ? OR Email = ?";
+
 
             con = DBConnection.createConnection(); 
-            statement = con.createStatement(); 
-            resultSet = statement.executeQuery("select Username, Password from user"); 
+        	PreparedStatement preparedStatement  = con.prepareStatement(query_login);
+        	preparedStatement.setString(1, userName);
+        	preparedStatement.setString(2, userName);
+
+            resultSet = preparedStatement.executeQuery(); 
 
             while(resultSet.next()) 
             {
              userNameDB = resultSet.getString("Username"); 
+             email = resultSet.getString("Email");
+ 	        System.out.println(email);
+
              passwordDB = PasswordHashing.doHashing(resultSet.getString("Password"));
 
-              if(userName.equals(userNameDB) && password.equals(passwordDB))
+              if((userName.equals(userNameDB) && password.equals(passwordDB)) || (userName.equals(email) && password.equals(passwordDB)))
               {
                  return "SUCCESS"; 
               }
