@@ -6,6 +6,7 @@ import java.time.*;
 import java.util.ArrayList;
 
 import main.webapp.model.Booking;
+import main.webapp.model.User;
 import main.webapp.util.*;
 
 public class BookingDao {
@@ -19,15 +20,24 @@ public class BookingDao {
       try{        	 
 
           con = DBConnection.createConnection(); 
-          statement = con.createStatement(); 
-          resultSet = statement.executeQuery("select * from Booking");
+          statement = con.createStatement();
+          String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, Number, bookingDate, ArrivalTime, FinishTime "
+          		+ "FROM User INNER JOIN clup_engsw2020.Booking ON "
+          		+ "User.idUser = clup_engsw2020.booking.idUser ";
+          resultSet = statement.executeQuery(query);
           while(resultSet.next()) {
         	  Booking bookingBean = new Booking();
+        	  User user = new User();
         	  bookingBean.setIdBooking(resultSet.getInt("idBooking"));
         	  bookingBean.setNumber(resultSet.getInt("Number"));
         	  bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
         	  bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
         	  bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
+        	  user.setEmail(resultSet.getString("Email"));
+        	  user.setName(resultSet.getString("Name"));
+        	  user.setSurname(resultSet.getString("Surname"));
+        	  user.setTelephoneNumber(resultSet.getString("TelephoneNumber"));
+        	  bookingBean.setUser(user);
         	  bookingList.add(bookingBean);
           }
           return bookingList;

@@ -9,6 +9,15 @@ public class Booking {
 	Date bookingDate;
 	Time arrivalTime;
 	Time finishTime;
+	User user;
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User u) {
+		this.user = u;
+	}
 	
 	public int getIdBooking() {
 		return idBooking;

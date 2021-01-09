@@ -60,11 +60,14 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Booking Id</th>
-            <th>Booking Number</th>
-            <th>Booking Date</th>
-            <th>Arrival Time</th>
-            <th>Finish Time</th>
+            <th>Numero</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Prenotazione</th>
+            <th>Ora di arrivo</th>
+            <th>Ora di fine</th>
             <th>Operation</th>
             
             
@@ -73,12 +76,16 @@
         <tbody>
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
-            		<td>${booking.getIdBooking()}
-            		</td>
             		<td>${booking.getNumber()}</td>
+
+            		<td>${booking.getUser().getName()}</td>
+            		<td>${booking.getUser().getSurname()}</td>
+            		<td>${booking.getUser().getEmail()}</td>
+            		<td>${booking.getUser().getTelephoneNumber()}</td>            		
             		<td>${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
             		<td>${booking.getFinishTime()}</td>
+            		
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
             		class="button"><i class="fa fa-trash"></i></a>
 						
