@@ -126,14 +126,29 @@ body{
   background-color: DodgerBlue;
   border: none;
   color: white;
-  padding: 12px 30px;
+  padding: 12px 18px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 13px;
 }
 
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: RoyalBlue;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    background-color: #324960;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 #my_centered_buttons { display: flex; justify-content: center; }

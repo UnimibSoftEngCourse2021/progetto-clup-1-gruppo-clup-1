@@ -7,11 +7,27 @@
 <head>
 <link rel="stylesheet" href="css/bookings.css">
 <link rel="stylesheet" href="css/footer.css">
-
-    <link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+ <script type="text/javascript">
+		function callservlet(idBooking) {
+
+    		var servletname="DeletionServlet";
+
+   			if(servletname== "")
+        	{
+       			alert("NO value..");
+        		return false;
+            }
+            else
+        	{
+            	document.location.href = "DeletionServlet?idBooking=" + idBooking;
+        		return false;
+        	}
+	}
+	</script>
 </head>
 
 <header>
@@ -40,6 +56,7 @@
 
 <body>
 <div class="table-wrapper">
+  <form name="form1" method="post" action="DeletionServlet">
     <table class="fl-table">
         <thead>
         <tr>
@@ -56,15 +73,24 @@
         <tbody>
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
-            		<td>${booking.getIdBooking()}</td>
+            		<td>${booking.getIdBooking()}
+            		</td>
             		<td>${booking.getNumber()}</td>
             		<td>${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
-            		<td>${booking.getFinishTime()}</td>            		
+            		<td>${booking.getFinishTime()}</td>
+            		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
+            		class="button"><i class="fa fa-trash"></i></a>
+						
+            		<!--  <form name="deleteId" action="DeletionServlet" method="POST" >
+            			<button type="submit" class="btn" onclick="callservlet(${booking.getIdBooking()});"><i class="fa fa-trash"></i></button>
+            			</form>-->
+            		</td>            		
         		</tr>
     		</c:forEach>
         <tbody>
-    </table> 
+    </table>
+  </form>
 </div>
 
   <div id="my_centered_buttons">
