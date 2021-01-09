@@ -39,5 +39,22 @@ public class BookingDao {
       }
 	return bookingList;
 	}
+	
+	public int deleteBooking(int idBooking) {
+		String query = "DELETE FROM booking WHERE idBooking =" + idBooking;
+		 Connection con = null;
+	     Statement statement = null;
+	     int result = 0;
+	     try {
+	    	  con = DBConnection.createConnection(); 
+	          statement = con.createStatement(); 
+	          result = statement.executeUpdate(query);
+	          return result;
+	     }		
+		 catch(Exception e){
+			e.printStackTrace();
+		}
+	     return result;
+	}
 }
 
