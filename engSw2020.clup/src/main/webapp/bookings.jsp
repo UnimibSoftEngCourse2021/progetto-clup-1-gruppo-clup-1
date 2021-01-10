@@ -50,8 +50,14 @@
     </nav>
   </header>
   <div>
-  <p ></p>
-    <h2 style="text-align:center; color:black; font-size: 16pt;" ><strong id="date"></strong> </h2>
+  <br>
+  
+    <h2 style="text-align:center; color:black; font-size: 16pt;" >
+    <input type="date" id="myDate" >
+    <br>
+    <strong id="date"></strong> 
+    </h2>
+    
   
   <script>
   n =  new Date();
@@ -60,6 +66,9 @@
   y = n.getFullYear();
   d = n.getDate();
   document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
+  alert(n);
+  document.getElementById("myDate").valueAsDate = n;
+
   </script>
   </div>
 
