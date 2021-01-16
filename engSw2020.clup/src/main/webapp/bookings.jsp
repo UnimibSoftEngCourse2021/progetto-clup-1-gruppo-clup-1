@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bookings.css">
 <link rel="stylesheet" href="css/pop-up.css">
 <link rel="stylesheet" href="css/footer.css">
@@ -91,7 +92,6 @@
   y = n.getFullYear();
   d = n.getDate();
   document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
-  alert(n);
   document.getElementById("myDate").valueAsDate = n;
 
   </script>
@@ -136,8 +136,23 @@
         <tbody>
     </table>
   </form>
+  <br>
+    
+  <form name="formDownload" method="GET" action="bookingDownload">
+  <div class="container">
+  <div class="row">
+    <div class="col text-center">
+	<button class="btn"><i class="fa fa-download" ></i> Download</button>
+    </div>
+  </div>
 </div>
+
+</form>
+
+</div>
+
 </body>
+
 <footer class="footer">
   <div class="l-footer">
   <h1>
