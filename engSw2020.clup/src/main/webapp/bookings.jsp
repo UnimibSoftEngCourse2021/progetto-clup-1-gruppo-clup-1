@@ -6,9 +6,11 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bookings.css">
+<link rel="stylesheet" href="css/pop-up.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
  <script type="text/javascript">
@@ -27,6 +29,29 @@
         		return false;
         	}
 	}
+	</script>
+	<script>
+		function validateDate(){
+			var startTime = document.getElementById("editform").elements[1].value;
+			var time = startTime.split(":");
+			var startHour = time[0];
+			var startMinutes = time[1];
+
+			var endTime = document.getElementById("editform").elements[2].value;
+			var time1 = endTime.split(":");
+			var endHour = time1[0];
+			var endMinutes = time1[1];
+
+			if(startHour>endHour)
+				{alert("L'orario di arrivo deve essere minore dell'orario di fine");
+				return false;}
+			else if(startHour == endHour){
+				if(startMinutes > endMinutes){
+					alert("L'orario di arrivo deve essere minore dell'orario di fine");
+					return false;
+				}
+			}
+		}
 	</script>
 </head>
 
@@ -88,29 +113,23 @@
             <th>Ora di arrivo</th>
             <th>Ora di fine</th>
             <th>Operation</th>
-            
-            
+                                    
         </tr>
         </thead>
         <tbody>
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
             		<td>${booking.getNumber()}</td>
-
             		<td>${booking.getUser().getName()}</td>
             		<td>${booking.getUser().getSurname()}</td>
             		<td>${booking.getUser().getEmail()}</td>
             		<td>${booking.getUser().getTelephoneNumber()}</td>            		
             		<td>${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
-            		<td>${booking.getFinishTime()}</td>
-            		
+            		<td>${booking.getFinishTime()}</td>           		
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
             		class="button"><i class="fa fa-trash"></i></a>
-						
-            		<!--  <form name="deleteId" action="DeletionServlet" method="POST" >
-            			<button type="submit" class="btn" onclick="callservlet(${booking.getIdBooking()});"><i class="fa fa-trash"></i></button>
-            			</form>-->
+            		<a href="http://localhost:8080/clup/modifyBooking.jsp?idBooking=${booking.getIdBooking()}" class="button"><i class="fa fa-pencil"></i></a>
             		</td>            		
         		</tr>
     		</c:forEach>
@@ -118,13 +137,6 @@
     </table>
   </form>
 </div>
-
-  <div id="my_centered_buttons">
-            <button class="btn"><i class="fa fa-download"></i> Download</button>
-  
-  </div>
-  <br>
-
 </body>
 <footer class="footer">
   <div class="l-footer">
@@ -161,7 +173,25 @@
   </footer>
 </html>
 
+  <script>
+  $( function() {
+    $.datepicker.setDefaults({
+        onClose:function(date, inst){
+            $("#selectedDtaeVal").html(date);
+        }
+    });
 
+    $( "#datepicker" ).datepicker();
+});
+</script>
+  <script>
+      function openForm() {
+        document.getElementById("popupForm").style.display = "block";
+      }
+      function closeForm() {
+        document.getElementById("popupForm").style.display = "none";
+      }
+  </script>
 <script>
   const navSlide = () => {
     const burger = document.querySelector('.burger');
