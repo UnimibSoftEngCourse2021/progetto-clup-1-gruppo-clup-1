@@ -1,6 +1,7 @@
 package main.webapp.DAO;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
@@ -13,7 +14,7 @@ import main.webapp.util.*;
 
 public class BookingDao {
 
-	public ArrayList<Booking> getBooking(){
+	public ArrayList<Booking> getBooking(int idStoreUser){
 	  ArrayList<Booking> bookingList = new ArrayList<Booking>();
 	  Connection con = null;
       Statement statement = null;
@@ -25,8 +26,13 @@ public class BookingDao {
           statement = con.createStatement();
           String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, Number, bookingDate, ArrivalTime, FinishTime "
           		+ "FROM User INNER JOIN clup_engsw2020.Booking ON "
-          		+ "User.idUser = clup_engsw2020.booking.idUser ";
-          resultSet = statement.executeQuery(query);
+          		+ "User.idUser = clup_engsw2020.booking.idUser "
+          		+ "WHERE booking.idStore = ? ";
+          
+          	PreparedStatement preparedStatement  = con.prepareStatement(query);
+      		preparedStatement.setInt(1, idStoreUser);
+
+      		resultSet = preparedStatement.executeQuery(); 
           while(resultSet.next()) {
         	  Booking bookingBean = new Booking();
         	  User user = new User();

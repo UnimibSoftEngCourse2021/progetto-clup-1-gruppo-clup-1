@@ -2,6 +2,7 @@ package main.webapp.web;
 
 import main.webapp.DAO.*;
 import main.webapp.model.User;
+import main.webapp.util.ConnectionResult;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class LoginServlet extends HttpServlet {
@@ -35,14 +37,15 @@ public class LoginServlet extends HttpServlet {
         LoginDao loginDao = new LoginDao(); 
         
         try {
-        String userValidate = loginDao.authenticateUser(loginBean); 
- 
-        if(userValidate.equals("SUCCESS")) 
+        ConnectionResult userValidate = loginDao.authenticateUser(loginBean);  
+        if(userValidate.getResult().equals("SUCCESS")) 
          {
+        	HttpSession session = request.getSession();
+            session.setAttribute("id", userValidate.getUser().getIdStore());
              request.setAttribute("userName", userName); 
              request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
          }
-        else if (userValidate.equals("Invalid connection"))
+        else if (userValidate.getResult().equals("Invalid connection"))
         {
         	request.setAttribute("errorMsg","Connessione non riuscita al database."); 
         	request.setAttribute("errMessage", userValidate);

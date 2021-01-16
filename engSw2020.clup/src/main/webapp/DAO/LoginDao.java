@@ -14,21 +14,26 @@ import main.webapp.util.*;
 
 public class LoginDao {
 	
-    public String authenticateUser(User loginBean) throws Exception 
+    private ConnectionResult result;
+
+	public ConnectionResult authenticateUser(User loginBean) throws Exception 
     {
         String userName = loginBean.getUserName(); 
         String password = PasswordHashing.doHashing(loginBean.getPassword());
         Logger log = Logger.getLogger(LoginDao.class.getName());
         String email = null;
+        int idUser = 0;
+        int idStore = 0;
        
         Connection con = null;
         Statement statement = null;
         ResultSet resultSet = null;
         String userNameDB = null;
         String passwordDB = null;
+        result = null;
 
         try{
-        	String query_login = "SELECT Username, Email, Password FROM user where Username = ? OR Email = ?";
+        	String query_login = "SELECT idUser,idStore, Username, Email, Password FROM user where Username = ? OR Email = ?";
 
 
             con = DBConnection.createConnection(); 
@@ -42,13 +47,23 @@ public class LoginDao {
             {
              userNameDB = resultSet.getString("Username"); 
              email = resultSet.getString("Email");
- 	        System.out.println(email);
+             idUser = resultSet.getInt("idUser");
+             idStore = resultSet.getInt("idStore");
+ 	        System.out.println(idUser);
 
              passwordDB = PasswordHashing.doHashing(resultSet.getString("Password"));
 
               if((userName.equals(userNameDB) && password.equals(passwordDB)) || (userName.equals(email) && password.equals(passwordDB)))
               {
-                 return "SUCCESS"; 
+            	  result = new ConnectionResult();
+            	  result.setResult("SUCCESS");
+            	  User u = new User();
+            	  u.setIdUser(idUser);
+            	  u.setIdStore(idStore);
+            	  result.setUser(u);
+       	        System.out.println("OK");
+
+                 return result;
               }
             }}
             catch(Exception e)
@@ -61,6 +76,9 @@ public class LoginDao {
         	 if(statement!=null) {statement.close();}
         	 if(resultSet!=null) {resultSet.close();}        		
         	}
-            return "Invalid user credentials";
+  	  result.setResult("Invalid user credentials");
+  	  return result;
+
+            
         }
     }

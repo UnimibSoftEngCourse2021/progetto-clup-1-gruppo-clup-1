@@ -12,8 +12,22 @@ public class User {
     private String sesso;
     private String telephoneNumber;
     private String email;
+    private int idUser;
+    private int idStore;
     
-    public String getName() {
+    public int getIdStore() {
+		return idStore;
+	}
+	public void setIdStore(int idStore) {
+		this.idStore = idStore;
+	}
+	public int getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+	public String getName() {
  	   return name;
      }
     public void setName(String name) {
