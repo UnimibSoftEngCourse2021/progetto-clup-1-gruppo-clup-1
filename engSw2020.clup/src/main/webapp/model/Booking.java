@@ -13,12 +13,10 @@ public class Booking {
 	
 	public User getUser() {
 		return user;
-	}
-	
+	}	
 	public void setUser(User u) {
 		this.user = u;
-	}
-	
+	}	
 	public int getIdBooking() {
 		return idBooking;
 	}
@@ -48,6 +46,5 @@ public class Booking {
 	}
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate=bookingDate;
-	}
-	
+	}	
 }

@@ -1,7 +1,9 @@
 package main.webapp.DAO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.*;
 import java.util.ArrayList;
 
@@ -66,5 +68,24 @@ public class BookingDao {
 		}
 	     return result;
 	}
+	
+	public int modifyBooking(int id, Date date,Time arrivalTime, Time finishTime) {
+	    String query = "UPDATE booking SET ArrivalTime="+ "\""+date+" "+arrivalTime  +"\"" +"," + " FinishTime="+"\"" +date+" "+finishTime+"\"" +"," + " bookingDate="+"\"" + date +"\"" + " WHERE idBooking=" + id;
+	    Connection con = null;
+	    Statement statement = null;
+	    int result = 0;
+	    try {
+	    	con = DBConnection.createConnection();
+	    	statement = con.createStatement();
+	    	result = statement.executeUpdate(query);
+	    	return result;
+	    }
+	    catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
+	    return result;
+	}
+
 }
 
