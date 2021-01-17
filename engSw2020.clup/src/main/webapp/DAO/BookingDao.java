@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.*;
@@ -14,7 +15,7 @@ import main.webapp.util.*;
 
 public class BookingDao {
 
-	public ArrayList<Booking> getBooking(int idStoreUser){
+	public ArrayList<Booking> getBooking(int idStoreUser) throws SQLException{
 	  ArrayList<Booking> bookingList = new ArrayList<Booking>();
 	  Connection con = null;
       Statement statement = null;
@@ -55,10 +56,15 @@ public class BookingDao {
       {
     	  e.printStackTrace();
       }
+      finally {
+    	  con.close();
+    	  statement.close();
+    	  resultSet.close();
+      }
 	return bookingList;
 	}
 	
-	public int deleteBooking(int idBooking) {
+	public int deleteBooking(int idBooking) throws SQLException {
 		String query = "DELETE FROM booking WHERE idBooking =" + idBooking;
 		 Connection con = null;
 	     Statement statement = null;
@@ -72,10 +78,14 @@ public class BookingDao {
 		 catch(Exception e){
 			e.printStackTrace();
 		}
+	     finally {
+	    	 con.close();
+	    	 statement.close();
+	     }
 	     return result;
 	}
 	
-	public int modifyBooking(int id, Date date,Time arrivalTime, Time finishTime) {
+	public int modifyBooking(int id, Date date,Time arrivalTime, Time finishTime) throws SQLException {
 	    String query = "UPDATE booking SET ArrivalTime="+ "\""+date+" "+arrivalTime  +"\"" +"," + " FinishTime="+"\"" +date+" "+finishTime+"\"" +"," + " bookingDate="+"\"" + date +"\"" + " WHERE idBooking=" + id;
 	    Connection con = null;
 	    Statement statement = null;
@@ -90,7 +100,34 @@ public class BookingDao {
 	    {
 	    	e.printStackTrace();
 	    }
+	    finally {
+	    	con.close();
+	    	statement.close();
+	    }
 	    return result;
+	}
+	
+	public int insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser) throws SQLException {
+		String query = "INSERT INTO booking (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES(" + "\"" + date + " " + arrivalTime +"\"" +  "," + "\"" + date + " " + finishTime +"\"" +  "," +idUser + "," +"\"" + date +"\"" + "," + idStore + ")";
+		  Connection con = null;
+		  Statement statement = null;
+		  int result = 0;
+		  try {
+		    	con = DBConnection.createConnection();
+		    	statement = con.createStatement();
+		    	result = statement.executeUpdate(query);
+		    	return result;
+		    }
+		    catch(Exception e)
+		    {
+		    	e.printStackTrace();
+		    }
+		  finally {
+			  con.close();
+			  statement.close();
+		  }
+		    return result;
+		  
 	}
 
 }
