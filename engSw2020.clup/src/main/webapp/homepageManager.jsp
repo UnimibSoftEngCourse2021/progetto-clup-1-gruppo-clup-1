@@ -1,8 +1,5 @@
 <%
 	int i = ((Integer) session.getAttribute("id")).intValue();
-
-	out.print("Welcome "+ i);
-
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -14,9 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customer Line Up</title>
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/footer.css">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/homepageManager.css">
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript">
 		function callservlet() {
@@ -42,10 +41,10 @@
         <h4>customer line up</h4>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Prenota</a></li>
+        <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+        <li><a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenorazioni</a></li>
         
-        <li><a href="#">Preferenze negozio</a></li>
+        <li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
         <li><a href="#">User</a></li>
 
       </ul>
@@ -57,11 +56,6 @@
     </nav>
   </header>
   <body>
-    <div class="wrapper">
-		<form name="getData" action="BookingServlet" method="get">
-		<input type="button" class="btn-1" value="Visualizza Prenotazioni" onclick="return callservlet();">
-		</form>
-    </div>
 
     <script src="js/suggestions.js"></script>
     <script src="js/script.js"></script>

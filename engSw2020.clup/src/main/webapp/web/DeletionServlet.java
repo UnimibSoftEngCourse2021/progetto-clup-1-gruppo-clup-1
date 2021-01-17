@@ -2,6 +2,7 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,16 @@ public class DeletionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookingDao bookingDao = new BookingDao();
-	    int result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
+	    int result = 0;
+		try {
+			result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    if(result==1)
 	    {	    	
 	    	response.sendRedirect("BookingServlet");

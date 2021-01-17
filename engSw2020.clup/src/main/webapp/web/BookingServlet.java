@@ -1,6 +1,7 @@
 package main.webapp.web;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,13 @@ public class BookingServlet extends HttpServlet {
     	HttpSession session = req.getSession();
     	int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
 
-		ArrayList<Booking> bookingList = bookingDao.getBooking(idStoreUser);
+		ArrayList<Booking> bookingList = null;
+		try {
+			bookingList = bookingDao.getBooking(idStoreUser);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		req.setAttribute("bookingList", bookingList);
 
 	    req.getRequestDispatcher("/bookings.jsp").forward(req, res);

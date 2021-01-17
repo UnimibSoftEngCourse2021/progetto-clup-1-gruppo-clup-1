@@ -28,9 +28,9 @@
         <h4>customer line up</h4>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Prenota</a></li>
-        <li><a href="#">Esplora</a></li>
+ 		<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+        <li><a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a></li>
+        <li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
         <li><a href="#">User</a></li>
 
       </ul>

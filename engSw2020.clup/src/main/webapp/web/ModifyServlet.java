@@ -2,6 +2,7 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 
@@ -48,7 +49,13 @@ public class ModifyServlet extends HttpServlet {
 		requestFinishTime += ":00";
 		Time finishTime = Time.valueOf(requestFinishTime);
 		BookingDao bookingDao = new BookingDao();
-	    int result = bookingDao.modifyBooking(id,date,arrivalTime,finishTime);
+	    int result = 0;
+		try {
+			result = bookingDao.modifyBooking(id,date,arrivalTime,finishTime);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    if(result==1)
 	    {	    	
 	    	response.sendRedirect("BookingServlet");
