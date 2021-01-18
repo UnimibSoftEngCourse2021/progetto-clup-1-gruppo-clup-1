@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/navbar.css">
 	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/homepageManager.css">
+	<link rel="stylesheet" href="css/dropdown.css">
    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript">
@@ -42,9 +42,13 @@
       </div>
       <ul class="nav-links">
         <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-        <li><a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenorazioni</a></li>
-        
-        <li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
+        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a>
+        	<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>       	
+          </div>
+        </li>
+        <li><a href="#">Store</a></li>
         <li><a href="#">User</a></li>
 
       </ul>

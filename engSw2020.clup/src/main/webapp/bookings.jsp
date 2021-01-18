@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bookings.css">
-<link rel="stylesheet" href="css/pop-up.css">
+<link rel="stylesheet" href="css/dropdown.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,10 +63,14 @@
       </div>
       <ul class="nav-links">
         <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-        <li><a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a></li>
-        <li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
+        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a>
+        	<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>       	
+          </div>
+        </li>
+        <li><a href="#">Store</a></li>
         <li><a href="#">User</a></li>
-
       </ul>
       <div class="burger">
         <div class="line1"></div>

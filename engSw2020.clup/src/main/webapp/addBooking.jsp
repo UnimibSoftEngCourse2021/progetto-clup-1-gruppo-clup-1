@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/modifyBooking.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
   	  $( function() {
@@ -29,9 +30,14 @@
         <h4>customer line up</h4>
       </div>
       <ul class="nav-links">
- 		<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-        <li><a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a></li>
-        <li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
+        <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a>
+        	<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>       	
+          </div>
+        </li>
+        <li><a href="#">Store</a></li>
         <li><a href="#">User</a></li>
 
       </ul>
