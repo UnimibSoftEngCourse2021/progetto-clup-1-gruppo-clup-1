@@ -86,7 +86,7 @@ public class BookingDao {
 	}
 	
 	public int modifyBooking(int id, Date date,Time arrivalTime, Time finishTime) throws SQLException {
-	    String query = "UPDATE booking SET ArrivalTime="+ "\""+date+" "+arrivalTime  +"\"" +"," + " FinishTime="+"\"" +date+" "+finishTime+"\"" +"," + " bookingDate="+"\"" + date +"\"" + " WHERE idBooking=" + id;
+	    String query = "UPDATE booking SET ArrivalTime="+ "\""+" "+arrivalTime  +"\"" +"," + " FinishTime="+"\"" +" "+finishTime+"\"" +"," + " bookingDate="+"\"" + date +"\"" + " WHERE idBooking=" + id;
 	    Connection con = null;
 	    Statement statement = null;
 	    int result = 0;
@@ -108,7 +108,7 @@ public class BookingDao {
 	}
 	
 	public int insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser) throws SQLException {
-		String query = "INSERT INTO booking (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES(" + "\"" + date + " " + arrivalTime +"\"" +  "," + "\"" + date + " " + finishTime +"\"" +  "," +idUser + "," +"\"" + date +"\"" + "," + idStore + ")";
+		String query = "INSERT INTO booking (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES(" + "\"" + " " + arrivalTime +"\"" +  "," + "\"" + " " + finishTime +"\"" +  "," +idUser + "," +"\"" + date +"\"" + "," + idStore + ")";
 		  Connection con = null;
 		  Statement statement = null;
 		  int result = 0;

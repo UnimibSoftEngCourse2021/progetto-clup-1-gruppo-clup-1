@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,12 +61,11 @@
             		<input id="finishTime" type="time" name="finishTime" placeholder="Orario di fine"/>
           	</div>
           	<div class="item">
-            	<label for="idStore">Identificativo negozio<span>*</span></label>
-            		<input id="idStore" type="number" name="idStore" placeholder="Orario di fine"/>
+            		<input type="hidden" id="idStore" type="number" name="idStore" value="<%=session.getAttribute("id")%>" />
           	</div>
           	<div class="item">
             	<label for="idUser">Identificativo cliente<span>*</span></label>
-            		<input id="idUser" type="number" name="idUser" placeholder="Orario di fine"/>
+            		<input id="idUser" type="number" name="idUser" placeholder="ID cliente" />
           	</div>
           	<div class="btn-block">
           		<button type="submit">Submit</button>
