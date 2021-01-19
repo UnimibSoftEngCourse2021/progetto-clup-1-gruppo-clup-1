@@ -47,7 +47,8 @@
         <div class="line3"></div>
       </div>
     </nav>
-  </header>
+  </header> 
+  
 <body>
     <div class="testbox">
       <form id="editform" action="AddServlet" class="formContainer" method="post" onsubmit="return validateDate();">
@@ -58,8 +59,6 @@
             		<input id="datepicker" type="date" name="date" id="datePicker"/>
             			<i class="fas fa-calendar-alt"></i>
             </div>
-          
-        
           	<div class="item">
             	<label for="arrivalTime">Orario di arrivo<span>*</span></label>
             		<input id="arrivalTime" type="time" name="arrivalTime"  placeholder="Orario di arrivo" />
@@ -74,12 +73,40 @@
           	<div class="item">
             	<label for="idUser">Identificativo cliente<span>*</span></label>
             		<input id="idUser" type="number" name="idUser" placeholder="ID cliente" />
+          	</div>         
+          	<div class="item">
+          	<label for="guestUser">Guest User:</label>
+          	  <input type="checkbox" name="checkbox_guest" id="CheckGuestUser" value="guest" style="width: 20px" checked>
           	</div>
+          	
+          	<div id="guestDiv">
+          	  	<div class="item">
+            	<label for="userName">Nome</label>
+            		<input id="userName" type="text" name="userName"  placeholder="Inserire nome" />
+          	</div>
+          		<div class="item">
+            	<label for="userSurname">Cognome</label>
+            		<input id="userSurname" type="text" name="userSurname"  placeholder="Inserire cognome" />
+          	</div>
+          	
+          	<div class="item">
+            	<label for="userEmail">Email</label>
+            		<input id="userEmail" type="text" name="userEmail"  placeholder="Inserire email" />
+          	</div>
+          	<div class="item">
+            	<label for="userTelephoneNumber">Numero di telefono</label>
+            		<input id="userTelephoneNumber" type="text" name="userTelephoneNumber"  placeholder="Inserire numero di telefono" />
+          	</div>
+          	</div>
+        
+          	
           	<div class="btn-block">
           		<button type="submit">Submit</button>
         	</div>
         </fieldset>
       </form>
+                	
+          	
      </div>
  
 <script >
@@ -92,7 +119,7 @@
 	}
 </script>
   </body>
-  <footer class="footer">
+  <footer class="footer" style="position: inherit">
   <div class="l-footer">
   <h1>
   <img src="https://i.postimg.cc/y62wcLBq/logo.png" alt=""></h1>
@@ -134,6 +161,11 @@
 			var endTime = document.getElementById("editform").elements[3];
 			var todayDate = new Date();
 			var bookingDate = new Date(date.value);
+			var userCheckBox = document.getElementById("editform").elements[5];
+			var userName = document.getElementById("editform").elements[6];
+			var userSurname = document.getElementById("editform").elements[7];
+			var userEmail = document.getElementById("editform").elements[8];
+			var userTelephoneNumber = document.getElementById("editform").elements[9];
 
 			if(date.value==null || date.value=="" ||bookingDate.getDay()<todayDate.getDay()){
 				alert("Inserire una data valida");
@@ -182,6 +214,12 @@
 	
 	
 	  <script>
+	  
+	  document.getElementById('CheckGuestUser').checked = false;
+	  document.getElementById('guestDiv').style.display = "none";
+	  document.getElementById('CheckGuestUser').onchange = function() {
+		    document.getElementById('guestDiv').style.display = this.checked ? 'block' : 'none';
+		};
 	document.getElementById("datepicker").valueAsDate = new Date();
 	var current = new Date();
 	current. getHours();
