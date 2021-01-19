@@ -6,9 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bookings.css">
+<link rel="stylesheet" href="css/bookings.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/dropdown.css">
-<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/footer.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -155,8 +155,6 @@
 
 </div>
 
-</body>
-
 <footer class="footer">
   <div class="l-footer">
   <h1>
@@ -190,6 +188,10 @@
   All rights reserved by ©CustomerLineUp 2021 </p>
   </div>
   </footer>
+
+</body>
+
+
 </html>
 
   <script>

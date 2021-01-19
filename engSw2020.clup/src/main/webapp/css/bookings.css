@@ -4,6 +4,9 @@
     -moz-box-sizing: border-box;
 }
 body{
+	min-height: 400px;
+  	margin-bottom: 30%;
+   	clear: both;
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
   

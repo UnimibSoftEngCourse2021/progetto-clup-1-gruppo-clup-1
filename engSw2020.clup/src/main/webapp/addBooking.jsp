@@ -132,9 +132,9 @@
 			var endTime = document.getElementById("editform").elements[3];
 			var todayDate = new Date();
 			var bookingDate = new Date(date.value);
-			console.log(startTime.value);
-			if(date.value==null || date.value=="" ||bookingDate<todayDate){
-				alert("Inserire una data valido");
+
+			if(date.value==null || date.value=="" ||bookingDate.getDay()<todayDate.getDay()){
+				alert("Inserire una data valida");
 				date.style.background="#f08080";
 				date.focus();
 				return false;				
