@@ -52,15 +52,17 @@
     <div class="testbox">
       <form id="editform" action="AddServlet" class="formContainer" method="post" onsubmit="return validateDate();">
         <fieldset>
-          <legend>Booking Information</legend>  
+          <legend>Prenotazione</legend>  
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>
-            		<input id="datepicker" type="date" name="date" />
+            		<input id="datepicker" type="date" name="date" id="datePicker"/>
             			<i class="fas fa-calendar-alt"></i>
             </div>
+          
+        
           	<div class="item">
             	<label for="arrivalTime">Orario di arrivo<span>*</span></label>
-            		<input id="arrivalTime" type="time" name="arrivalTime" placeholder="Orario di arrivo" />
+            		<input id="arrivalTime" type="time" name="arrivalTime"  placeholder="Orario di arrivo" />
           	</div>
           	<div class="item">
             	<label for="finishTime">Orario di fine<span>*</span></label>
@@ -176,4 +178,18 @@
 				}
 			}
 		}
+	</script>
+	
+	
+	  <script>
+	document.getElementById("datepicker").valueAsDate = new Date();
+	var current = new Date();
+	current. getHours();
+	current. getMinutes();
+	document.getElementById("arrivalTime").value = current.getHours() + ":" + current.getMinutes();
+	document.getElementById("finishTime").value = (current.getHours() + 1) + ":" + current.getMinutes();
+
+
+
+
 	</script>

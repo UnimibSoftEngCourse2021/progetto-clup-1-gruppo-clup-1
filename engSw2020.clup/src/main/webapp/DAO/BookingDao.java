@@ -25,7 +25,7 @@ public class BookingDao {
 
           con = DBConnection.createConnection(); 
           statement = con.createStatement();
-          String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, Number, bookingDate, ArrivalTime, FinishTime "
+          String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, bookingDate, ArrivalTime, FinishTime "
           		+ "FROM User INNER JOIN clup_engsw2020.Booking ON "
           		+ "User.idUser = clup_engsw2020.booking.idUser "
           		+ "WHERE booking.idStore = ? ";
@@ -38,7 +38,6 @@ public class BookingDao {
         	  Booking bookingBean = new Booking();
         	  User user = new User();
         	  bookingBean.setIdBooking(resultSet.getInt("idBooking"));
-        	  bookingBean.setNumber(resultSet.getInt("Number"));
         	  bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
         	  bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
         	  bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
@@ -138,7 +137,7 @@ public class BookingDao {
 	      try {
 	    	  con = DBConnection.createConnection(); 
 	          statement = con.createStatement();
-	          String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, Number, bookingDate, ArrivalTime, FinishTime "
+	          String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, bookingDate, ArrivalTime, FinishTime "
 	            		+ "FROM User INNER JOIN clup_engsw2020.Booking ON "
 	            		+ "User.idUser = clup_engsw2020.booking.idUser "
 	            		+ "WHERE  booking.idStore = ? AND bookingDate=current_date() AND ArrivalTime>current_time() AND ArrivalTime < date_add(now(), INTERVAL 3 hour)";
@@ -150,7 +149,6 @@ public class BookingDao {
 	        	  Booking bookingBean = new Booking();
 	        	  User user = new User();
 	        	  bookingBean.setIdBooking(resultSet.getInt("idBooking"));
-	        	  bookingBean.setNumber(resultSet.getInt("Number"));
 	        	  bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
 	        	  bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
 	        	  bookingBean.setFinishTime(resultSet.getTime("FinishTime"));

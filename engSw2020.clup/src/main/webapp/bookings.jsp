@@ -108,7 +108,6 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Numero</th>
             <th>Nome</th>
             <th>Cognome</th>
             <th>Email</th>
@@ -116,14 +115,13 @@
             <th>Prenotazione</th>
             <th>Ora di arrivo</th>
             <th>Ora di fine</th>
-            <th>Operation</th>
+            <th>Operazione</th>
                                     
         </tr>
         </thead>
         <tbody>
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
-            		<td>${booking.getNumber()}</td>
             		<td>${booking.getUser().getName()}</td>
             		<td>${booking.getUser().getSurname()}</td>
             		<td>${booking.getUser().getEmail()}</td>
@@ -205,14 +203,6 @@
     $( "#datepicker" ).datepicker();
 });
 </script>
-  <script>
-      function openForm() {
-        document.getElementById("popupForm").style.display = "block";
-      }
-      function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-      }
-  </script>
 <script>
   const navSlide = () => {
     const burger = document.querySelector('.burger');
