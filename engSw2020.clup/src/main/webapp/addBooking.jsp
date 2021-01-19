@@ -214,20 +214,22 @@
 	
 	
 	  <script>
-	  
+	
 	  document.getElementById('CheckGuestUser').checked = false;
+	  document.getElementById("idUser").style.display = "block";
+
 	  document.getElementById('guestDiv').style.display = "none";
 	  document.getElementById('CheckGuestUser').onchange = function() {
 		    document.getElementById('guestDiv').style.display = this.checked ? 'block' : 'none';
+		    document.getElementById('idUser').style.display = this.checked ? 'none' : 'block';
+
 		};
+
 	document.getElementById("datepicker").valueAsDate = new Date();
 	var current = new Date();
 	current. getHours();
 	current. getMinutes();
 	document.getElementById("arrivalTime").value = current.getHours() + ":" + current.getMinutes();
 	document.getElementById("finishTime").value = (current.getHours() + 1) + ":" + current.getMinutes();
-
-
-
 
 	</script>
