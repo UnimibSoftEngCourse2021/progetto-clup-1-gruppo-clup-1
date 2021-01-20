@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer Line Up</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/modifyBooking.css">
     
@@ -56,7 +57,7 @@
   <input class="w3-input w3-border" name="nomeNegozio" type="text" readonly></p>
 
   <p><label>Descrizione</label>
-  <input class="w3-input w3-border" name="descrizione" type="text"></p>
+  <input class="w3-input w3-border" id="descrizione" name="descrizione" type="text"></p>
   <p><label>Telefono</label>
   <input class="w3-input w3-border" name="Telefono" type="text"></p>
   <p><label>Indirizzo</label>
