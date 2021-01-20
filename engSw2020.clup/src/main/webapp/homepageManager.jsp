@@ -89,7 +89,8 @@
 	<li class="dropdown"><a href="#" class="dropbtn">Store</a>
 		<div class="dropdown-content">
 			<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
-			<a href="#">Gestione dipendente</a> <a href="#">Gestione
+			<a href="#">Gestione dipendente</a> 
+			<a href="http://localhost:8080/clup/getCategoryServlet">Gestione
 				categorie</a>
 		</div></li>
 	<li><a href="#">User</a></li>
