@@ -50,10 +50,18 @@
     </nav>
   </header>
 <body>
-<form class="w3-container w3-card-4 w3-light-grey">
+<form class="w3-container w3-card-4 w3-light-grey" action="updateStoreInfo" method="Post">
   <h3 style="font-weight: bold; text-align: center">Gestione negozio</h3>
   <p style="font-weight: bold; text-align: center">Modificare i seguenti dati e salvare le informazioni.</p>
   <p style="font-weight: bold; text-align: center">ATTENZIONE: Il nome non è modificabile!</p>
+  <p style="color:red">				   		
+					<%
+					if(request.getAttribute("errorMsg")!=null)
+					{
+						out.println(request.getAttribute("errorMsg")); //error message for email or password 
+					}
+					%>
+					</p>
 
   <p><label>Nome negozio</label>
   <input class="w3-input w3-border" name="nomeNegozio" type="text" value="<% out.println(request.getAttribute("Name")); %>" readonly></p>
@@ -76,7 +84,8 @@
   <br>
   
 </form>
-</body>
+
+
 
 
 <footer class="footer" style="position: inherit">

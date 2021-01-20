@@ -55,4 +55,39 @@ public class StoreDao {
 	      }
 		return store;
 		}
+	public int updateData(Store store) throws SQLException{
+		  Connection con = null;
+	      Statement statement = null;
+	      ResultSet resultSet = null;
+	      int result = 0;
+	      try{        	 
+	          con = DBConnection.createConnection(); 
+	          statement = con.createStatement();
+	 	        System.out.println(store.getDesprition());
+	 	        System.out.println(store.getIdStore());
+	          String query = "update store set description = ?, telephoneNumber = ?, address = ?, city = ?, capacity = ?, bookableCapacity = ? where idStore = ?";
+	          PreparedStatement preparedStmt = con.prepareStatement(query);
+	          preparedStmt.setString(1, store.getDesprition());
+	          preparedStmt.setString(2, store.getTelephoneNumber());
+	          preparedStmt.setString(3, store.getAddress());
+	          preparedStmt.setString(4, store.getCity());
+	          preparedStmt.setInt(5, store.getCapacity());
+	          preparedStmt.setInt(6, store.getBookableCapacity());
+	          preparedStmt.setInt(7, store.getIdStore());
+	          result = preparedStmt.executeUpdate();	
+
+	          return result;
+	       }
+	      		
+	      catch(Exception e)
+	      {
+	    	  e.printStackTrace();
+	      }
+	      finally {
+	    	  con.close();
+	    	  statement.close();
+	      }
+		return result;
+		}
+
 }

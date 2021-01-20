@@ -64,6 +64,12 @@
   	<description></description>
   	<servlet-class>main.webapp.web.StoreSetup</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UpdateStoreInfo</servlet-name>
+  	<display-name>UpdateStoreInfo</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.UpdateStoreInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
@@ -103,6 +109,10 @@
   <servlet-mapping>
   	<servlet-name>StoreSetup</servlet-name>
   	<url-pattern>/storeSetup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateStoreInfo</servlet-name>
+  	<url-pattern>/updateStoreInfo</url-pattern>
   </servlet-mapping>
   
 </web-app>
