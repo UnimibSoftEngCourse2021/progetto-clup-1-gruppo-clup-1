@@ -16,47 +16,8 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<script type="text/javascript">
-		function callservlet(idBooking) {
+<title>Customer Line Up</title>
 
-    		var servletname="DeletionServlet";
-
-   			if(servletname== "")
-        	{
-       			alert("NO value..");
-        		return false;
-            }
-            else
-        	{
-            	document.location.href = "DeletionServlet?idBooking=" + idBooking;
-        		return false;
-        	}
-	}
-	</script>
-<script>
-		function validateDate(){
-			var startTime = document.getElementById("editform").elements[1].value;
-			var time = startTime.split(":");
-			var startHour = time[0];
-			var startMinutes = time[1];
-
-			var endTime = document.getElementById("editform").elements[2].value;
-			var time1 = endTime.split(":");
-			var endHour = time1[0];
-			var endMinutes = time1[1];
-
-			if(startHour>endHour)
-				{alert("L'orario di arrivo deve essere minore dell'orario di fine");
-				return false;}
-			else if(startHour == endHour){
-				if(startMinutes > endMinutes){
-					alert("L'orario di arrivo deve essere minore dell'orario di fine");
-					return false;
-				}
-			}
-		}
-	</script>
 </head>
 
 <header> <nav>
@@ -91,54 +52,36 @@
 	<br>
 
 	<h2 style="text-align: center; color: black; font-size: 16pt;">
-		<input type="date" id="myDate"> <br> <strong id="date"></strong>
+		<strong>Elenco categorie di prodotti</strong>
 	</h2>
 
 
-	<script>
-  n =  new Date();
-  const month = n.toLocaleString('default', { month: 'long' });
-
-  y = n.getFullYear();
-  d = n.getDate();
-  document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
-  document.getElementById("myDate").valueAsDate = n;
-
-  </script>
 </div>
 
 
 <body>
 	<div class="table-wrapper">
-		<form name="form1" method="post" action="DeletionServlet">
+		<form name="form1" method="post" action="deletionCategoryServlet">
 			<table class="fl-table">
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>Nome</th>
-						<th>Cognome</th>
-						<th>Email</th>
-						<th>Telefono</th>
-						<th>Prenotazione</th>
-						<th>Ora di arrivo</th>
-						<th>Ora di fine</th>
+						<th>Descrizione</th>
 						<th>Operazione</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${bookingList}" var="booking">
+					<c:forEach items="${categoryList}" var="category">
 						<tr>
-							<td>${booking.getUser().getName()}</td>
-							<td>${booking.getUser().getSurname()}</td>
-							<td>${booking.getUser().getEmail()}</td>
-							<td>${booking.getUser().getTelephoneNumber()}</td>
-							<td>${booking.getBookingDate()}</td>
-							<td>${booking.getArrivalTime()}</td>
-							<td>${booking.getFinishTime()}</td>
+							<td>${category.getIdCategory()}</td>
+							<td>${category.getName()}</td>
+							<td>${category.getDescription()}</td>
 							<td><a
-								href="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
+								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
 								class="button"><i class="fa fa-trash"></i></a> <a
-								href="http://localhost:8080/clup/modifyBooking.jsp?idBooking=${booking.getIdBooking()}"
+								href="http://localhost:8080/clup/modifyCategoryBooking.jsp?idBooking=${category.getIdCategory()}"
 								class="button"><i class="fa fa-pencil"></i></a></td>
 						</tr>
 					</c:forEach>
@@ -146,19 +89,6 @@
 			</table>
 		</form>
 		<br>
-
-		<form name="formDownload" method="GET" action="bookingDownload">
-			<div class="container">
-				<div class="row">
-					<div class="col text-center">
-						<button class="btn">
-							<i class="fa fa-download"></i> Download
-						</button>
-					</div>
-				</div>
-			</div>
-
-		</form>
 
 	</div>
 
@@ -198,18 +128,6 @@
 
 
 </html>
-
-<script>
-  $( function() {
-    $.datepicker.setDefaults({
-        onClose:function(date, inst){
-            $("#selectedDtaeVal").html(date);
-        }
-    });
-
-    $( "#datepicker" ).datepicker();
-});
-</script>
 <script>
   const navSlide = () => {
     const burger = document.querySelector('.burger');
