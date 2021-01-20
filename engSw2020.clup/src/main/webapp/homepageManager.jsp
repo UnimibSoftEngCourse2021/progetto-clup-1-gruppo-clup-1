@@ -84,7 +84,7 @@
         </li>
         <li class="dropdown"><a href="#" class="dropbtn">Store</a>
           <div class="dropdown-content">
-        	<a href="#">Gestione negozio</a>
+        	<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
         	<a href="#">Gestione dipendente</a>
         	<a href="#">Gestione categorie</a>       	   	
           </div>
