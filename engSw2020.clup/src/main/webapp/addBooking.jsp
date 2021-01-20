@@ -53,7 +53,7 @@
     <div class="testbox">
       <form id="editform" action="AddServlet" class="formContainer" method="post" onsubmit="return validateDate();">
         <fieldset>
-          <legend>Prenotazione</legend>  
+          <legend>Prenotazione</legend>
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>
             		<input id="datepicker" type="date" name="date" id="datePicker"/>
@@ -73,6 +73,14 @@
           	<div class="item">
             	<label for="idUser">Identificativo cliente<span>*</span></label>
             		<input id="idUser" type="number" name="idUser" placeholder="ID cliente" />
+            		<p style="color:red">				   		
+					<%
+					if(request.getAttribute("errorMsg")!=null)
+					{
+						out.println(request.getAttribute("errorMsg")); //error message. 
+					}
+					%>
+					</p>
           	</div>         
           	<div class="item">
           	<label for="guestUser">Guest User:</label>

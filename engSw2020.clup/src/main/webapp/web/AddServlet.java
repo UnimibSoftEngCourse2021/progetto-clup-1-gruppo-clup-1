@@ -85,8 +85,9 @@ public class AddServlet extends HttpServlet {
 	    	response.sendRedirect("BookingServlet");
 	    }
 	    if(result == 0) {
-	    	 request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
-	    }
+	    	//TODO: Mostrare alert.
+	    	request.setAttribute("errorMsg","User Id inesistente"); 
+            request.getRequestDispatcher("/addBooking.jsp").forward(request, response);	    }
 	}
 
 }
