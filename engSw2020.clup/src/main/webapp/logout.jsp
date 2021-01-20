@@ -1,5 +1,6 @@
-<% 
-session.invalidate(); //destroy session
+
+<%
+	session.invalidate(); //destroy session
 response.sendRedirect("index.jsp");
 %>
 
