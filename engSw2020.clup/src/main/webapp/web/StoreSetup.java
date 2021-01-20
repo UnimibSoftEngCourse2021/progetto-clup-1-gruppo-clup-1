@@ -41,7 +41,13 @@ public class StoreSetup extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	request.setAttribute("storeInfo", store);
+    	request.setAttribute("Name", store.getName());
+    	request.setAttribute("Descrizione", store.getDesprition());
+    	request.setAttribute("NumeroDiTelefono", store.getTelephoneNumber());
+    	request.setAttribute("Indirizzo", store.getAddress());
+    	request.setAttribute("City", store.getCity());
+    	request.setAttribute("Capienza", store.getCapacity());
+    	request.setAttribute("CapienzaPrenotabile", store.getBookableCapacity());
     	request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
 
 	}

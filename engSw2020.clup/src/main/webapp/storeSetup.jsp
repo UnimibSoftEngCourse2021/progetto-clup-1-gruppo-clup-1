@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,20 +56,20 @@
   <p style="font-weight: bold; text-align: center">ATTENZIONE: Il nome non è modificabile!</p>
 
   <p><label>Nome negozio</label>
-  <input class="w3-input w3-border" name="nomeNegozio" type="text" readonly></p>
+  <input class="w3-input w3-border" name="nomeNegozio" type="text" value="<% out.println(request.getAttribute("Name")); %>" readonly></p>
 
   <p><label>Descrizione</label>
-  <input class="w3-input w3-border" id="descrizione" name="descrizione" type="text"></p>
+  <input class="w3-input w3-border" id="descrizione" name="descrizione" value="<% out.println(request.getAttribute("Descrizione")); %>" type="text"></p>
   <p><label>Telefono</label>
-  <input class="w3-input w3-border" name="Telefono" type="text"></p>
+  <input class="w3-input w3-border" name="Telefono" value="<% out.println(request.getAttribute("NumeroDiTelefono")); %>" type="text"></p>
   <p><label>Indirizzo</label>
-  <input class="w3-input w3-border" name="Indirizzo" type="text"></p>
+  <input class="w3-input w3-border" name="Indirizzo" value="<% out.println(request.getAttribute("Indirizzo")); %>" type="text"></p>
    <p><label>Città</label>
-  <input class="w3-input w3-border" name="city" type="text"></p>
+  <input class="w3-input w3-border" name="city" value="<% out.println(request.getAttribute("City")); %>" type="text"></p>
    <p><label>Capienza</label>
-  <input type="number" id="quantity" name="quantity" min="1" max="300">
+  <input type="number" id="quantity" name="quantity" min="1" max="300" value="<% out.print(request.getAttribute("Capienza")); %>" >
   <p><label>Posti prenotabili</label>
-  <input type="number" id="postiPrenotabili" name="postiPrenotabili" min="1" max="300">
+  <input type="number" id="postiPrenotabili" name="postiPrenotabili" value="<%out.print(request.getAttribute("CapienzaPrenotabile"));%>"  min="1" max="300">
   <div class="btn-block">
           		<button type="submit">Submit</button>
         	</div>
