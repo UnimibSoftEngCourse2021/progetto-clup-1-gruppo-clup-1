@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
          {
         	HttpSession session = request.getSession();
             session.setAttribute("id", userValidate.getUser().getIdStore());
+            session.setAttribute("name", loginBean.getUserName());
              request.setAttribute("userName", userName); 
              request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
          }

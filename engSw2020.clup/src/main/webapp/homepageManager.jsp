@@ -1,5 +1,6 @@
 <%
 	int i = ((Integer) session.getAttribute("id")).intValue();
+	String user = session.getAttribute("name") + "";
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -42,7 +43,7 @@
     </script>
     <script>
     	$(document).ready(function() {  
-         var myVar = setInterval(getData,10000);
+         var myVar = setInterval(getData,5000);
          var myVar2 = setInterval(getCountBooking,1000);
 	     function getData(){
     	  $.get("AsyncServlet", function(responseJson) {   
@@ -89,7 +90,8 @@
         	<a href="#">Gestione categorie</a>       	   	
           </div>
         </li>
-        <li><a href="#">User</a></li>
+        <li><a href="userInformation.jsp">Gestione account</a></li>
+        <li><a href="#">Benvenuto <%= user %></a></li>
 
       </ul>
       <div class="burger">
@@ -107,7 +109,7 @@
                     <div class="col-xl-3 col-sm-6">
                       <div class="card card-mini mb-4">
                         <div class="card-body">
-                          <h2 id="booking-count" class="mb-1"></h2>    
+                          <h2 id="booking-count" class="mb-1">0</h2>    
                           <p>Prenotazioni odierne</p>                  
                         </div>
                       </div>

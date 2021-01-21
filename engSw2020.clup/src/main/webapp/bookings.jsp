@@ -1,3 +1,4 @@
+<% String user = session.getAttribute("name") + ""; %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false" %>
@@ -12,6 +13,7 @@
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
  <script type="text/javascript">
@@ -54,6 +56,108 @@
 			}
 		}
 	</script>
+	<script>
+	$(document).ready(function(){		
+		 $("#myDate").change(function() {
+			 $("tr").each(function(){
+				 if($(this).attr('class')=="hide"){
+					 $(this).removeClass("hide");
+					 $(this).show();
+				 }
+			 })
+			 var date = $("#myDate").val();
+			 var res = date.split("-");
+			 var year = res[0];
+			 var month = res[1];
+			 if(month == "01" || month == "02" || month == "03"  || month == "04" || month == "05" || month == "06" || month == "07" || month == "08" || month == "09")
+				 {
+				    month = month.slice(-1);
+				 }
+			 var day = res[2]
+			 if(date==null || date =="")
+				 {
+				 $("tr").removeClass("hide");
+				 var defaultDate = new Date();
+				 $("#date").text("Prenotazioni del " + defaultDate.getDate() + " " + getMonthName(defaultDate.getMonth()) + " " + defaultDate.getFullYear());
+				 return false;
+				 }
+			 function getMonthName(monthNumber){
+				 var months = ['Gennaio','Febbrio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+				 return months[monthNumber];
+			 }
+			 $("#date").text("Prenotazioni del " + day + " " + getMonthName(month-1) + " " + year);
+
+			 $('tr td.bookingDate').each(function(){
+				if($(this).text()!= date || $(this).parent().attr('class') == "hide-by-name")
+					{	
+						if($(this).parent().attr('class') != "hide-by-name")
+							{
+								$(this).parent('tr').addClass("hide");
+							}
+						$(this).parent().hide();
+						
+						
+					}
+			 });
+		 });
+		 $(".fa-trash").click(function(){
+			 $("tr").removeClass("hide");
+			 $("tr").removeClass("hide-by-name");
+			 $("tr").show();
+			 $("#myName").val("");
+			 $("#myDate").val("");
+		 })
+	});
+	</script>
+	<script>
+	function myFunction() {
+	  // Declare variables
+	  var input, filter, table, tr, td, i, txtValue, date;
+	  date = document.getElementById("myDate")
+	  input = document.getElementById("myName");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("bookingTable");
+	  tr = table.getElementsByTagName("tr");
+	  console.log(date.value);
+	  if(input.value=="" || input.value == null)
+	  {	
+		  	if(date.value == null || date.value == ""){
+		  		$("tr").removeClass("hide-by-name");  		
+		  		$("tr").show();
+		  	}
+		  	else{
+			$("tr td.bookingDate").each(function(){
+				if($(this).parent().attr('class')=="hide-by-name")
+					{
+					 $(this).parent().removeClass("hide-by-name");
+					 if(date.value == $(this).text()){
+						 console.log("ciao");
+					 	 $(this).parent().show();
+					 }
+					}
+			});
+		  
+	  	}
+	  }
+	  else{
+	  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1 && tr[i].className != "hide") {	    	  
+	    	  tr[i].style.display = "";
+	      } 
+	      else if (!(txtValue.toUpperCase().indexOf(filter) > -1) && tr[i].className != "hide")  {
+	    	tr[i].classList.add("hide-by-name");
+	        tr[i].style.display = "none";
+	      }
+	    }
+	  }
+	 }
+	}
+   
+	</script>
 </head>
 
 <header>
@@ -70,7 +174,8 @@
           </div>
         </li>
         <li><a href="#">Store</a></li>
-        <li><a href="#">User</a></li>
+        <li><a href="#">Gestione account</a></li>
+        <li><a href="#">Benvenuto <%= user %></a></li>
       </ul>
       <div class="burger">
         <div class="line1"></div>
@@ -83,7 +188,13 @@
   <br>
   
     <h2 style="text-align:center; color:black; font-size: 16pt;" >
-    <input type="date" id="myDate" >
+    <input type="text" id="myName" onkeyup="myFunction()" placeholder="Cerca per cognome...">
+    <br>
+    <input type="date" id="myDate" onkeydown="return false">
+    
+    <i class="fa fa-trash" style="color:seagreen"></i>
+    
+        
     <br>
     <strong id="date"></strong> 
     </h2>
@@ -105,7 +216,7 @@
 <body>
 <div class="table-wrapper">
   <form name="form1" method="post" action="DeletionServlet">
-    <table class="fl-table">
+    <table id="bookingTable" class="fl-table">
         <thead>
         <tr>
             <th>Nome</th>
@@ -123,10 +234,10 @@
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
             		<td>${booking.getUser().getName()}</td>
-            		<td>${booking.getUser().getSurname()}</td>
+            		<td class="surname">${booking.getUser().getSurname()}</td>
             		<td>${booking.getUser().getEmail()}</td>
             		<td>${booking.getUser().getTelephoneNumber()}</td>            		
-            		<td>${booking.getBookingDate()}</td>
+            		<td class="bookingDate">${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
             		<td>${booking.getFinishTime()}</td>           		
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
