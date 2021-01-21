@@ -62,74 +62,70 @@
 
 <body>
 	<div class="table-wrapper">
+	
 		
-			<table  class="fl-table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Nome</th>
-						<th>Descrizione</th>
-						<th>Operazione</th>
+	<table  class="fl-table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Descrizione</th>
+				<th>Operazione</th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${categoryList}" var="category">
-						<tr>
-							<td id="idRiga" >${category.getIdCategory()}</td>
-							<td >${category.getName()}</td>
-							<td >${category.getDescription()}</td>
-							<td>
+			</tr>
+		</thead>
+			<tbody>
+				<c:forEach items="${categoryList}" var="category">
+					<tr>
+						<td id="idRiga" >${category.getIdCategory()}</td>
+						<td >${category.getName()}</td>
+						<td >${category.getDescription()}</td>
+						<td>
 							
-							<form name="form1" action="deletionCategoryServlet" method="POST">
+						<form name="form1" action="deletionCategoryServlet" method="POST">
 							
 							<a
 								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
 								class="button"><i class="fa fa-trash"></i></a>
-							</form>
-								
-								
-								
-						</tr>
-					</c:forEach>
+						</form>
+					</tr>
+				</c:forEach>
+	</table>	
 
-
-						<div id="myModal" class="modal">
-  
-  <div class="modal-content">
-  <form>
-    <div class="modal-header">
-    <h3>Aggiunta categoria</h3>
-    <br>
-      <span class="close">&times;</span>
+	<div id="myModal" class="modal">
+			
+		<div class="modal-content">
+  			<form>
+   					 <div class="modal-header">
+    					<h3>Aggiunta categoria</h3>
+    					<br>
+      					<span class="close">&times;</span>
       
-    </div>
-    <div class="modal-body">
-     <label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
-  	<select name = "categoryToAdd" style="width:100%">
-       <c:forEach items="${categoryList}" var="category">
-       		<option value="${category.getName()}">${category.getName()}</option>
-		</c:forEach>
-		</select>
-  	<br>
-  	</form>
-  <form name="form3" method="POST" action="addCategoryServlet" >
-  	
+    			 	 </div>
+    			<div class="modal-body">
+     				<label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
+  						<select name = "categoryToAdd" style="width:100%">
+       						<c:forEach items="${categoryList}" var="category">
+       							<option value="${category.getName()}">${category.getName()}</option>
+							</c:forEach>
+						</select>
+  						<br>
+  			</form>
+  <form name="form3" action="addCategoryServlet" method="POST">
   	<div class="btn-block">
-  	
-  	<a href="http://localhost:8080/clup/addCategoryServlet"><button type="submit">Inserisci</button></a>
+  
+  	<button type="submit">Inserisci</button>
 				</div>
 				</form>
 </div>
-			</table>
-		
+</div>		
 		<br>
 	</div>
-	<form name="form2">
+	
 	<div class="btn-block">
-		<button id="addCategory" type="submit">Inserisci</button>
-		</div>
-		</form>
+			<button id="addCategory" type="submit">Inserisci</button>
+	</div>
+
 	<footer class="footer">
 	<div class="l-footer">
 		<h1>
