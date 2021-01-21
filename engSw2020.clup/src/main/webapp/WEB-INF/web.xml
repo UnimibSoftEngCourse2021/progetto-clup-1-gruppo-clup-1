@@ -82,6 +82,18 @@
   	<description></description>
   	<servlet-class>main.webapp.web.DeletionCategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>GetAllCategories</servlet-name>
+  	<display-name>GetAllCategories</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.GetAllCategories</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddCategoryServlet</servlet-name>
+  	<display-name>AddCategoryServlet</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.AddCategoryServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
@@ -133,6 +145,14 @@
   <servlet-mapping>
   	<servlet-name>DeletionCategoryServlet</servlet-name>
   	<url-pattern>/deletionCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetAllCategories</servlet-name>
+  	<url-pattern>/getAllCategories</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddCategoryServlet</servlet-name>
+  	<url-pattern>/addCategoryServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

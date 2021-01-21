@@ -22,7 +22,7 @@
 
 </head>
 
-<header> <nav>
+<header>  <nav>
 <div class="logo">
 	<h4>customer line up</h4>
 </div>
@@ -60,10 +60,9 @@
 
 </div>
 
-
 <body>
 	<div class="table-wrapper">
-		<form name="form1" method="post" action="deletionCategoryServlet">
+		
 			<table  class="fl-table">
 				<thead>
 					<tr>
@@ -80,42 +79,57 @@
 							<td id="idRiga" >${category.getIdCategory()}</td>
 							<td >${category.getName()}</td>
 							<td >${category.getDescription()}</td>
-							<td><a
+							<td>
+							
+							<form name="form1" action="deletionCategoryServlet" method="POST">
+							
+							<a
 								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
-								class="button"><i class="fa fa-trash"></i></a> <a
-								href="#"
-								class="button"><i class="fa fa-pencil"></i></a></td>
+								class="button"><i class="fa fa-trash"></i></a>
+							</form>
+								
+								
 								
 						</tr>
-						<div id="myModal" class="modal">
+					</c:forEach>
 
-  <!-- Modal content -->
+
+						<div id="myModal" class="modal">
+  
   <div class="modal-content">
+  <form>
     <div class="modal-header">
-    <h3>Modifica categoria</h3>
+    <h3>Aggiunta categoria</h3>
+    <br>
       <span class="close">&times;</span>
       
     </div>
     <div class="modal-body">
-     <label for="fname">ID categoria</label><br>
-  	<input type="text" id="idCategory" name="idCategory" style="width:100%" readonly><br>
-       <label for="fname">Nome</label><br>
-  	<input type="text" id="name" name="fname" style="width:100%"><br>
-             <label for="fname">Descrizione categoria</label><br>
-  	<input type="text" id="description" name="fname" style="width:100%"><br>
+     <label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
+  	<select name = "categoryToAdd" style="width:100%">
+       <c:forEach items="${categoryList}" var="category">
+       		<option value="${category.getName()}">${category.getName()}</option>
+		</c:forEach>
+		</select>
   	<br>
+  	</form>
+  <form name="form3" method="POST" action="addCategoryServlet" >
+  	
   	<div class="btn-block">
-					<button type="submit">Aggiorna</button>
+  	
+  	<a href="http://localhost:8080/clup/addCategoryServlet"><button type="submit">Inserisci</button></a>
 				</div>
+				</form>
 </div>
-					</c:forEach>
-				<tbody>
 			</table>
-		</form>
+		
 		<br>
-
 	</div>
-
+	<form name="form2">
+	<div class="btn-block">
+		<button id="addCategory" type="submit">Inserisci</button>
+		</div>
+		</form>
 	<footer class="footer">
 	<div class="l-footer">
 		<h1>
@@ -132,7 +146,6 @@
 				<li><a href="#">Prenota un ticket</a></li>
 				<li><a href="#">Gestione prenotazioni</a></li>
 				<li><a href="#">Gestione account</a></li>
-
 			</ul>
 		</li>
 		<li>
@@ -190,29 +203,14 @@
 <script>
 var index = 0;
 var modal = document.getElementById("myModal");
-var btn = document.getElementsByTagName("i");
-var td = document.getElementsByTagName("td");
-var tr = document.getElementsByTagName("tr");
+var btn = document.getElementById("addCategory");
 var span = document.getElementsByClassName("close")[0];
 var i;
 
-for (i = 0; i < btn.length; i++) {
-	console.log(i);
-		btn[i].onclick = function() {
-//TODO: modifica passaggio parametri.
-			console.log(i);
-			var tr1 = document.getElementsByTagName("tr")[i - 2];
-			console.log(i);
-			var td1 = tr1.getElementsByTagName("td")[0];
-			console.log(td1.innerHTML);
-			document.getElementById("idCategory").value = "ciao"
-			document.getElementById("name").value = "ciao";
-			document.getElementById("description").value = "Prodotti per la casa";
-			  modal.style.display = "block";
-			}
-		
+btn.onclick = function(event) {
+	modal.style.display = "block";
+	}
 
-}
 span.onclick = function() {
   modal.style.display = "none";
 }
