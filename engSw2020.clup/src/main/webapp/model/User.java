@@ -14,8 +14,15 @@ public class User {
     private String email;
     private int idUser;
     private int idStore;
+    private int idRole;
     
-    public int getIdStore() {
+    public int getIdRole() {
+		return idRole;
+	}
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
+	}
+	public int getIdStore() {
 		return idStore;
 	}
 	public void setIdStore(int idStore) {

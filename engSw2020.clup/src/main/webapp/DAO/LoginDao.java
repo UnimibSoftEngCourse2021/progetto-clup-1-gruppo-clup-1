@@ -24,6 +24,7 @@ public class LoginDao {
         String email = null;
         int idUser = 0;
         int idStore = 0;
+        int idRole = 0;
        
         Connection con = null;
         Statement statement = null;
@@ -33,7 +34,7 @@ public class LoginDao {
         result = null;
 
         try{
-        	String query_login = "SELECT idUser,idStore, Username, Email, Password FROM user where Username = ? OR Email = ?";
+        	String query_login = "SELECT idUser,idStore, idRole,  Username, Email, Password FROM user where Username = ? OR Email = ?";
 
 
             con = DBConnection.createConnection(); 
@@ -49,6 +50,7 @@ public class LoginDao {
              email = resultSet.getString("Email");
              idUser = resultSet.getInt("idUser");
              idStore = resultSet.getInt("idStore");
+             idRole = resultSet.getInt("idRole");
  	        System.out.println(idUser);
 
              passwordDB = PasswordHashing.doHashing(resultSet.getString("Password"));
@@ -60,6 +62,7 @@ public class LoginDao {
             	  User u = new User();
             	  u.setIdUser(idUser);
             	  u.setIdStore(idStore);
+            	  u.setIdRole(idRole);
             	  result.setUser(u);
        	        System.out.println("OK");
 

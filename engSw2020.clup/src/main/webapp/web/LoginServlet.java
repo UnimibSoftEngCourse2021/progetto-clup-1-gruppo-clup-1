@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         
         try {
         ConnectionResult userValidate = loginDao.authenticateUser(loginBean);  
-        if(userValidate.getResult().equals("SUCCESS") && userValidate.getUser().getIdStore() == 1) 
+        if(userValidate.getResult().equals("SUCCESS") && userValidate.getUser().getIdRole() == 1) 
          {
         	HttpSession session = request.getSession();
             session.setAttribute("id", userValidate.getUser().getIdUser());

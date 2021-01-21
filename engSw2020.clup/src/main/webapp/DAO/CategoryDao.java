@@ -82,7 +82,7 @@ public class CategoryDao {
 	     return result;
 	}
 	
-	public ArrayList<Category> getAllCategory() throws SQLException{
+	public ArrayList<Category> getAllCategory(int idStoreUser) throws SQLException{
 		  ArrayList<Category> categoryList = new ArrayList<Category>();
 		  Connection con = null;
 	      Statement statement = null;
@@ -91,9 +91,12 @@ public class CategoryDao {
 
 	          con = DBConnection.createConnection(); 
 	          statement = con.createStatement();
-	          String query = "SELECT * FROM category";
-	          statement = con.createStatement();
-	          resultSet = statement.executeQuery(query);
+	          String query = "SELECT category.idCategory, category.Name, category.Description FROM category WHERE category.idCategory NOT IN(SELECT idCategory FROM categoryinstore WHERE idStore = ?)";
+		        System.out.println(query);
+
+	          	PreparedStatement preparedStatement  = con.prepareStatement(query);
+	      		preparedStatement.setInt(1, idStoreUser);
+	      		resultSet = preparedStatement.executeQuery(); 
 	          while(resultSet.next()) {
 	        	  Category categoryBean = new Category();
 	        	  categoryBean.setIdCategory(resultSet.getInt("idCategory"));

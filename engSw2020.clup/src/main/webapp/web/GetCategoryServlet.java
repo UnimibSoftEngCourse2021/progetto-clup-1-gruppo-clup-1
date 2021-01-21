@@ -42,7 +42,7 @@ public class GetCategoryServlet extends HttpServlet {
 
 		try {
 			categoryList = categoryDao.getCategory(idStoreUser);
-			AllCategoryList = categoryDao.getAllCategory();
+			AllCategoryList = categoryDao.getAllCategory(idStoreUser);
 
 			request.setAttribute("categoryList", categoryList);
 			request.setAttribute("AllCategoryList", AllCategoryList);
