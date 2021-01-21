@@ -9,6 +9,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bookings.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/dropdown.css">
+<link rel="stylesheet" href="css/modal.css">
+
 <link rel="stylesheet" href="css/footer.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet"
@@ -81,9 +83,29 @@
 							<td><a
 								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
 								class="button"><i class="fa fa-trash"></i></a> <a
-								href="http://localhost:8080/clup/modifyCategoryBooking.jsp?idBooking=${category.getIdCategory()}"
+								href="#"
 								class="button"><i class="fa fa-pencil"></i></a></td>
+								
 						</tr>
+						<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+    <h3>Modifica categoria</h3>
+      <span class="close">&times;</span>
+      
+    </div>
+    <div class="modal-body">
+       <label for="fname">Nome</label><br>
+  	<input type="text" id="name" name="fname" style="weigth:100%"><br>
+             <label for="fname">Descrizione categoria</label><br>
+  	<input type="text" id="description" name="fname" style="weigth:100%"><br>
+  	<br>
+  	<div class="btn-block">
+					<button type="submit">Aggiorna</button>
+				</div>
+</div>
 					</c:forEach>
 				<tbody>
 			</table>
@@ -160,4 +182,32 @@
   }
 
   navSlide();
+</script>
+
+
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementsByTagName("i");
+var td = document.getElementsByTagName("td");
+var tr = document.getElementsByTagName("tr");
+var span = document.getElementsByClassName("close")[0];
+var i;
+for (i = 0; i < btn.length; i++) {
+	btn[i].onclick = function() {
+		var txt = "ciao";
+		document.getElementById("name").value = "Casa";
+		document.getElementById("description").value = "Prodotti per la casa";
+
+		  modal.style.display = "block";
+		}
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
