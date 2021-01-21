@@ -64,7 +64,7 @@
 <body>
 	<div class="table-wrapper">
 		<form name="form1" method="post" action="deletionCategoryServlet">
-			<table class="fl-table">
+			<table  class="fl-table">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -77,9 +77,9 @@
 				<tbody>
 					<c:forEach items="${categoryList}" var="category">
 						<tr>
-							<td>${category.getIdCategory()}</td>
-							<td>${category.getName()}</td>
-							<td>${category.getDescription()}</td>
+							<td id="idRiga" >${category.getIdCategory()}</td>
+							<td >${category.getName()}</td>
+							<td >${category.getDescription()}</td>
 							<td><a
 								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
 								class="button"><i class="fa fa-trash"></i></a> <a
@@ -97,10 +97,12 @@
       
     </div>
     <div class="modal-body">
+     <label for="fname">ID categoria</label><br>
+  	<input type="text" id="idCategory" name="idCategory" style="width:100%" readonly><br>
        <label for="fname">Nome</label><br>
-  	<input type="text" id="name" name="fname" style="weigth:100%"><br>
+  	<input type="text" id="name" name="fname" style="width:100%"><br>
              <label for="fname">Descrizione categoria</label><br>
-  	<input type="text" id="description" name="fname" style="weigth:100%"><br>
+  	<input type="text" id="description" name="fname" style="width:100%"><br>
   	<br>
   	<div class="btn-block">
 					<button type="submit">Aggiorna</button>
@@ -186,20 +188,30 @@
 
 
 <script>
+var index = 0;
 var modal = document.getElementById("myModal");
 var btn = document.getElementsByTagName("i");
 var td = document.getElementsByTagName("td");
 var tr = document.getElementsByTagName("tr");
 var span = document.getElementsByClassName("close")[0];
 var i;
-for (i = 0; i < btn.length; i++) {
-	btn[i].onclick = function() {
-		var txt = "ciao";
-		document.getElementById("name").value = "Casa";
-		document.getElementById("description").value = "Prodotti per la casa";
 
-		  modal.style.display = "block";
-		}
+for (i = 0; i < btn.length; i++) {
+	console.log(i);
+		btn[i].onclick = function() {
+//TODO: modifica passaggio parametri.
+			console.log(i);
+			var tr1 = document.getElementsByTagName("tr")[i - 2];
+			console.log(i);
+			var td1 = tr1.getElementsByTagName("td")[0];
+			console.log(td1.innerHTML);
+			document.getElementById("idCategory").value = "ciao"
+			document.getElementById("name").value = "ciao";
+			document.getElementById("description").value = "Prodotti per la casa";
+			  modal.style.display = "block";
+			}
+		
+
 }
 span.onclick = function() {
   modal.style.display = "none";
