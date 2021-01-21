@@ -32,7 +32,7 @@ public class AddCategoryServlet extends HttpServlet {
 		CategoryDao categoryDao = new CategoryDao();
     	HttpSession session = request.getSession();
     	int idStore = ((Integer) session.getAttribute("idStore")).intValue();
-    	String category = request.getParameter("categoryToAdd");
+    	String category = request.getParameter("categoryNameToAdd");
     	int result = 0;
     	int id = 0;
 		try {

@@ -103,15 +103,16 @@
       
     			 	 </div>
     			<div class="modal-body">
-     				<label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
-  						<select name = "categoryToAdd" style="width:100%">
-       						<c:forEach items="${categoryList}" var="category">
-       							<option value="${category.getName()}">${category.getName()}</option>
+     				
+  			</form>
+  <form name="form3" action="addCategoryServlet" method="POST">
+  <label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
+  						<select id = "categoryNameToAdd" name="categoryNameToAdd" style="width:100%">
+       						<c:forEach items="${AllCategoryList}" var="AllCategoryList">
+       							<option value="${AllCategoryList.getName()}">${AllCategoryList.getName()}</option>
 							</c:forEach>
 						</select>
   						<br>
-  			</form>
-  <form name="form3" action="addCategoryServlet" method="POST">
   	<div class="btn-block">
   
   	<button type="submit">Inserisci</button>

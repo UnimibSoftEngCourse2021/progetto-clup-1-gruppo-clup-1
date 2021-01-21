@@ -118,7 +118,7 @@ public class CategoryDao {
 	
 	
 	public int insertCategory(int idStore, int idCategory) throws SQLException {
-	        System.out.println("CIAOOOOOOOOOOOOO");
+	        System.out.println(idCategory);
 	        String INSERT_USERS_SQL = "INSERT INTO categoryinstore" +
 	                "  (idStore, idCategory) VALUES " +
 	                " (?, ?);";
@@ -127,8 +127,8 @@ public class CategoryDao {
 		  con = DBConnection.createConnection(); 
 
 		  PreparedStatement preparedStatement  = con.prepareStatement(INSERT_USERS_SQL);
-  		preparedStatement.setInt(1, 1);
-  		preparedStatement.setInt(2, 9);
+  		preparedStatement.setInt(1, idStore);
+  		preparedStatement.setInt(2, idCategory);
 		  int result = 0;
 		  try {
 		    	con = DBConnection.createConnection();
@@ -155,13 +155,16 @@ public class CategoryDao {
 	      Statement statement = null;
 	      ResultSet resultSet = null;
 	      int id = 0;
-	      try{        	 
+	      try{ 
+	    	  String query_insert = "SELECT idCategory FROM category WHERE Name =  ?";
 
-	          con = DBConnection.createConnection(); 
-	          statement = con.createStatement();
-	          String query = "SELECT idCategory FROM category WHERE Name = " + name;
-	          statement = con.createStatement();
-	          resultSet = statement.executeQuery(query);
+
+	            con = DBConnection.createConnection(); 
+	        	PreparedStatement preparedStatement  = con.prepareStatement(query_insert);
+	        	preparedStatement.setString(1, name);
+
+	            resultSet = preparedStatement.executeQuery(); 
+
 	          while(resultSet.next()) {
 	        	   id = resultSet.getInt("idCategory");
 	          }
@@ -174,7 +177,6 @@ public class CategoryDao {
 	      }
 	      finally {
 	    	  con.close();
-	    	  statement.close();
 	    	  resultSet.close();
 	      }
 		return id;

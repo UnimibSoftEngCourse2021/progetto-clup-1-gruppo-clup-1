@@ -38,9 +38,14 @@ public class GetCategoryServlet extends HttpServlet {
     	HttpSession session = request.getSession();
     	int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
 		ArrayList<Category> categoryList = null;
+		ArrayList<Category> AllCategoryList = null;
+
 		try {
 			categoryList = categoryDao.getCategory(idStoreUser);
+			AllCategoryList = categoryDao.getAllCategory();
+
 			request.setAttribute("categoryList", categoryList);
+			request.setAttribute("AllCategoryList", AllCategoryList);
 	    	request.getRequestDispatcher("/category.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
