@@ -1,6 +1,8 @@
 
 <%
 	int i = ((Integer) session.getAttribute("id")).intValue();
+	String user = session.getAttribute("name") + "";
+	int idUser = (Integer) session.getAttribute("idUser"); 
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -64,6 +66,27 @@
 					$("<td>").text(item.finishTime).appendTo($tr);
 				});
 
+    </script>
+    <script>
+    	$(document).ready(function() {  
+         var myVar = setInterval(getData,5000);
+         var myVar2 = setInterval(getCountBooking,1000);
+	     function getData(){
+    	  $.get("AsyncServlet", function(responseJson) {   
+    		  $("#table-body").empty();
+	        $.each(responseJson, function(index, item) { 
+	        	var $tr = $("<tr>").appendTo($("#table-body")); 
+	        	$("<td>").text(item.idBooking).appendTo($tr); 
+	        	$("<td>").text(item.user.name).appendTo($tr); 
+	        	$("<td>").text(item.user.surname).appendTo($tr); 
+	        	$("<td>").text(item.user.email).appendTo($tr); 
+	        	$("<td>").text(item.user.telephoneNumber).appendTo($tr); 
+	        	$("<td>").text(item.bookingDate).appendTo($tr); 
+	        	$("<td>").text(item.arrivalTime).appendTo($tr); 
+	        	$("<td>").text(item.finishTime).appendTo($tr); 
+	        });
+
+
 			});
 		}
 		function getCountBooking() {
@@ -72,6 +95,7 @@
 			});
 		}
 	});
+
 </script>
 </head>
 <header> <nav role="navigation">
@@ -100,6 +124,109 @@
 	<div class="line1"></div>
 	<div class="line2"></div>
 	<div class="line3"></div>
+
+	</script>
+  </head>
+  <header>
+    <nav role="navigation">
+      <div class="logo">
+        <h4>customer line up</h4>
+      </div>
+      <ul class="nav-links">
+        <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a>
+        	<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>       	
+          </div>
+        </li>
+        <li class="dropdown"><a href="#" class="dropbtn">Store</a>
+          <div class="dropdown-content">
+        	<a href="#">Gestione negozio</a>
+        	<a href="#">Gestione dipendente</a>
+        	<a href="#">Gestione categorie</a>       	   	
+          </div>
+        </li>
+         <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
+        	<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
+          </div>
+        </li>
+        <li><a href="#">Benvenuto <%= user %></a></li>
+
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+  <body>
+  <div class="content-wrapper">
+        <div class="content">						 
+                  <!-- Top Statistics -->
+                  <div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 id="booking-count" class="mb-1">0</h2>    
+                          <p>Prenotazioni odierne</p>                  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini  mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">9,503</h2>
+                          <p>New Visitors Today</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">71,503</h2>
+                          <p>Monthly Total Order</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">9,503</h2>
+                          <p>Total Revenue This Year</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>    
+               </div>
+<div class="card mb-4">
+ <div class="card-header">
+   <i class="fas fa-table mr-1"></i>
+    Prenotazioni per le prossime ore
+  <div class="table-wrapper">
+  <table class="fl-table">
+  	<thead>
+  		 <tr>
+            <th>Numero</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Prenotazione</th>
+            <th>Ora di arrivo</th>
+            <th>Ora di fine</th>                               
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+  </table>  	
+  </div>
+ </div>
+
 </div>
 </nav> </header>
 <body>

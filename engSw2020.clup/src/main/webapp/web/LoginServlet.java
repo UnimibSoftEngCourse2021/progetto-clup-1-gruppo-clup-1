@@ -41,8 +41,13 @@ public class LoginServlet extends HttpServlet {
         if(userValidate.getResult().equals("SUCCESS") && userValidate.getUser().getIdRole() == 1) 
          {
         	HttpSession session = request.getSession();
+
             session.setAttribute("id", userValidate.getUser().getIdUser());
             session.setAttribute("idStore", userValidate.getUser().getIdStore());
+            session.setAttribute("id", userValidate.getUser().getIdStore());
+            session.setAttribute("name", loginBean.getUserName());
+            session.setAttribute("idUser", userValidate.getUser().getIdUser());
+
              request.setAttribute("userName", userName); 
              request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
          }
