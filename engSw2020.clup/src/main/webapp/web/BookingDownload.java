@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -59,7 +61,7 @@ public class BookingDownload extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Logger log = Logger.getLogger(BookingDownload.class.getName());
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
             Document document = new Document();
@@ -71,7 +73,8 @@ public class BookingDownload extends HttpServlet {
             document.close();
             response.sendRedirect("BookingServlet");
         } catch (Exception e) {
-            e.printStackTrace();
+        	log.log(Level.FINE, e.toString());
+
         }
 	}
 

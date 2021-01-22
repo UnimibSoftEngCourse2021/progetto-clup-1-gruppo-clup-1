@@ -2,6 +2,7 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDao userDao = new UserDao();
+		try {
 		int idUser=Integer.parseInt(request.getParameter("idUser"));
 		String name = request.getParameter("name").trim();
 		String surname = request.getParameter("surname").trim();
@@ -63,6 +65,11 @@ public class UserServlet extends HttpServlet {
 	    	request.setAttribute("iduser", idUser);
 	    	request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
 	    }
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	    /*if(result == 0) {
 	    	 request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
 	    }*/

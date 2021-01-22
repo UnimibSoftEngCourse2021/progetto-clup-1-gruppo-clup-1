@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,7 @@ public class ModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Logger log = Logger.getLogger(ModifyServlet.class.getName());
 		int id = Integer.parseInt(request.getParameter("idBooking"));
 		Date date = Date.valueOf(request.getParameter("date"));		
 		String requestArrivalTime = request.getParameter("arrivalTime");
@@ -54,7 +56,7 @@ public class ModifyServlet extends HttpServlet {
 			result = bookingDao.modifyBooking(id,date,arrivalTime,finishTime);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
 	    if(result==1)
 	    {	    	

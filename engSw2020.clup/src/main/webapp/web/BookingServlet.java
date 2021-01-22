@@ -3,6 +3,8 @@ package main.webapp.web;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,7 @@ public class BookingServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException  {
+		 Logger log = Logger.getLogger(BookingServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
     	HttpSession session = req.getSession();
     	int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
@@ -30,7 +33,8 @@ public class BookingServlet extends HttpServlet {
 			bookingList = bookingDao.getBooking(idStoreUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
+
 		}
 		req.setAttribute("bookingList", bookingList);
 

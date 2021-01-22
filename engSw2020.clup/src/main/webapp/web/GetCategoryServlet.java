@@ -3,6 +3,8 @@ package main.webapp.web;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import main.webapp.DAO.BookingDao;
 import main.webapp.DAO.CategoryDao;
-import main.webapp.model.Booking;
 import main.webapp.model.Category;
 
 /**
@@ -33,7 +33,7 @@ public class GetCategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		 Logger log = Logger.getLogger(GetCategoryServlet.class.getName());
 		CategoryDao categoryDao = new CategoryDao();
     	HttpSession session = request.getSession();
     	int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
@@ -49,8 +49,7 @@ public class GetCategoryServlet extends HttpServlet {
 	    	request.getRequestDispatcher("/category.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			log.log(Level.FINE, e.toString());		}
 		
 	
 	}

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import main.webapp.DAO.*;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -34,7 +35,7 @@ public class RegistrationServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		 
         if(request.getParameter("btn_register")!=null) {
         	String name = request.getParameter("Name");
             String surname = request.getParameter("Surname");
@@ -57,7 +58,7 @@ public class RegistrationServlet extends HttpServlet {
             try {
             	result = userDao.registerEmployee(user);
             } catch (Exception e) {
-                e.printStackTrace();
+            	logger.log(Level.FINE, e.toString());
             }
             
     		request.setAttribute("successMsg","Register Successfully...! Please login"); //register success messeage            

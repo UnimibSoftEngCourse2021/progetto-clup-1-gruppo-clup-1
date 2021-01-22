@@ -2,6 +2,8 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +44,7 @@ public class UpdateStoreInfo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int result = 0;
+		 Logger log = Logger.getLogger(UpdateStoreInfo.class.getName());		int result = 0;
 		HttpSession session = request.getSession();
 		int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
 		String descrizione = request.getParameter("descrizione");
@@ -73,7 +74,7 @@ public class UpdateStoreInfo extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
 		doGet(request, response);
 	}

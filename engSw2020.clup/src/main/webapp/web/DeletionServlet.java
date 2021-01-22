@@ -1,8 +1,9 @@
 package main.webapp.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,16 +30,17 @@ public class DeletionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Logger log = Logger.getLogger(DeletionServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
 	    int result = 0;
 		try {
 			result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
 	    if(result==1)
 	    {	    	

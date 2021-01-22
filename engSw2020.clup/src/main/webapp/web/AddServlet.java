@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,32 +21,35 @@ import main.webapp.model.User;
  */
 public class AddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Logger log = Logger.getLogger(AddServlet.class.getName());
 		String id = request.getParameter("idUser");
-        System.out.println("Printing guest result insert: " +id);
+		System.out.println("Printing guest result insert: " + id);
 
 		int idUser = 0;
-		if(!id.isEmpty() && id != null)
-		{
-		 idUser = Integer.parseInt(request.getParameter("idUser"));
+		if (!id.isEmpty() && id != null) {
+			idUser = Integer.parseInt(request.getParameter("idUser"));
 		}
 		int idStore = Integer.parseInt(request.getParameter("idStore"));
-		Date date = Date.valueOf(request.getParameter("date"));		
+		Date date = Date.valueOf(request.getParameter("date"));
 		String requestArrivalTime = request.getParameter("arrivalTime");
 		requestArrivalTime += ":00";
 		Time arrivalTime = Time.valueOf(requestArrivalTime);
@@ -63,31 +68,29 @@ public class AddServlet extends HttpServlet {
 		user.setTelephoneNumber(userTelephoneNumber);
 		RegistrationDao registrationDao = new RegistrationDao();
 		BookingDao bookingDao = new BookingDao();
-	    int result = 0;
-	    int result_insertGuestUser = 0;
-	    
+		int result = 0;
+		int result_insertGuestUser = 0;
+
 		try {
-			if(idUser == 0)
-			{
+			if (idUser == 0) {
 				result_insertGuestUser = registrationDao.insertGuestUser(user);
 				idUser = registrationDao.getGuestUserId(user.getEmail());
 			}
 			result = bookingDao.insertBooking(date, arrivalTime, finishTime, idStore, idUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
-	    if(result==1)
-	    {	    	
-	    	response.sendRedirect("BookingServlet");
-	    }
-	    if(result == 0) {
-	    	//TODO: Mostrare alert.
-	    	request.setAttribute("errorMsg","User Id inesistente"); 
-            request.getRequestDispatcher("/addBooking.jsp").forward(request, response);	    }
+		if (result == 1) {
+			response.sendRedirect("BookingServlet");
+		}
+		if (result == 0) {
+			request.setAttribute("errorMsg", "User Id inesistente");
+			request.getRequestDispatcher("/addBooking.jsp").forward(request, response);
+		}
 	}
 
 }

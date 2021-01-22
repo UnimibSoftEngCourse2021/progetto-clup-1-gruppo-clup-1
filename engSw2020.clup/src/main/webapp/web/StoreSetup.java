@@ -2,6 +2,8 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +34,7 @@ public class StoreSetup extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Logger log = Logger.getLogger(StoreSetup.class.getName());
 		HttpSession session = request.getSession();
 		int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
 		Store store = new Store();
@@ -41,7 +43,8 @@ public class StoreSetup extends HttpServlet {
 			store = storeDao.getStoreInfo(idStoreUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
+
 		}
 		request.setAttribute("Name", store.getName());
 		request.setAttribute("Descrizione", store.getDesprition());

@@ -1,6 +1,9 @@
 package main.webapp.web;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ public class CountBookingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Logger log = Logger.getLogger(CountBookingServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
 		HttpSession session = request.getSession();
 		int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
@@ -38,7 +42,7 @@ public class CountBookingServlet extends HttpServlet {
 			
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
 		
 		String json = new Gson().toJson(result);
