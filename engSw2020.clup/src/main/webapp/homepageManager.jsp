@@ -1,6 +1,7 @@
 <%
 	int i = ((Integer) session.getAttribute("id")).intValue();
 	String user = session.getAttribute("name") + "";
+	int idUser = (Integer) session.getAttribute("idUser"); 
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -90,7 +91,12 @@
         	<a href="#">Gestione categorie</a>       	   	
           </div>
         </li>
-        <li><a href="userInformation.jsp">Gestione account</a></li>
+         <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
+          <div class="dropdown-content">
+        	<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
+        	<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
+          </div>
+        </li>
         <li><a href="#">Benvenuto <%= user %></a></li>
 
       </ul>
