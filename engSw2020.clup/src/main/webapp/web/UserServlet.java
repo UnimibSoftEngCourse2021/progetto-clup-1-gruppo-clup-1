@@ -57,7 +57,7 @@ public class UserServlet extends HttpServlet {
 		String telephoneNumber = request.getParameter("telephoneNumber").trim();
 		Date birthdayDate = Date.valueOf(request.getParameter("birthdayDate"));
 		int result=0;
-		result = userDao.modifyBooking(idUser, name, surname, email, userName, telephoneNumber, birthdayDate);
+		result = userDao.modifyUserInfo(idUser, name, surname, email, userName, telephoneNumber, birthdayDate);
 	    if(result==1)
 	    {	  
 	    	request.setAttribute("iduser", idUser);
