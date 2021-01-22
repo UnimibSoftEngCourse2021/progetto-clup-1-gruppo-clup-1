@@ -35,8 +35,7 @@ public class LoginDao {
 
         try{
         	String query_login = "SELECT idUser,idStore, idRole,  Username, Email, Password FROM user where Username = ? OR Email = ?";
-
-
+        	result = new ConnectionResult();
             con = DBConnection.createConnection(); 
         	PreparedStatement preparedStatement  = con.prepareStatement(query_login);
         	preparedStatement.setString(1, userName);
@@ -57,7 +56,6 @@ public class LoginDao {
 
               if((userName.equals(userNameDB) && password.equals(passwordDB)) || (userName.equals(email) && password.equals(passwordDB)))
               {
-            	  result = new ConnectionResult();
             	  result.setResult("SUCCESS");
             	  User u = new User();
             	  u.setIdUser(idUser);
@@ -68,7 +66,8 @@ public class LoginDao {
 
                  return result;
               }
-            }}
+             }
+            }
             catch(Exception e)
             {
                log.log(Level.FINE, e.toString());
