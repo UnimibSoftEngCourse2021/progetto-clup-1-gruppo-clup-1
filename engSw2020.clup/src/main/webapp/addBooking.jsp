@@ -141,9 +141,9 @@
 	</div>
 
 	<script>
-		var a = document.getElementByID("fee").value;
-		var b = document.getElementByID("fee1").value;
-		var c = document.getElementByID("fee2").value;
+		var a = document.getElementById("fee").value;
+		var b = document.getElementById("fee1").value;
+		var c = document.getElementById("fee2").value;
 		var result = a + b + c;
 		function calcNumbers() {
 			document.getElementByID("result").innerHTML = result;
@@ -197,7 +197,7 @@
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
 
 		if (date.value == null || date.value == ""
-				|| bookingDate.getDay() < todayDate.getDay()) {
+				|| (bookingDate.getMonth()<todayDate.getMonth() && bookingDate.getDate() < todayDate.getDate())) {
 			alert("Inserire una data valida");
 			date.style.background = "#f08080";
 			date.focus();
