@@ -91,7 +91,7 @@ input[type=radio], input[type="checkbox"] {
       }
  .week {
       display:flex;
-      justfiy-content:space-between;
+      justify-content:space-between;
       }
       .colums {
       display:flex;
