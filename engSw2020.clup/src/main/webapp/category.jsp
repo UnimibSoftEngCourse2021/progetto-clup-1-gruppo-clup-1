@@ -1,3 +1,6 @@
+<% int idUser = (Integer) session.getAttribute("idUser");  
+    String user = session.getAttribute("name") + "";
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
@@ -22,34 +25,41 @@
 
 </head>
 
-<header>  <nav>
-<div class="logo">
-	<h4>customer line up</h4>
-</div>
-<ul class="nav-links">
-	<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-	<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
-		<div class="dropdown-content">
-			<a href="http://localhost:8080/clup/BookingServlet">Visualizza
-				Prenotazioni</a> <a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi
-				Prenotazione</a>
-		</div></li>
-	<li class="dropdown"><a href="#" class="dropbtn">Store</a>
-		<div class="dropdown-content">
-			<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
-			<a href="#">Gestione dipendente</a> 
-			<a href="http://localhost:8080/clup/getCategoryServlet">Gestione
-				categorie</a>
-		</div></li>
-	<li><a href="#">User</a></li>
+<header> 
+	<nav role="navigation">
+		<div class="logo">
+			<h4>customer line up</h4>
+		</div>
+		<ul class="nav-links">
+			<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+				<div class="dropdown-content">
+					<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a> 
+					<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>
+				</div>
+			</li>
+			<li class="dropdown"><a href="#" class="dropbtn">Store</a>
+				<div class="dropdown-content">
+					<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
+					<a href="http://localhost:8080/clup/getCategoryServlet">Gestione categorie</a>
+				</div>
+			</li>
+			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
+          		<div class="dropdown-content">
+        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
+        			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
+          		</div>
+        	</li>
+        	<li><a href="#">Benvenuto <%= user %></a></li>
 
-</ul>
-<div class="burger">
-	<div class="line1"></div>
-	<div class="line2"></div>
-	<div class="line3"></div>
-</div>
-</nav> </header>
+		</ul>
+		<div class="burger">
+			<div class="line1"></div>
+			<div class="line2"></div>
+			<div class="line3"></div>
+		</div>
+	</nav>
+</header>
 <div>
 	<br>
 

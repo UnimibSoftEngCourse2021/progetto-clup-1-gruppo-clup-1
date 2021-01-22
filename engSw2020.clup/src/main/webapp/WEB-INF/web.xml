@@ -59,7 +59,6 @@
   	<servlet-class>main.webapp.web.CountBookingServlet</servlet-class>
   </servlet>
   <servlet>
-<<<<<<< HEAD
   	<servlet-name>StoreSetup</servlet-name>
   	<display-name>StoreSetup</display-name>
   	<description></description>
@@ -94,7 +93,8 @@
   	<display-name>AddCategoryServlet</display-name>
   	<description></description>
   	<servlet-class>main.webapp.web.AddCategoryServlet</servlet-class>
-=======
+  </servlet>
+  <servlet>
   	<servlet-name>LogoutServlet</servlet-name>
   	<display-name>LogoutServlet</display-name>
   	<description></description>
@@ -105,7 +105,6 @@
   	<display-name>UserServlet</display-name>
   	<description></description>
   	<servlet-class>main.webapp.web.UserServlet</servlet-class>
->>>>>>> origin/dev_fix
   </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -144,7 +143,6 @@
   	<url-pattern>/CountBookingServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-<<<<<<< HEAD
   	<servlet-name>StoreSetup</servlet-name>
   	<url-pattern>/storeSetup</url-pattern>
   </servlet-mapping>
@@ -167,14 +165,14 @@
   <servlet-mapping>
   	<servlet-name>AddCategoryServlet</servlet-name>
   	<url-pattern>/addCategoryServlet</url-pattern>
-=======
+  </servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>UserServlet</servlet-name>
   	<url-pattern>/UserServlet</url-pattern>
->>>>>>> origin/dev_fix
   </servlet-mapping>
   
 </web-app>

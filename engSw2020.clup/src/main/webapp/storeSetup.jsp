@@ -1,3 +1,6 @@
+<% int idUser = (Integer) session.getAttribute("idUser");  
+    String user = session.getAttribute("name") + "";
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +13,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/modifyBooking.css">
-
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/dropdown.css">
@@ -21,29 +23,34 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
-<header>
+<header> 
 	<nav role="navigation">
 		<div class="logo">
 			<h4>customer line up</h4>
 		</div>
 		<ul class="nav-links">
-	<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-	<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
-		<div class="dropdown-content">
-			<a href="http://localhost:8080/clup/BookingServlet">Visualizza
-				Prenotazioni</a> <a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi
-				Prenotazione</a>
-		</div></li>
-	<li class="dropdown"><a href="#" class="dropbtn">Store</a>
-		<div class="dropdown-content">
-			<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
-			<a href="#">Gestione dipendente</a> 
-			<a href="http://localhost:8080/clup/getCategoryServlet">Gestione
-				categorie</a>
-		</div></li>
-	<li><a href="#">User</a></li>
+			<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
+				<div class="dropdown-content">
+					<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a> 
+					<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>
+				</div>
+			</li>
+			<li class="dropdown"><a href="#" class="dropbtn">Store</a>
+				<div class="dropdown-content">
+					<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
+					<a href="http://localhost:8080/clup/getCategoryServlet">Gestione categorie</a>
+				</div>
+			</li>
+			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
+          		<div class="dropdown-content">
+        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
+        			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
+          		</div>
+        	</li>
+        	<li><a href="#">Benvenuto <%= user %></a></li>
 
-</ul>
+		</ul>
 		<div class="burger">
 			<div class="line1"></div>
 			<div class="line2"></div>

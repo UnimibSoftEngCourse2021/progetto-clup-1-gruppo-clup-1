@@ -64,7 +64,6 @@ function validateData() {
         <li class="dropdown"><a href="#" class="dropbtn">Store</a>
           <div class="dropdown-content">
         	<a href="#">Gestione negozio</a>
-        	<a href="#">Gestione dipendente</a>
         	<a href="#">Gestione categorie</a>       	   	
           </div>
         </li>
@@ -88,8 +87,8 @@ function validateData() {
 
 <form class="w3-container w3-card-4 w3-light-grey" action="UserServlet" method="POST" onsubmit="return validateData();">
  <div style="text-align:center;"> 
-  <h2 style="text-align:center;">Informazioni utente</h2>
-  <p>Per modificare i dati premere l'icona per la modifica in fondo alla pagina.</p>
+  <h2 style="font-weight: bold; text-align: center">Informazioni utente</h2>
+  <p style="font-weight: bold; text-align: center">Per modificare i dati premere l'icona per la modifica in fondo alla pagina.</p>
   </div>
   <input type="hidden" name="idUser" value="<%= idUser %>">
 <div>
