@@ -39,7 +39,7 @@ public class AddServlet extends HttpServlet {
         System.out.println("Printing guest result insert: " +id);
 
 		int idUser = 0;
-		if(id != null && id != "")
+		if(!id.isEmpty() && id != null)
 		{
 		 idUser = Integer.parseInt(request.getParameter("idUser"));
 		}

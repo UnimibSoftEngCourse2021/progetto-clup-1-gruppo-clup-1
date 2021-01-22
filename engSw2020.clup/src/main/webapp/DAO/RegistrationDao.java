@@ -44,17 +44,14 @@ public class RegistrationDao {
 
 	public int insertGuestUser(User user) throws SQLException, ClassNotFoundException {
 
-		String INSERT_USERS_SQL = "INSERT INTO User"
-				+ "  (Name, Surname, TelephoneNumber, Email, guest, idRole) VALUES " + " (?, ?, ?, ?, ?, ?);";
+		String insert_user_sql = "INSERT INTO User" + "  (Name, Surname, TelephoneNumber, Email, guest, idRole) VALUES "
+				+ " (?, ?, ?, ?, ?, ?);";
 
 		int result = 0;
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = DBConnection.createConnection();
-			if (connection == null)
-				return 0;
-			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+		try (Connection connection = DBConnection.createConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(insert_user_sql)) {
+
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getSurname());
 			preparedStatement.setString(3, user.getTelephoneNumber());
@@ -63,7 +60,6 @@ public class RegistrationDao {
 			preparedStatement.setInt(6, 2);
 
 			result = preparedStatement.executeUpdate();
-			System.out.println("Printing guest result insert: " + result);
 
 		} catch (SQLException e) {
 			log.log(Level.FINE, e.toString());

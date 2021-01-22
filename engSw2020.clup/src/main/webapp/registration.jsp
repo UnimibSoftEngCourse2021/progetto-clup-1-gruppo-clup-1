@@ -7,7 +7,7 @@
 }
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
 
@@ -140,7 +140,7 @@
 				</div>
 
 				<a href="index.jsp" class="form-log-in-with-existing">Hai già un
-					account? <b> Accedi </b>
+					account? <strong> Accedi </strong>
 				</a>
 
 			</div>

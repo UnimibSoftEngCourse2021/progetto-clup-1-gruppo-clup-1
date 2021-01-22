@@ -6,7 +6,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 <%@ page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="it">
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -230,17 +230,17 @@ int idUser = (Integer) session.getAttribute("idUser");
 <body>
 <div class="table-wrapper">
   <form name="form1" method="post" action="DeletionServlet">
-    <table id="bookingTable" class="fl-table">
+    <table summary="TableWithBooking" id="bookingTable" class="fl-table">
         <thead>
         <tr>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Prenotazione</th>
-            <th>Ora di arrivo</th>
-            <th>Ora di fine</th>
-            <th>Operazione</th>
+            <th id="Nome">Nome</th>
+            <th id="Cognome">Cognome</th>
+            <th id="Email">Email</th>
+            <th id="Telefono">Telefono</th>
+            <th id="Prenotazione">Prenotazione</th>
+            <th id="OraArrivo">Ora di arrivo</th>
+            <th id="OraFine">Ora di fine</th>
+            <th id="Operazione">Operazione</th>
                                     
         </tr>
         </thead>

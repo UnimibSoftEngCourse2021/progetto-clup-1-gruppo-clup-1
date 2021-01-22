@@ -6,7 +6,7 @@
 <%@ page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="it">
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -74,13 +74,13 @@
 	<div class="table-wrapper">
 	
 		
-	<table  class="fl-table">
+	<table  summary="TableWithCategory"  class="fl-table">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Descrizione</th>
-				<th>Operazione</th>
+				<th id="IDCategoria">ID</th>
+				<th id="NomeCategoria">Nome</th>
+				<th id="DescrizioneCategoria">Descrizione</th>
+				<th id="OperazioneCategoria">Operazione</th>
 
 			</tr>
 		</thead>
