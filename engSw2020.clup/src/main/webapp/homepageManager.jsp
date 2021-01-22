@@ -150,17 +150,17 @@
    			<i class="fas fa-table mr-1"></i>
     			Prenotazioni per le prossime ore
   		<div class="table-wrapper">
-  			<table class="fl-table">
+  			<table summary="TablePrenotazioni" class="fl-table">
   				<thead>
   		 			<tr>
-            			<th>Numero</th>
-           				<th>Nome</th>
-            			<th>Cognome</th>
-            			<th>Email</th>
-            			<th>Telefono</th>
-            			<th>Prenotazione</th>
-            			<th>Ora di arrivo</th>
-            			<th>Ora di fine</th>                               
+            			<th id="Numero">Numero</th>
+           				<th id="Nome">Nome</th>
+            			<th id="Cognome">Cognome</th>
+            			<th id="Email">Email</th>
+            			<th id="NumeroTelefono">Telefono</th>
+            			<th id="Prenotazione">Prenotazione</th>
+            			<th id="OraArrivo">Ora di arrivo</th>
+            			<th id="OraFine">Ora di fine</th>                               
         			</tr>
         		</thead>
         		<tbody id="table-body">

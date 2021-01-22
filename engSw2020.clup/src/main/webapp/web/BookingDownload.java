@@ -35,9 +35,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class BookingDownload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Date date = new Date();
-	static SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
-	static String date1 = format1.format(date);
-	private static String FILE = "c:/temp/Prenotazioni_"+ date1+".pdf";
+	private final SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+	private final String date1 = format1.format(date);
+	private final  String FILE = "c:/temp/Prenotazioni_"+ date1+".pdf";
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,

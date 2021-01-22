@@ -7,7 +7,7 @@ body{
 	min-height: 400px;
   	margin-bottom: 30%;
    	clear: both;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
   
 }
@@ -149,7 +149,6 @@ a.button {
     appearance: button;
 
     text-decoration: none;
-    color: initial;
     background-color: #324960;
     border: none;
     color: white;
