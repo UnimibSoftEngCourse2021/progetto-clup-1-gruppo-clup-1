@@ -17,7 +17,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <sonar.projectKey>UnimibSoftEngCourse2021_progetto-clup-1-gruppo-clup-1</sonar.projectKey>
+  <sonar.organization>unimibsoftengcourse2021</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
+  
+  
 
   <dependencies>
     <dependency>
