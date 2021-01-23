@@ -61,11 +61,14 @@ public class BookingDao {
 	}
 
 	public int deleteBooking(int idBooking) throws SQLException {
-		String query = "DELETE FROM booking WHERE idBooking =" + idBooking;
+		String query = "DELETE FROM booking WHERE idBooking = ? ";
 		int result = 0;
-		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement()) {
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+			preparedStatement.setInt(1, idBooking);
 
-			result = statement.executeUpdate(query);
+			result = preparedStatement.executeUpdate();
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
@@ -74,13 +77,26 @@ public class BookingDao {
 	}
 
 	public int modifyBooking(int id, Date date, Time arrivalTime, Time finishTime) throws SQLException {
-		String query = "UPDATE booking SET ArrivalTime=" + "\"" + " " + arrivalTime + "\"" + "," + " FinishTime=" + "\""
-				+ " " + finishTime + "\"" + "," + " bookingDate=" + "\"" + date + "\"" + " WHERE idBooking=" + id;
-
+		String query = "UPDATE booking SET ArrivalTime = ?, FinishTime = ?, bookingDate = ? WHERE idBooking = ? ";
 		int result = 0;
-		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement()) {
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
 
-			result = statement.executeUpdate(query);
+			preparedStatement.setTime(1, arrivalTime);
+			preparedStatement.setTime(2, finishTime);
+			preparedStatement.setDate(3, date);
+			preparedStatement.setInt(4, id);
+			System.out.println(id);
+			System.out.println(date);
+			System.out.println(arrivalTime);
+			System.out.println(finishTime);
+			System.out.println(query);
+			System.out.println(preparedStatement);
+
+			result = preparedStatement.executeUpdate();
+			System.out.println("CIAO");
+
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
@@ -90,13 +106,20 @@ public class BookingDao {
 
 	public int insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser)
 			throws SQLException {
-		String query = "INSERT INTO booking (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES(" + "\""
-				+ " " + arrivalTime + "\"" + "," + "\"" + " " + finishTime + "\"" + "," + idUser + "," + "\"" + date
-				+ "\"" + "," + idStore + ")";
-		int result = 0;
-		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement()) {
 
-			result = statement.executeUpdate(query);
+		String query = "INSERT INTO booking" + "  (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES "
+				+ " (?, ?, ?, ?, ?);";
+		int result = 0;
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+			preparedStatement.setTime(1, arrivalTime);
+			preparedStatement.setTime(2, finishTime);
+			preparedStatement.setInt(3, idUser);
+			preparedStatement.setDate(4, date);
+			preparedStatement.setInt(5, idStore);
+			result = preparedStatement.executeUpdate();
+			System.out.println(result);
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
