@@ -48,7 +48,7 @@ public class UserDao {
 			result = statement.executeUpdate(query);
 			return result;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.log(Level.FINE, e.toString());
 		}
 		return result;
 	}

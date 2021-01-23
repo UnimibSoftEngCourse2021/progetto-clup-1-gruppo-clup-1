@@ -3,12 +3,15 @@ package main.webapp.web;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.webapp.DAO.LoginDao;
 import main.webapp.DAO.UserDao;
 import main.webapp.model.User;
 
@@ -49,6 +52,8 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final Logger logger = Logger.getLogger(LoginDao.class.getName());
+
 		UserDao userDao = new UserDao();
 		try {
 		int idUser=Integer.parseInt(request.getParameter("idUser"));
@@ -68,7 +73,7 @@ public class UserServlet extends HttpServlet {
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();
+			logger.log(Level.FINE, e.toString());
 		}
 	    /*if(result == 0) {
 	    	 request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);

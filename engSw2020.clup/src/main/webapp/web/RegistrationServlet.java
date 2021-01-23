@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private RegistrationDao userDao;
-    private int result = 0;
 
 	private static Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
@@ -35,7 +34,8 @@ public class RegistrationServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
+	    int result = 0;
+
         if(request.getParameter("btn_register")!=null) {
         	String name = request.getParameter("Name");
             String surname = request.getParameter("Surname");

@@ -10,12 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import main.webapp.model.Category;
-import main.webapp.model.User;
 import main.webapp.util.DBConnection;
 
 public class CategoryDao {
 
-	private final static Logger log = Logger.getLogger(LoginDao.class.getName());
+	private final static Logger log = Logger.getLogger(CategoryDao.class.getName());
 
 	public ArrayList<Category> getCategory(int idStoreUser) throws SQLException {
 
@@ -32,7 +31,6 @@ public class CategoryDao {
 
 				while (resultSet.next()) {
 					Category categoryBean = new Category();
-					User user = new User();
 					categoryBean.setIdCategory(resultSet.getInt("idCategory"));
 					categoryBean.setName(resultSet.getString("Name"));
 					categoryBean.setDescription(resultSet.getString("Description"));
@@ -54,10 +52,13 @@ public class CategoryDao {
 	}
 
 	public int deleteCategory(int Idcategory) throws SQLException {
-		String query = "DELETE FROM category WHERE idCategory =" + Idcategory;
+		String query = "DELETE FROM category WHERE idCategory = ?";
 		int result = 0;
-		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement()) {
-			result = statement.executeUpdate(query);
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+			preparedStatement.setInt(1,  Idcategory);
+			result = preparedStatement.executeUpdate();
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
