@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
            HttpSession session = request.getSession();
            session.setAttribute("id", userValidate.getUser().getIdUser());
            //session.setAttribute("idStore", userValidate.getUser().getIdStore());
-           session.setAttribute("id", userValidate.getUser().getIdStore());
+           //session.setAttribute("idStore", userValidate.getUser().getIdStore());
            //session.setAttribute("name", loginBean.getUserName());
            //session.setAttribute("idUser", userValidate.getUser().getIdUser());
 

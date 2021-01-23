@@ -8,13 +8,18 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import main.webapp.model.Booking;
+import main.webapp.model.Store;
 import main.webapp.model.User;
 import main.webapp.util.*;
 
 public class BookingDao {
-
+	Logger log = Logger.getLogger(BookingDao.class.getName());
+	
+	
 	public ArrayList<Booking> getBooking(int idStoreUser) throws SQLException{
 	  ArrayList<Booking> bookingList = new ArrayList<Booking>();
 	  Connection con = null;
@@ -188,6 +193,99 @@ public class BookingDao {
 	    	  e.printStackTrace();
 	      }
 	      return result;
+	}
+	
+	public ArrayList<Booking> getUserBooking(int idUser){
+		ArrayList<Booking> bookingList = null;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String query = " SELECT idBooking,  store.name, store.city, store.telephoneNumber, bookingDate, ArrivalTime , FinishTime  "
+        		+ "FROM User INNER JOIN clup_engsw2020.Booking ON "
+        		+ "User.idUser = clup_engsw2020.booking.idUser " + "INNER JOIN store ON booking.idStore = store.idStore "
+        		+ "WHERE  user.idUser = ? AND bookingDate < current_date() + 7 AND bookingDate >= current_date() + 0 ORDER BY bookingDate";
+		try {
+			bookingList = new ArrayList<Booking>();
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1,idUser);
+			resultSet = preparedStatement.executeQuery(); 
+	          while(resultSet.next()) {
+	        	  Booking bookingBean = new Booking();
+	        	  Store store = new Store();
+	        	  bookingBean.setIdBooking(resultSet.getInt("idBooking"));
+	        	  bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
+	        	  bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
+	        	  bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
+	        	  store.setName(resultSet.getString("name"));
+	        	  store.setCity(resultSet.getString("city"));
+	        	  store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
+	        	  bookingBean.setStore(store);
+	        	  bookingList.add(bookingBean);
+	          }
+	          return bookingList;
+			
+		}
+		catch(Exception e)
+		{
+			log.log(Level.FINE, e.toString());
+		}
+		return bookingList;
+	}
+	
+	public ArrayList<String> getCities() {
+		ArrayList<String> city = null;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String query = "SELECT DISTINCT city FROM store";
+		try {
+			city = new ArrayList<String>();
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()) {				
+				city.add(resultSet.getString("city"));
+			}
+			return city;
+		}
+		catch(Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		return city;
+	}
+	
+	public ArrayList<Store> getStores(String city) {
+		ArrayList<Store> store = null;
+		Store storeBean = null;
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String query = "SELECT  idStore,name,city,address FROM store WHERE city=?";
+		
+		try {
+			store = new ArrayList<Store>();
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setString(1, city);
+			resultSet = preparedStatement.executeQuery(); 
+			while(resultSet.next()) {	
+				storeBean = new Store();
+				storeBean.setIdStore(resultSet.getInt("idStore"));
+				storeBean.setCity(resultSet.getString("city"));
+				storeBean.setName(resultSet.getString("name"));
+				storeBean.setAddress(resultSet.getString("address"));
+				store.add(storeBean);
+			}
+			return store;
+		}
+		catch(Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		return store;
 	}
 
 }
