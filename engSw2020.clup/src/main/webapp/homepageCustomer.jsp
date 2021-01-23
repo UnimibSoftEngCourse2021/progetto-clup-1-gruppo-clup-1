@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="it">
 <head>
 <link rel="stylesheet" href="css/customer.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/dropdown.css">
@@ -154,16 +154,16 @@
    			<i class="fas fa-table mr-1"></i>
     			Prenotazioni per i prossimi 7 giorni
   		<div class="table-wrapper">
-  			<table class="fl-table">
+  			<table summary="BookingTbaleCustomer" class="fl-table">
   				<thead>
   		 			<tr>
-            			<th>Numero</th>
-           				<th>Data</th>
-            			<th>Ora di arrivo</th>
-            			<th>Ora di fine</th>
-            			<th>Negozio</th>
-            			<th>Città</th>
-            			<th>Telefono</th>                           
+            			<th id="Numero">Numero</th>
+           				<th id="Data">Data</th>
+            			<th id="OraArrivo">Ora di arrivo</th>
+            			<th id="OraFine">Ora di fine</th>
+            			<th id="Negozio">Negozio</th>
+            			<th id="CittaPrenotazione">Città</th>
+            			<th id="NumeroTelefono">Telefono</th>                           
         			</tr>
         		</thead>
         		<tbody id="table-body">
