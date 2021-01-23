@@ -58,7 +58,7 @@ public class BookingDao {
       		
       catch(Exception e)
       {
-    	  e.printStackTrace();
+    	  log.log(Level.FINE, e.toString());
       }
       finally {
     	  con.close();
@@ -80,7 +80,7 @@ public class BookingDao {
 	          return result;
 	     }		
 		 catch(Exception e){
-			e.printStackTrace();
+			 log.log(Level.FINE, e.toString());
 		}
 	     finally {
 	    	 con.close();
@@ -102,7 +102,7 @@ public class BookingDao {
 	    }
 	    catch(Exception e)
 	    {
-	    	e.printStackTrace();
+	    	log.log(Level.FINE, e.toString());
 	    }
 	    finally {
 	    	con.close();
@@ -124,7 +124,7 @@ public class BookingDao {
 		    }
 		    catch(Exception e)
 		    {
-		    	e.printStackTrace();
+		    	log.log(Level.FINE, e.toString());
 		    }
 		  finally {
 			  con.close();
@@ -167,7 +167,7 @@ public class BookingDao {
 	          return bookingList;
 	      }
 	      catch(Exception e){
-	    	  e.printStackTrace();
+	    	  log.log(Level.FINE, e.toString());
 	      }
 	      return bookingList;
 	}
@@ -190,7 +190,7 @@ public class BookingDao {
 	      	  return result;
 	      }
 	      catch(Exception e) {
-	    	  e.printStackTrace();
+	    	  log.log(Level.FINE, e.toString());
 	      }
 	      return result;
 	}
