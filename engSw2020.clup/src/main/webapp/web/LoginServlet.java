@@ -51,6 +51,18 @@ public class LoginServlet extends HttpServlet {
              request.setAttribute("userName", userName); 
              request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
          }
+        else if(userValidate.getResult().equals("SUCCESS")) 
+        {
+           HttpSession session = request.getSession();
+           session.setAttribute("id", userValidate.getUser().getIdUser());
+           //session.setAttribute("idStore", userValidate.getUser().getIdStore());
+           //session.setAttribute("idStore", userValidate.getUser().getIdStore());
+           //session.setAttribute("name", loginBean.getUserName());
+           //session.setAttribute("idUser", userValidate.getUser().getIdUser());
+
+            request.setAttribute("userName", userName); 
+            request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
+        }
         else if (userValidate.getResult().equals("Invalid connection"))
         {
         	request.setAttribute("errorMsg","Connessione non riuscita al database."); 

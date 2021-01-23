@@ -10,6 +10,7 @@ public class Booking {
 	Time arrivalTime;
 	Time finishTime;
 	User user;
+	Store store;
 	
 	public User getUser() {
 		return user;
@@ -46,5 +47,11 @@ public class Booking {
 	}
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate=bookingDate;
-	}	
+	}
+	public Store getStore() {
+	return store;
+	}
+	public void setStore(Store store) {
+		this.store = store;
+	}
 }

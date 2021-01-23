@@ -68,6 +68,5 @@ public class LoginDao {
 		}
 
 		return result;
-
 	}
 }

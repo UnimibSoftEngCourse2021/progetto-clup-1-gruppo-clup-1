@@ -3,7 +3,7 @@ package main.webapp.model;
 public class Store {
 	private int idStore;
 	private String address;
-	private String desprition;
+	private String description;
 	private String telephoneNumber;
 	private String city;
 	private String name;
@@ -28,10 +28,10 @@ public class Store {
 		this.address = address;
 	}
 	public String getDesprition() {
-		return desprition;
+		return description;
 	}
 	public void setDesprition(String desprition) {
-		this.desprition = desprition;
+		this.description = desprition;
 	}
 	public String getTelephoneNumber() {
 		return telephoneNumber;
