@@ -104,29 +104,52 @@ public class BookingDao {
 		return result;
 	}
 
-	public int insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser)
+	public int[] insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser)
 			throws SQLException {
-
+	if(checkAvailability(idStore,arrivalTime,finishTime,date)) {
 		String query = "INSERT INTO booking" + "  (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES "
 				+ " (?, ?, ?, ?, ?);";
-		int result = 0;
+		int[] result = new int[2];
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
-				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+				PreparedStatement preparedStatement = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
 			preparedStatement.setTime(1, arrivalTime);
 			preparedStatement.setTime(2, finishTime);
 			preparedStatement.setInt(3, idUser);
 			preparedStatement.setDate(4, date);
 			preparedStatement.setInt(5, idStore);
-			result = preparedStatement.executeUpdate();
+			result[0] = preparedStatement.executeUpdate();
 			System.out.println(result);
+			if(result[0]==1)
+			{
+				 try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+			            if (generatedKeys.next()) {
+			                result[1]=(int) generatedKeys.getLong(1);
+			                System.out.println(result[1]);
+			            }
+			            else {
+			                throw new SQLException("Creating user failed, no ID obtained.");
+			            }
+				 }
+			     catch(Exception e) {
+			    	 log.log(Level.FINE, e.toString());
+			     }
+				 
+				 
+				 
+			 }
+			
+			
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
 		}
 		return result;
-
-	}
+		}
+	return null;
+}
+	
+	
 
 	public ArrayList<Booking> getLatestBooking(int idStoreUser) {
 		ArrayList<Booking> bookingList = new ArrayList<Booking>();
@@ -277,6 +300,39 @@ public class BookingDao {
 			log.log(Level.FINE, e.toString());
 		}
 		return store;
+	}
+	
+	public Boolean checkAvailability(int idStore, Time ArrivalTime, Time finishTime, Date bookingDate) {
+		int capacity=0;
+		int filled = 0;
+		String query = "SELECT COUNT(idBooking) AS persone, bookableCapacity FROM booking INNER JOIN store ON booking.idStore=store.idStore WHERE bookingDate = ? AND arrivalTime<? AND FinishTime>? AND booking.idStore = ?" ;
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)){
+			preparedStatement.setDate(1, bookingDate);
+			preparedStatement.setTime(2,ArrivalTime);
+			preparedStatement.setTime(3, ArrivalTime);
+			preparedStatement.setInt(4, idStore);
+			try(ResultSet resultSet = preparedStatement.executeQuery()){
+				while(resultSet.next()) {
+					filled=resultSet.getInt("persone");
+					capacity = resultSet.getInt("bookableCapacity");
+				}
+			}			
+			catch(Exception e) {
+				log.log(Level.FINE, e.toString());
+			}
+		}
+		catch(Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		if(capacity >= filled) {
+		return true;
+		}
+		else {
+			return false;
+		}
+			
 	}
 
 }
