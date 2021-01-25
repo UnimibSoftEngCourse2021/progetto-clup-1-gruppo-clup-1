@@ -50,7 +50,7 @@
 			<li><a href="http://localhost:8080/clup/homepageCustomer.jsp">Home</a></li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
 				<div class="dropdown-content">
-					<a href="#">Visualizza Storico Prenotazioni</a> 
+					<a href="http://localhost:8080/clup/customerBooking.jsp">Visualizza Storico Prenotazioni</a> 
 				</div>
 			<!-- </li>
 			<li class="dropdown"><a href="#" class="dropbtn">Store</a>

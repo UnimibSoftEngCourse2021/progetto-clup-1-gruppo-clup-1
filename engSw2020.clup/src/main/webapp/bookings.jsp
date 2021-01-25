@@ -209,8 +209,6 @@ int idUser = (Integer) session.getAttribute("idUser");
     <input type="date" id="myDate" onkeydown="return false">
     
     <i class="fa fa-trash" style="color:seagreen"></i>
-    
-        
     <br>
     <strong id="date"></strong> 
     </h2>

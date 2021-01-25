@@ -11,7 +11,14 @@ public class Booking {
 	Time finishTime;
 	User user;
 	Store store;
+	String address;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public User getUser() {
 		return user;
 	}	

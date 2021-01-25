@@ -334,5 +334,47 @@ public class BookingDao {
 		}
 			
 	}
+	
+	
+	
+	public ArrayList<Booking> getAllUserBooking(int idUser) {
+		ArrayList<Booking> bookingList = null;
+		String query = " SELECT idBooking,  store.name, store.address, store.city, store.telephoneNumber, bookingDate, ArrivalTime , FinishTime  "
+				+ "FROM User INNER JOIN clup_engsw2020.Booking ON " + "User.idUser = clup_engsw2020.booking.idUser "
+				+ "INNER JOIN store ON booking.idStore = store.idStore "
+				+ "WHERE  user.idUser = ?  ORDER BY bookingDate";
+		try (Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+			bookingList = new ArrayList<Booking>();
+
+			preparedStatement.setInt(1, idUser);
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+				while (resultSet.next()) {
+					Booking bookingBean = new Booking();
+					Store store = new Store();
+					bookingBean.setIdBooking(resultSet.getInt("idBooking"));
+					bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
+					bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
+					bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
+					store.setName(resultSet.getString("name"));
+					store.setCity(resultSet.getString("city"));
+					store.setAddress(resultSet.getString("address"));
+					System.out.println(store.getAddress());
+					store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
+					bookingBean.setStore(store);
+					bookingList.add(bookingBean);
+				}
+				return bookingList;
+			} catch (Exception e) {
+				log.log(Level.FINE, e.toString());
+			}
+
+		} catch (Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		return bookingList;
+	}
 
 }

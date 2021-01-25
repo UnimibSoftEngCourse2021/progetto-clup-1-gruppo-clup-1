@@ -33,10 +33,19 @@ public class UserBookingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookingDao bookingdao = new BookingDao();
+		ArrayList<Booking> bookingList;
 		HttpSession session = request.getSession();
 		int idUser = ((Integer)session.getAttribute("id"));
-		ArrayList<Booking> bookingList = bookingdao.getUserBooking(idUser);
-		
+		int status = ((Integer)session.getAttribute("StatusBooking"));
+		if(status > 0)
+		{
+			bookingList = bookingdao.getAllUserBooking(idUser);
+		}
+		else
+		{
+			bookingList = bookingdao.getUserBooking(idUser);
+
+		}
 		String json = new Gson().toJson(bookingList);
 		
 		response.setContentType("application/json");
