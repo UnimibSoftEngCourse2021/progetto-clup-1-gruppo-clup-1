@@ -73,5 +73,33 @@ public class StoreDao {
 
 		return result;
 	}
+	
+	public int getCapacity(int idStore) throws SQLException{
+		int capacity=0;
+		String query = "SELECT bookableCapacity FROM store WHERE idStore=?";
+		try(Connection con = DBConnection.createConnection();
+			Statement statement = con.createStatement();
+			PreparedStatement preparedStmt = con.prepareStatement(query);) 
+		{
+			preparedStmt.setInt(1, idStore);
+			try(ResultSet resultSet = preparedStmt.executeQuery())
+			{
+				while(resultSet.next()) 
+				{
+					capacity = resultSet.getInt("bookableCapacity");
+				}
+				return capacity;
+			}
+			catch(Exception e){
+				log.log(Level.FINE, e.toString());
+			}
+			
+		}
+		catch(Exception e) 
+		{
+			log.log(Level.FINE, e.toString());
+		}
+		return capacity;
+	}
 
 }

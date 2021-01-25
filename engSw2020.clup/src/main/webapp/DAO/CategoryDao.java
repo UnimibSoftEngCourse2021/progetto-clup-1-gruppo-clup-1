@@ -69,7 +69,7 @@ public class CategoryDao {
 
 	public ArrayList<Category> getAllCategory(int idStoreUser) throws SQLException {
 		ArrayList<Category> categoryList = new ArrayList<Category>();
-		String query = "SELECT category.idCategory, category.Name, category.Description FROM category WHERE category.idCategory NOT IN(SELECT idCategory FROM categoryinstore WHERE idStore = ?)";
+		String query = "SELECT category.idCategory, category.Name, category.Description FROM category WHERE category.idCategory NOT IN(SELECT idCategory FROM categoryinstore WHERE idStore = ? AND idCategory is not null)";
 
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
@@ -133,5 +133,61 @@ public class CategoryDao {
 			log.log(Level.FINE, e.toString());
 		}
 		return id;
+	}
+	
+	public int getMaxIdCategory(int idStore) {
+		int max=0;
+		String query ="SELECT MAX(categoryinbooking.idCategory) AS maxCategory FROM category INNER JOIN categoryinbooking on category.idCategory = categoryinbooking.idCategory INNER JOIN booking ON categoryinbooking.idBooking=booking.idBooking WHERE bookingDate=current_date() AND booking.idStore=?";
+		try(Connection con = DBConnection.createConnection();
+			Statement statement = con.createStatement();
+			PreparedStatement preparedStmt = con.prepareStatement(query);)
+		{
+			preparedStmt.setInt(1, idStore);
+			try(ResultSet rs = preparedStmt.executeQuery();) 
+			{
+				while(rs.next()) 
+				{
+					max=rs.getInt("maxCategory");
+				}
+			}
+			catch(Exception e) 
+			{
+				log.log(Level.FINE, e.toString());
+			}
+			return max;
+		}
+		catch(Exception e) 
+		{
+			log.log(Level.FINE, e.toString());
+		}
+		return max;
+	}
+	
+	public String getNameFromId(int idCategory) {
+		String name = "";
+		String query="SELECT category.Name FROM category WHERE idCategory = ?";
+		try(Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStmt = con.prepareStatement(query);)
+			{
+				preparedStmt.setInt(1, idCategory);
+				try(ResultSet rs = preparedStmt.executeQuery();) 
+				{
+					while(rs.next()) 
+					{
+						name=rs.getString("Name");
+					}
+				}
+				catch(Exception e) 
+				{
+					log.log(Level.FINE, e.toString());
+				}
+				return name;
+			}
+			catch(Exception e) 
+			{
+				log.log(Level.FINE, e.toString());
+			}
+			return name;
 	}
 }
