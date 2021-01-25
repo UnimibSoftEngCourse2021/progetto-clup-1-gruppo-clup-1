@@ -106,10 +106,11 @@ public class BookingDao {
 
 	public int[] insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser)
 			throws SQLException {
-	if(checkAvailability(idStore,arrivalTime,finishTime,date)) {
+		int[] result = new int[2];
+		if(checkAvailability(idStore,arrivalTime,finishTime,date)) {
 		String query = "INSERT INTO booking" + "  (ArrivalTime, FinishTime, idUser, bookingDate, idStore) VALUES "
 				+ " (?, ?, ?, ?, ?);";
-		int[] result = new int[2];
+		
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
 				PreparedStatement preparedStatement = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
@@ -137,16 +138,14 @@ public class BookingDao {
 				 
 				 
 				 
-			 }
-			
-			
+			 }			
 			return result;
 		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
 		}
 		return result;
 		}
-	return null;
+	return result;
 }
 	
 	
@@ -333,6 +332,32 @@ public class BookingDao {
 			return false;
 		}
 			
+	}
+	
+	public int getPeopleAtStore(int idStore) {
+		String query="SELECT COUNT(idBooking) as persone FROM booking WHERE bookingDate = current_date() AND arrivalTime<date_add(now(), INTERVAL 1 hour) AND FinishTime>date_add(now(), INTERVAL 1 hour) AND booking.idStore=?";
+		int people=0;
+		try(Connection con = DBConnection.createConnection();
+			Statement statement = con.createStatement();
+			PreparedStatement preparedStmt = con.prepareStatement(query);) {
+			preparedStmt.setInt(1, idStore);
+			try(ResultSet resultSet = preparedStmt.executeQuery();)
+			{
+				while(resultSet.next()) 
+				{
+					people=resultSet.getInt("persone");
+				}				
+			}
+			catch(Exception e) 
+			{
+				log.log(Level.FINE, e.toString());
+			}
+			return people;
+		}
+		catch(Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		return people;
 	}
 
 }
