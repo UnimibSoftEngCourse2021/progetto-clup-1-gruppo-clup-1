@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -57,7 +57,7 @@
   <br>
   
     <h2 style="text-align:center; color:black; font-size: 16pt;" >
-    <input type="text" id="myName" onkeyup="myFunction()" placeholder="Cerca per città">
+    <input type="text" id="myName" onkeyup="myFunction()" placeholder="Filtra per negozio">
     <br>
     <input type="date" id="myDate"  onkeydown="return false">
     
@@ -67,7 +67,7 @@
     <br>
     <strong id="date"></strong> 
     </h2>
-    <script>
+    	<script>
 	$(document).ready(function(){		
 		 $("#myDate").change(function() {
 			 $("tr").each(function(){
@@ -97,17 +97,18 @@
 				 return months[monthNumber];
 			 }
 			 $("#date").text("Prenotazioni del " + day + " " + getMonthName(month-1) + " " + year);
-			 console.log("CIAO");
 
 			 $('tr td.bookingDate').each(function(){
-				 console.log($(this).text());
 				if($(this).text()!= date || $(this).parent().attr('class') == "hide-by-name")
-					{	console.log("CIAO");
+					{	
+					console.log(date);
 						if($(this).parent().attr('class') != "hide-by-name")
 							{
 								$(this).parent('tr').addClass("hide");
 							}
-						$(this).parent().hide();			
+						$(this).parent().hide();
+						
+						
 					}
 			 });
 		 });
@@ -154,7 +155,7 @@
 	  else{
 	  // Loop through all table rows, and hide those who don't match the search query
 	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[1];
+	    td = tr[i].getElementsByTagName("td")[0];
 	    if (td) {
 	      txtValue = td.textContent || td.innerText;
 	      if (txtValue.toUpperCase().indexOf(filter) > -1 && tr[i].className != "hide") {	    	  

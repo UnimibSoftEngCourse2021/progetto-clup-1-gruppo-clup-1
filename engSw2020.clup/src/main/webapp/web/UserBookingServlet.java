@@ -47,9 +47,10 @@ public class UserBookingServlet extends HttpServlet {
 
 		}
 		String json = new Gson().toJson(bookingList);
-		
+		System.out.println(json);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		
 		response.getWriter().write(json);
 	}
 

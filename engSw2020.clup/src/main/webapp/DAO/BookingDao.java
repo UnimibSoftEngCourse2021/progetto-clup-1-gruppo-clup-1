@@ -239,6 +239,7 @@ public class BookingDao {
 					store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
 					bookingBean.setStore(store);
 					bookingList.add(bookingBean);
+					System.out.println(bookingBean.getBookingDate());
 				}
 				return bookingList;
 			} catch (Exception e) {
@@ -361,7 +362,7 @@ public class BookingDao {
 					store.setName(resultSet.getString("name"));
 					store.setCity(resultSet.getString("city"));
 					store.setAddress(resultSet.getString("address"));
-					System.out.println(store.getAddress());
+					System.out.println(bookingBean.getBookingDate());
 					store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
 					bookingBean.setStore(store);
 					bookingList.add(bookingBean);
