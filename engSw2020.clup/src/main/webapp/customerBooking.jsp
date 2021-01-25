@@ -62,8 +62,6 @@
     <input type="date" id="myDate"  onkeydown="return false">
     
     <i class="fa fa-trash" style="color:seagreen"></i>
-    
-        
     <br>
     <strong id="date"></strong> 
     </h2>
@@ -209,6 +207,8 @@ session.setAttribute("StatusBooking", 1);
             <th  id="Prenotazione">Data</th>
             <th id="OraArrivo">Ora di arrivo</th>
             <th id="OraArrivo">Ora di fine</th>
+            <th id="Operazione">Operazione</th>
+            
             
                                     
         </tr>
@@ -280,14 +280,30 @@ session.setAttribute("StatusBooking", 1);
     	  $.get("UserBookingServlet", function(responseJson) {   
     		  $("#table-body").empty();
 	        $.each(responseJson, function(index, item) { 
+	        	
+	        	
 	        	var $tr = $("<tr>").appendTo($("#table-body"));
+	        	var id = item.idBooking;
+	        	var strDel = "DeletionServlet?idBooking=" + id;
+	        	var strMod = "modifyBooking.jsp?idBooking=" + id;
 	        	$("<td class= name>").text(item.store.name).appendTo($tr);
 	        	$("<td>").text(item.store.city).appendTo($tr);
 	        	$("<td>").text(item.store.address).appendTo($tr); 
 	        	$("<td>").text(item.store.telephoneNumber).appendTo($tr); 
 	        	$("<td class= bookingDate>").text(item.dateAsString).appendTo($tr); 
 	        	$("<td>").text(item.arrivalTime).appendTo($tr); 
-	        	$("<td>").text(item.finishTime).appendTo($tr); 
+	        	$("<td>").text(item.finishTime).appendTo($tr);
+	        	 var today = (new Date()).toISOString().split('T')[0];
+	        	 console.log(today);
+	        	 if(item.dateAsString < today)
+	        		 {
+	        		 $("<td>").text("NON MODIFICABILE").wrapInner("<strong />").appendTo($tr);
+	        		 }
+	        	 else{
+	        		 $('<td><a href =' + strDel + '  class="button"><i class="fa fa-trash"></i></a> <a href="#" class="button"><i class="fa fa-pencil"></i></a></td></td>').appendTo($tr);
+	        		
+	        	 }
+	        	
 	        });
 			});
 		}

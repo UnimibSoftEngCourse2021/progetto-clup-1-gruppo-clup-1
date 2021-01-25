@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.webapp.DAO.BookingDao;
 
@@ -32,6 +33,9 @@ public class DeletionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Logger log = Logger.getLogger(DeletionServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
+		HttpSession session = request.getSession();
+		int role = ((Integer)session.getAttribute("role"));
+
 	    int result = 0;
 		try {
 			result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
@@ -42,9 +46,13 @@ public class DeletionServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
-	    if(result==1)
+	    if(result==1 && role == 1 )
 	    {	    	
 	    	response.sendRedirect("BookingServlet");
+	    }
+	    if(result==1 && role == 0 )
+	    {
+	    	response.sendRedirect("customerBooking.jsp");
 	    }
 	}
 
