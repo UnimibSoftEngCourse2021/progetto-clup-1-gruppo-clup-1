@@ -114,3 +114,9 @@
       border-radius: 5px;
       cursor: pointer; 
       }
+body{
+	 min-height: 400px;
+  	margin-bottom: 30%;
+   	clear: both;
+}     
+ 

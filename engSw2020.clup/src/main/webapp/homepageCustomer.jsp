@@ -1,6 +1,8 @@
 <% int idUser = ((Integer)session.getAttribute("id")); %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="it">
 <head>
@@ -10,8 +12,7 @@
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/card.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script>
@@ -33,6 +34,10 @@
 			$("#idStore").val(res[0])}
 			console.log($("#idStore").val());
 		})
+		
+		setTimeout(function() {
+			  $("#success").fadeOut().empty();
+			}, 5000);
 	})
 </script>
 </head>
@@ -42,11 +47,10 @@
 			<h4>customer line up</h4>
 		</div>
 		<ul class="nav-links">
-			<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+			<li><a href="http://localhost:8080/clup/homepageCustomer.jsp">Home</a></li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
 				<div class="dropdown-content">
 					<a href="#">Visualizza Storico Prenotazioni</a> 
-					<a href="#">Effettua Prenotazione</a>
 				</div>
 			<!-- </li>
 			<li class="dropdown"><a href="#" class="dropbtn">Store</a>
@@ -70,45 +74,13 @@
 	</nav>
 </header>
 <body>
-<!--  <div class="content-wrapper">
-        <div class="content">						 
-                  Top Statistics 
-                  <div class="row">
-                    <div class="col-xl-3 col-sm-6">
-                      <div class="card card-mini mb-4">
-                        <div class="card-body">
-                          <h2 id="booking-count" class="mb-1">0</h2>    
-                          <p>Prenotazioni odierne</p>                  
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                      <div class="card card-mini  mb-4">
-                        <div class="card-body">
-                          <h2 class="mb-1">9,503</h2>
-                          <p>New Visitors Today</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                      <div class="card card-mini mb-4">
-                        <div class="card-body">
-                          <h2 class="mb-1">71,503</h2>
-                          <p>Monthly Total Order</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                      <div class="card card-mini mb-4">
-                        <div class="card-body">
-                          <h2 class="mb-1">9,503</h2>
-                          <p>Total Revenue This Year</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>    
-               </div> -->
+<div>
+<c:if test="${successMsg!=null}">
+ <div id="success" class="alert alert-success">
+    <strong>Prenotazione completata!</strong> <%= request.getAttribute("successMsg") %>
+  </div>
+</c:if>
+</div>
    <div class = "content-wrapper">
    	<div class = "content">
    		<div class="row">
@@ -139,7 +111,7 @@
             <div class="col-xl-3 col-sm-6">
             	<div class="card card-mini mb-4">
                 	<div class="card-body">
-					<form action="AddBookingServlet" method="POST">
+					<form action="customerAddBooking.jsp" method="GET">
 					<input id="idStore" type="hidden" name="idStore">
 					<input type="submit" class="btn btn-block" value="Prenota ora">
 					</form>
@@ -172,6 +144,7 @@
   		</div>
  		</div>
  	</div>
+</body>
  	<footer class="footer">
 	<div class="l-footer">
 		<h1>
@@ -202,7 +175,6 @@
 		<p>All rights reserved by ©CustomerLineUp 2021</p>
 	</div>
 </footer>
-</body>
 </html>
 <script>
 	     function getData(){
