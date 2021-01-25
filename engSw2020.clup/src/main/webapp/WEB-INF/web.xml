@@ -124,6 +124,18 @@
   	<description></description>
   	<servlet-class>main.webapp.web.GetStore</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>GetBookingCategory</servlet-name>
+  	<display-name>GetBookingCategory</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.GetBookingCategory</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddBookingUser</servlet-name>
+  	<display-name>AddBookingUser</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.AddBookingUser</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
@@ -203,6 +215,14 @@
   <servlet-mapping>
   	<servlet-name>GetStore</servlet-name>
   	<url-pattern>/GetStore</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetBookingCategory</servlet-name>
+  	<url-pattern>/GetBookingCategory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddBookingUser</servlet-name>
+  	<url-pattern>/AddBookingUser</url-pattern>
   </servlet-mapping>
   
 </web-app>

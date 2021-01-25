@@ -68,7 +68,7 @@ public class AddServlet extends HttpServlet {
 		user.setTelephoneNumber(userTelephoneNumber);
 		RegistrationDao registrationDao = new RegistrationDao();
 		BookingDao bookingDao = new BookingDao();
-		int result = 0;
+		int[] result = new int[2];
 		int result_insertGuestUser = 0;
 
 		try {
@@ -84,10 +84,10 @@ public class AddServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
-		if (result == 1) {
+		if (result[0] == 1) {
 			response.sendRedirect("BookingServlet");
 		}
-		if (result == 0) {
+		if (result[1] == 0) {
 			request.setAttribute("errorMsg", "User Id inesistente");
 			request.getRequestDispatcher("/addBooking.jsp").forward(request, response);
 		}
