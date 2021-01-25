@@ -285,7 +285,7 @@ session.setAttribute("StatusBooking", 1);
 	        	var $tr = $("<tr>").appendTo($("#table-body"));
 	        	var id = item.idBooking;
 	        	var strDel = "DeletionServlet?idBooking=" + id;
-	        	var strMod = "modifyBooking.jsp?idBooking=" + id;
+	        	var strMod = "modifyCustomerBooking.jsp?idBooking=" + id;
 	        	$("<td class= name>").text(item.store.name).appendTo($tr);
 	        	$("<td>").text(item.store.city).appendTo($tr);
 	        	$("<td>").text(item.store.address).appendTo($tr); 
@@ -300,7 +300,7 @@ session.setAttribute("StatusBooking", 1);
 	        		 $("<td>").text("NON MODIFICABILE").wrapInner("<strong />").appendTo($tr);
 	        		 }
 	        	 else{
-	        		 $('<td><a href =' + strDel + '  class="button"><i class="fa fa-trash"></i></a> <a href="#" class="button"><i class="fa fa-pencil"></i></a></td></td>').appendTo($tr);
+	        		 $('<td><a href =' + strDel + '  class="button"><i class="fa fa-trash"></i></a> <a href =' + strMod + ' class="button"><i class="fa fa-pencil"></i></a></td></td>').appendTo($tr);
 	        		
 	        	 }
 	        	
