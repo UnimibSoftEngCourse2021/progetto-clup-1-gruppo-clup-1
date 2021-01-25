@@ -56,6 +56,8 @@ public class UserServlet extends HttpServlet {
 				request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
 			} else {
 				request.setAttribute("user", user);
+				
+
 				request.getRequestDispatcher("/customerInformation.jsp").forward(request, response);
 			}
 		}
@@ -111,6 +113,7 @@ public class UserServlet extends HttpServlet {
 				result = userDao.modifyCustomerUserInfo(idUser, name, surname, email, userName, telephoneNumber, birthdayDate, password);
 				if (result == 1) {
 					request.setAttribute("iduser", idUser);
+					request.setAttribute("successMsgModifyData", "Modifica dei dati completata con successo!");
 					request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
 				}
 			} catch (IOException e) {

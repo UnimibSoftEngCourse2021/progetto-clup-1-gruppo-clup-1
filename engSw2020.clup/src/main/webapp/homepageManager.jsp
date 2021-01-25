@@ -13,13 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Customer Line Up</title>
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/footer.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
 <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/card.css">
 <link rel="stylesheet" href="css/homepageManager.css?ts=<?=time()?>&quot">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/footer.css">
+
 <link rel="stylesheet" href="css/dropdown.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -41,8 +42,8 @@
 </script>
     <script>
     	$(document).ready(function() {  
-         var myVar = setInterval(getData,5000);
-         var myVar2 = setInterval(getCountBooking,1000);
+         var myVar = setInterval(getData,1000);
+         var myVar2 = setInterval(getCountBooking,500);
 	     function getData(){
     	  $.get("AsyncServlet", function(responseJson) {   
     		  $("#table-body").empty();

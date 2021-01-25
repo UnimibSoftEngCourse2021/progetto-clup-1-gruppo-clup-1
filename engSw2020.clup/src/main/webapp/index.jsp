@@ -78,12 +78,17 @@
 					</div>
 
 					<input type="submit" name="btn_login" value="Login">
+					<br>
+					<br>
+						Password dimenticata? <strong> <a href="registration.jsp">Recuperala qui</a></strong>
 
 				</div>
 
 				<a href="registration.jsp" class="form-log-in-with-existing">Non
 					hai un account? <strong> Registrati qui</strong>
 				</a>
+				
+				
 
 			</div>
 

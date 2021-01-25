@@ -39,6 +39,7 @@
 	});
 </script>
 <script>
+
 	function getCategory(){
 		var idStore = $("#idStore").val();
 		console.log(idStore);
@@ -53,7 +54,7 @@
 
 </head>
 <header> 
-	<nav role="navigation">
+	    <nav role="navigation">
 		<div class="logo">
 			<h4>customer line up</h4>
 		</div>
@@ -61,30 +62,25 @@
 			<li><a href="http://localhost:8080/clup/homepageCustomer.jsp">Home</a></li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
 				<div class="dropdown-content">
-					<a href="http://localhost:8080/clup/BookingServlet">Visualizza Storico Prenotazioni</a> 
+					<a href="http://localhost:8080/clup/customerBooking.jsp">Visualizza storico prenotazioni</a> 
+					
 				</div>
 			</li>
-			<!--  <li class="dropdown"><a href="#" class="dropbtn">Store</a> 
-				<div class="dropdown-content">
-					<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
-					<a href="http://localhost:8080/clup/getCategoryServlet">Gestione categorie</a>
-				</div>
-			</li> -->
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
           		<div class="dropdown-content">
-        			<!--  <a href="http://localhost:8080/clup/UserServlet?iduser=">Informazioni Utente</a> -->
+        			<a href="http://localhost:8080/clup/customerInformation.jsp">Informazioni Utente</a>
         			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
           		</div>
         	</li>
-        	<!-- <li><a href="#">Benvenuto </a></li>  -->
+        	<li><a href="#">Benvenuto </a></li>
 
 		</ul>
-		<div class="burger">
-			<div class="line1"></div>
-			<div class="line2"></div>
-			<div class="line3"></div>
-		</div>
-	</nav>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
 </header>
 <body>
 <c:if test="${errorMsg!=null}">
