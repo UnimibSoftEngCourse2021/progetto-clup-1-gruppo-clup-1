@@ -1,3 +1,4 @@
+<% int idUser = (Integer) session.getAttribute("id"); %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
 			</li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
           		<div class="dropdown-content">
-        			<a href="#">Informazioni Utente</a>
+        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
         			<a href="#">Logout</a>       	
           		</div>
         	</li>
@@ -56,9 +57,9 @@
   <br>
   
     <h2 style="text-align:center; color:black; font-size: 16pt;" >
-    <input type="text" id="myName" onkeyup="myFunction()" placeholder="Cerca per negozio">
+    <input type="text" id="myName" onkeyup="myFunction()" placeholder="Cerca per città">
     <br>
-    <input type="date" id="myDate" onkeydown="return false">
+    <input type="date" id="myDate"  onkeydown="return false">
     
     <i class="fa fa-trash" style="color:seagreen"></i>
     
@@ -66,6 +67,109 @@
     <br>
     <strong id="date"></strong> 
     </h2>
+    <script>
+	$(document).ready(function(){		
+		 $("#myDate").change(function() {
+			 $("tr").each(function(){
+				 if($(this).attr('class')=="hide"){
+					 $(this).removeClass("hide");
+					 $(this).show();
+				 }
+			 })
+			 var date = $("#myDate").val();
+			 var res = date.split("-");
+			 var year = res[0];
+			 var month = res[1];
+			 if(month == "01" || month == "02" || month == "03"  || month == "04" || month == "05" || month == "06" || month == "07" || month == "08" || month == "09")
+				 {
+				    month = month.slice(-1);
+				 }
+			 var day = res[2]
+			 if(date==null || date =="")
+				 {
+				 $("tr").removeClass("hide");
+				 var defaultDate = new Date();
+				 $("#date").text("Prenotazioni del " + defaultDate.getDate() + " " + getMonthName(defaultDate.getMonth()) + " " + defaultDate.getFullYear());
+				 return false;
+				 }
+			 function getMonthName(monthNumber){
+				 var months = ['Gennaio','Febbrio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+				 return months[monthNumber];
+			 }
+			 $("#date").text("Prenotazioni del " + day + " " + getMonthName(month-1) + " " + year);
+			 console.log("CIAO");
+
+			 $('tr td.bookingDate').each(function(){
+				 console.log($(this).text());
+				if($(this).text()!= date || $(this).parent().attr('class') == "hide-by-name")
+					{	console.log("CIAO");
+						if($(this).parent().attr('class') != "hide-by-name")
+							{
+								$(this).parent('tr').addClass("hide");
+							}
+						$(this).parent().hide();			
+					}
+			 });
+		 });
+		 $(".fa-trash").click(function(){
+			 $("tr").removeClass("hide");
+			 $("tr").removeClass("hide-by-name");
+			 $("tr").show();
+			 $("#myName").val("");
+			 $("#myDate").val("");
+		 })
+	});
+	</script>
+	
+	<script>
+	function myFunction() {
+	  // Declare variables
+	  var input, filter, table, tr, td, i, txtValue, date;
+	  date = document.getElementById("myDate")
+	  input = document.getElementById("myName");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("bookingTable");
+	  tr = table.getElementsByTagName("tr");
+	  console.log(date.value);
+	  if(input.value=="" || input.value == null)
+	  {	
+		  	if(date.value == null || date.value == ""){
+		  		$("tr").removeClass("hide-by-name");  		
+		  		$("tr").show();
+		  	}
+		  	else{
+			$("tr td.bookingDate").each(function(){
+				if($(this).parent().attr('class')=="hide-by-name")
+					{
+					 $(this).parent().removeClass("hide-by-name");
+					 if(date.value == $(this).text()){
+						 console.log("ciao");
+					 	 $(this).parent().show();
+					 }
+					}
+			});
+		  
+	  	}
+	  }
+	  else{
+	  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1 && tr[i].className != "hide") {	    	  
+	    	  tr[i].style.display = "";
+	      } 
+	      else if (!(txtValue.toUpperCase().indexOf(filter) > -1) && tr[i].className != "hide")  {
+	    	tr[i].classList.add("hide-by-name");
+	        tr[i].style.display = "none";
+	      }
+	    }
+	  }
+	 }
+	}
+   
+	</script>
     
   
   <script>
@@ -94,7 +198,7 @@ session.setAttribute("StatusBooking", 1);
             <th id="City">Città</th>
             <th id="Cognome">Indirizzo</th>
             <th id="Telefono">Telefono</th>
-            <th id="Prenotazione">Data</th>
+            <th  id="Prenotazione">Data</th>
             <th id="OraArrivo">Ora di arrivo</th>
             <th id="OraArrivo">Ora di fine</th>
             
@@ -169,67 +273,14 @@ session.setAttribute("StatusBooking", 1);
     		  $("#table-body").empty();
 	        $.each(responseJson, function(index, item) { 
 	        	var $tr = $("<tr>").appendTo($("#table-body"));
-	        	$("<td>").text(item.store.name).appendTo($tr);
+	        	$("<td class= name>").text(item.store.name).appendTo($tr);
 	        	$("<td>").text(item.store.city).appendTo($tr);
 	        	$("<td>").text(item.store.address).appendTo($tr); 
 	        	$("<td>").text(item.store.telephoneNumber).appendTo($tr); 
-	        	$("<td>").text(item.bookingDate).appendTo($tr); 
+	        	$("<td class= bookingDate>").text(item.bookingDate).appendTo($tr); 
 	        	$("<td>").text(item.arrivalTime).appendTo($tr); 
 	        	$("<td>").text(item.finishTime).appendTo($tr); 
 	        });
 			});
 		}
 </script>	
-<script>
-	$(document).ready(function(){		
-		 $("#myDate").change(function() {
-			 $("tr").each(function(){
-				 if($(this).attr('class')=="hide"){
-					 $(this).removeClass("hide");
-					 $(this).show();
-				 }
-			 })
-			 var date = $("#myDate").val();
-			 var res = date.split("-");
-			 var year = res[0];
-			 var month = res[1];
-			 if(month == "01" || month == "02" || month == "03"  || month == "04" || month == "05" || month == "06" || month == "07" || month == "08" || month == "09")
-				 {
-				    month = month.slice(-1);
-				 }
-			 var day = res[2]
-			 if(date==null || date =="")
-				 {
-				 $("tr").removeClass("hide");
-				 var defaultDate = new Date();
-				 $("#date").text("Prenotazioni del " + defaultDate.getDate() + " " + getMonthName(defaultDate.getMonth()) + " " + defaultDate.getFullYear());
-				 return false;
-				 }
-			 function getMonthName(monthNumber){
-				 var months = ['Gennaio','Febbrio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-				 return months[monthNumber];
-			 }
-			 $("#date").text("Prenotazioni del " + day + " " + getMonthName(month-1) + " " + year);
-
-			 $('tr td.bookingDate').each(function(){
-				if($(this).text()!= date || $(this).parent().attr('class') == "hide-by-name")
-					{	
-						if($(this).parent().attr('class') != "hide-by-name")
-							{
-								$(this).parent('tr').addClass("hide");
-							}
-						$(this).parent().hide();
-						
-						
-					}
-			 });
-		 });
-		 $(".fa-trash").click(function(){
-			 $("tr").removeClass("hide");
-			 $("tr").removeClass("hide-by-name");
-			 $("tr").show();
-			 $("#myName").val("");
-			 $("#myDate").val("");
-		 })
-	});
-	</script>	
