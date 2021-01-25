@@ -1,8 +1,9 @@
 <% int idUser = (Integer) session.getAttribute("idUser");  
     String user = session.getAttribute("name") + "";
 %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="it">
 <head>
@@ -18,8 +19,7 @@
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/dropdown.css">
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	$(function() {
 		$.datepicker.setDefaults({
@@ -29,6 +29,12 @@
 		});
 
 		$("#datepicker").datepicker();
+	});
+	
+	$(document).ready(function(){
+		setTimeout(function() {
+			  $("#failed").fadeOut().empty();
+			}, 5000);
 	});
 </script>
 

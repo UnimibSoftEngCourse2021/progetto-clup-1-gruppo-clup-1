@@ -136,6 +136,24 @@
   	<description></description>
   	<servlet-class>main.webapp.web.AddBookingUser</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>GetCapacityServlet</servlet-name>
+  	<display-name>GetCapacityServlet</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.GetCapacityServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GetPeopleStoreServlet</servlet-name>
+  	<display-name>GetPeopleStoreServlet</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.GetPeopleStoreServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GetMaxCategoryServlet</servlet-name>
+  	<display-name>GetMaxCategoryServlet</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.GetMaxCategoryServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
@@ -223,6 +241,18 @@
   <servlet-mapping>
   	<servlet-name>AddBookingUser</servlet-name>
   	<url-pattern>/AddBookingUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetCapacityServlet</servlet-name>
+  	<url-pattern>/GetCapacityServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetPeopleStoreServlet</servlet-name>
+  	<url-pattern>/GetPeopleStoreServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetMaxCategoryServlet</servlet-name>
+  	<url-pattern>/GetMaxCategoryServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

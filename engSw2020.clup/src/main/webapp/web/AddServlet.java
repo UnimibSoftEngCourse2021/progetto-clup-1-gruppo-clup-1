@@ -85,10 +85,12 @@ public class AddServlet extends HttpServlet {
 			log.log(Level.FINE, e.toString());
 		}
 		if (result[0] == 1) {
-			response.sendRedirect("BookingServlet");
+			//response.sendRedirect("BookingServlet");
+			request.setAttribute("successMsg", "Prenotazione aggiunta con successo");
+			request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
 		}
-		if (result[1] == 0) {
-			request.setAttribute("errorMsg", "User Id inesistente");
+		if (result[0] == 0) {
+			request.setAttribute("errorMsg", "Prenotazione non riuscita");
 			request.getRequestDispatcher("/addBooking.jsp").forward(request, response);
 		}
 	}
