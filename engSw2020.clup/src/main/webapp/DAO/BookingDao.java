@@ -87,13 +87,6 @@ public class BookingDao {
 			preparedStatement.setTime(2, finishTime);
 			preparedStatement.setDate(3, date);
 			preparedStatement.setInt(4, id);
-			System.out.println(id);
-			System.out.println(date);
-			System.out.println(arrivalTime);
-			System.out.println(finishTime);
-			System.out.println(query);
-			System.out.println(preparedStatement);
-
 			result = preparedStatement.executeUpdate();
 			System.out.println("CIAO");
 
@@ -120,7 +113,6 @@ public class BookingDao {
 			preparedStatement.setDate(4, date);
 			preparedStatement.setInt(5, idStore);
 			result[0] = preparedStatement.executeUpdate();
-			System.out.println(result);
 			if(result[0]==1)
 			{
 				 try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
@@ -227,18 +219,19 @@ public class BookingDao {
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {
+					System.out.println("CIAOOOOOOOO");
 					Booking bookingBean = new Booking();
 					Store store = new Store();
 					bookingBean.setIdBooking(resultSet.getInt("idBooking"));
-					bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
+					bookingBean.setDateAsString(resultSet.getString("bookingDate"));
 					bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
 					bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
 					store.setName(resultSet.getString("name"));
 					store.setCity(resultSet.getString("city"));
 					store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
 					bookingBean.setStore(store);
+					System.out.println(bookingBean.getDateAsString());
 					bookingList.add(bookingBean);
-					System.out.println(bookingBean.getBookingDate());
 				}
 				return bookingList;
 			} catch (Exception e) {
@@ -355,15 +348,16 @@ public class BookingDao {
 					Booking bookingBean = new Booking();
 					Store store = new Store();
 					bookingBean.setIdBooking(resultSet.getInt("idBooking"));
-					bookingBean.setBookingDate(resultSet.getDate("bookingDate"));
+					bookingBean.setDateAsString(resultSet.getString("bookingDate"));
 					bookingBean.setArrivalTime(resultSet.getTime("ArrivalTime"));
 					bookingBean.setFinishTime(resultSet.getTime("FinishTime"));
 					store.setName(resultSet.getString("name"));
 					store.setCity(resultSet.getString("city"));
 					store.setAddress(resultSet.getString("address"));
-					System.out.println(bookingBean.getBookingDate());
 					store.setTelephoneNumber(resultSet.getString("telephoneNumber"));
 					bookingBean.setStore(store);
+					System.out.println(bookingBean.getDateAsString());
+
 					bookingList.add(bookingBean);
 				}
 				return bookingList;

@@ -37,6 +37,7 @@ public class UserBookingServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int idUser = ((Integer)session.getAttribute("id"));
 		int status = ((Integer)session.getAttribute("StatusBooking"));
+		System.out.println(status);
 		if(status > 0)
 		{
 			bookingList = bookingdao.getAllUserBooking(idUser);
@@ -44,14 +45,14 @@ public class UserBookingServlet extends HttpServlet {
 		else
 		{
 			bookingList = bookingdao.getUserBooking(idUser);
-
 		}
+		
 		String json = new Gson().toJson(bookingList);
 		System.out.println(json);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
 		response.getWriter().write(json);
+
 	}
 
 	/**

@@ -68,7 +68,9 @@
     <strong id="date"></strong> 
     </h2>
     	<script>
-	$(document).ready(function(){		
+	$(document).ready(function(){	
+		
+		 $("#date").text("Storico prenotazioni completo");
 		 $("#myDate").change(function() {
 			 $("tr").each(function(){
 				 if($(this).attr('class')=="hide"){
@@ -116,8 +118,11 @@
 			 $("tr").removeClass("hide");
 			 $("tr").removeClass("hide-by-name");
 			 $("tr").show();
+			 setDefaultDate();
 			 $("#myName").val("");
 			 $("#myDate").val("");
+			 $("#date").text("Storico prenotazioni completo");
+			
 		 })
 	});
 	</script>
@@ -174,12 +179,14 @@
     
   
   <script>
+  function setDefaultDate(){
   n =  new Date();
   const month = n.toLocaleString('default', { month: 'long' });
   y = n.getFullYear();
   d = n.getDate();
   document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
   document.getElementById("myDate").valueAsDate = n;
+  }
   </script>
  </div>
 	
@@ -278,7 +285,7 @@ session.setAttribute("StatusBooking", 1);
 	        	$("<td>").text(item.store.city).appendTo($tr);
 	        	$("<td>").text(item.store.address).appendTo($tr); 
 	        	$("<td>").text(item.store.telephoneNumber).appendTo($tr); 
-	        	$("<td class= bookingDate>").text(item.bookingDate).appendTo($tr); 
+	        	$("<td class= bookingDate>").text(item.dateAsString).appendTo($tr); 
 	        	$("<td>").text(item.arrivalTime).appendTo($tr); 
 	        	$("<td>").text(item.finishTime).appendTo($tr); 
 	        });
