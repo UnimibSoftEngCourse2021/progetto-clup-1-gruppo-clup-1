@@ -16,10 +16,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Customer Line Up</title>
-
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/main.css?ts=<?=time()?>&quot">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="css/login-register.css">
-
+<script>
+	$(document).ready(function(){	
+		$("#pwdInfo").hover(
+				function(){
+					console.log("sono qui");
+					$("#pwdRequirement").show();
+			  },function(){
+					$("#pwdRequirement").hide();
+		});
+	});
+</script>
 <!-- javascript for registeration form validation-->
 <script>
 	function validate() {
@@ -131,7 +142,7 @@
 					<div class="form-row">
 						<label> <span>Password</span> <input type="password"
 							name="Password" id="password" placeholder="Inserisci password"
-							required>
+							required><i id="pwdInfo" class="fa fa-question-circle" style="font-size:24px;"></i>
 						</label>
 					</div>
 
@@ -148,7 +159,12 @@
 		</form>
 
 	</div>
-
+	<div class="popup" id="pwdRequirement">
+		<form class="form-container">
+			La password deve contenere una lettera maiuscola, una lettera minuscola, almeno un carattere speciale (!@#$%&*()<>) 
+			e deve essere compresa fra i 6 e i 12 caratteri
+		</form>
+	</div>
 </body>
 
 </html>

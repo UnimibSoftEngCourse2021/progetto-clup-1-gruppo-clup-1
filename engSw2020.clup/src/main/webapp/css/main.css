@@ -122,3 +122,17 @@ ul li{
 .tz-link span{
 	color: #da431c;
 }
+
+.popup {
+  display: none;
+  position: fixed;
+  bottom: 300px;
+  right: 500px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
