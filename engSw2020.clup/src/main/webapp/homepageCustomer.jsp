@@ -71,6 +71,9 @@
     </nav>
 </header>
 <body>
+<%
+session.setAttribute("StatusBooking", 0);
+%>
 <div>
 <c:if test="${successMsg!=null}">
  <div id="success" class="alert alert-success">
@@ -181,7 +184,7 @@
 	        $.each(responseJson, function(index, item) { 
 	        	var $tr = $("<tr>").appendTo($("#table-body")); 
 	        	$("<td>").text(item.idBooking).appendTo($tr); 
-	        	$("<td>").text(item.bookingDate).appendTo($tr); 
+	        	$("<td>").text(item.dateAsString).appendTo($tr); 
 	        	$("<td>").text(item.arrivalTime).appendTo($tr); 
 	        	$("<td>").text(item.finishTime).appendTo($tr); 
 	        	$("<td>").text(item.store.name).appendTo($tr); 

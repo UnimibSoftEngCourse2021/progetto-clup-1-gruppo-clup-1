@@ -30,7 +30,7 @@
 				<div class="form-white-background">
 
 					<div class="form-title-row">
-						<h1>Esito registrazione utente</h1>
+						<h1><%out.println(request.getAttribute("TitleMsg")); %></h1>
 					</div>
 
 					<p style="color: red">

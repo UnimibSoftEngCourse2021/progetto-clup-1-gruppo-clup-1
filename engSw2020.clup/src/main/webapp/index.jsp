@@ -80,7 +80,7 @@
 					<input type="submit" name="btn_login" value="Login">
 					<br>
 					<br>
-						Password dimenticata? <strong> <a href="registration.jsp">Recuperala qui</a></strong>
+						Password dimenticata? <strong> <a href="forgotPassword.jsp">Recuperala qui</a></strong>
 
 				</div>
 

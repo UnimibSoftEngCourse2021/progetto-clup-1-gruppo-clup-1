@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.protobuf.TextFormat.ParseException;
 
@@ -52,18 +53,27 @@ public class ModifyServlet extends HttpServlet {
 		Time finishTime = Time.valueOf(requestFinishTime);
 		BookingDao bookingDao = new BookingDao();
 	    int result = 0;
+	    HttpSession session = request.getSession();
+		int idRole = ((Integer) session.getAttribute("role")).intValue();
 		try {
 			result = bookingDao.modifyBooking(id,date,arrivalTime,finishTime);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
-	    if(result==1)
+	    if(result==1 && idRole == 1)
 	    {	    	
 	    	response.sendRedirect("BookingServlet");
 	    }
-	    if(result == 0) {
+	    if(result == 0 && idRole == 1) {
 	    	 request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+	    }
+	    if(result==1 && idRole == 0)
+	    {	    	
+	    	request.getRequestDispatcher("/customerBooking.jsp").forward(request, response);;
+	    }
+	    if(result == 0 && idRole == 0) {
+	    	 request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
 	    }
 
 	}

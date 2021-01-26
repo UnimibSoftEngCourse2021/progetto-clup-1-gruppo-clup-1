@@ -58,10 +58,12 @@ public class LoginServlet extends HttpServlet {
            session.setAttribute("role", 0);
 
            session.setAttribute("id", userValidate.getUser().getIdUser());
-           //session.setAttribute("idStore", userValidate.getUser().getIdStore());
-           //session.setAttribute("idStore", userValidate.getUser().getIdStore());
-           //session.setAttribute("name", loginBean.getUserName());
-           //session.setAttribute("idUser", userValidate.getUser().getIdUser());
+           session.setAttribute("idStore", userValidate.getUser().getIdStore());
+           session.setAttribute("idStore", userValidate.getUser().getIdStore());
+           session.setAttribute("name", loginBean.getUserName());
+           session.setAttribute("idUser", userValidate.getUser().getIdUser());
+           session.setAttribute("role", 0);
+
 
             request.setAttribute("userName", userName); 
             request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);

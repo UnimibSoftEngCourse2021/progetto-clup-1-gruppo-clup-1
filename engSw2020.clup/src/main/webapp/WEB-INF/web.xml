@@ -154,6 +154,12 @@
   	<description></description>
   	<servlet-class>main.webapp.web.GetMaxCategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ForgotPassword</servlet-name>
+  	<display-name>ForgotPassword</display-name>
+  	<description></description>
+  	<servlet-class>main.webapp.web.ForgotPassword</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
@@ -253,6 +259,10 @@
   <servlet-mapping>
   	<servlet-name>GetMaxCategoryServlet</servlet-name>
   	<url-pattern>/GetMaxCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ForgotPassword</servlet-name>
+  	<url-pattern>/forgotPassword</url-pattern>
   </servlet-mapping>
   
 </web-app>

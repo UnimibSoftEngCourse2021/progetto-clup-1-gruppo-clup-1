@@ -12,7 +12,14 @@ public class Booking {
 	User user;
 	Store store;
 	String address;
+	String dateAsString;
 	
+	public String getDateAsString() {
+		return dateAsString;
+	}
+	public void setDateAsString(String dateAsString) {
+		this.dateAsString = dateAsString;
+	}
 	public String getAddress() {
 		return address;
 	}
