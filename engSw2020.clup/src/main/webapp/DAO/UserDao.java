@@ -12,8 +12,24 @@ import main.webapp.util.DBConnection;
 
 public class UserDao {
 	private final static Logger log = Logger.getLogger(LoginDao.class.getName());
+	
+	public int modifyUserPassword(String userName, String password, String email) {
+		String query = "UPDATE user SET password=" + "\"" + password + "\"" + " WHERE Username="+ "\"" + userName + "\"" + "and Email=" + "\"" + email + "\"";
+		System.out.println(query);
+		int result = 0;
+		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement();) {
+			result = statement.executeUpdate(query);
+			return result;
+		} catch (Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		return result;
+	}
+	
 
 	public User getUserInformation(int idUser) {
+		
+
 		User user = null;
 		String query = "SELECT * FROM user WHERE idUser =" + idUser;
 		try (Connection con = DBConnection.createConnection();
@@ -36,9 +52,7 @@ public class UserDao {
 		return user;
 
 	}
-	
-	
-	
+
 	public User getCustomerUserInformation(int idUser) {
 		User user = null;
 		String query = "SELECT * FROM user WHERE idUser =" + idUser;
@@ -67,6 +81,7 @@ public class UserDao {
 
 	public int modifyUserInfo(int idUser, String name, String surname, String email, String userName,
 			String telephoneNumber, Date birthdayDate) {
+		System.out.println("HIIII");
 		String query = "UPDATE user SET Name=" + "\"" + name + "\"" + "," + " Surname=" + "\"" + surname + "\"" + ","
 				+ " BirthdayDate=" + "\"" + birthdayDate + "\"" + "," + " TelephoneNumber=" + "\"" + telephoneNumber
 				+ "\"" + "," + " Email=" + "\"" + email + "\"" + "," + " Username=" + "\"" + userName + "\""
@@ -80,15 +95,13 @@ public class UserDao {
 		}
 		return result;
 	}
-	
-	
+
 	public int modifyCustomerUserInfo(int idUser, String name, String surname, String email, String userName,
 			String telephoneNumber, Date birthdayDate, String passowrd) {
 		String query = "UPDATE user SET Name=" + "\"" + name + "\"" + "," + " Surname=" + "\"" + surname + "\"" + ","
 				+ " BirthdayDate=" + "\"" + birthdayDate + "\"" + "," + " TelephoneNumber=" + "\"" + telephoneNumber
 				+ "\"" + "," + " Email=" + "\"" + email + "\"" + "," + " Username=" + "\"" + userName + "\""
-				+ ", Password=" + "\"" + passowrd + "\""
-				+ " WHERE idUser=" + idUser;
+				+ ", Password=" + "\"" + passowrd + "\"" + " WHERE idUser=" + idUser;
 		System.out.println(query);
 		int result = 0;
 		try (Connection con = DBConnection.createConnection(); Statement statement = con.createStatement();) {

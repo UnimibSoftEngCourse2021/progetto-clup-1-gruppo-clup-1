@@ -65,12 +65,16 @@ public class RegistrationServlet extends HttpServlet {
             if(result == 1) 
             {
             	request.setAttribute("successMsg", "Registrazione effettuata con successo");
+				request.setAttribute("TitleMsg", "Esito registrazione utente");
+
             	request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
     			
             }
             else
             {
             	request.setAttribute("errorMsg", "Errore durante la registrazione. Riprovare!");
+				request.setAttribute("TitleMsg", "Esito registrazione utente");
+
             	request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
             	
             }     
