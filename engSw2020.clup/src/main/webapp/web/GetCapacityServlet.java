@@ -19,7 +19,7 @@ import main.webapp.DAO.StoreDao;
  */
 public class GetCapacityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Logger log = Logger.getLogger(GetCapacityServlet.class.getName());
+	private static Logger log = Logger.getLogger(GetCapacityServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()

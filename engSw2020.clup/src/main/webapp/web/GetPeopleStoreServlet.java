@@ -20,7 +20,7 @@ import main.webapp.DAO.StoreDao;
  */
 public class GetPeopleStoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Logger log = Logger.getLogger(GetPeopleStoreServlet.class.getName());
+	private static Logger log = Logger.getLogger(GetPeopleStoreServlet.class.getName());
     /**
      * @see HttpServlet#HttpServlet()
      */

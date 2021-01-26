@@ -19,7 +19,7 @@ import main.webapp.DAO.CategoryDao;
  */
 public class GetMaxCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Logger log = Logger.getLogger(GetMaxCategoryServlet.class.getName());
+	private static Logger log = Logger.getLogger(GetMaxCategoryServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()

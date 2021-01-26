@@ -16,7 +16,6 @@ import main.webapp.DAO.UserDao;
  */
 public class ForgotPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserDao userDao = new UserDao();
 
 	private static Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
@@ -45,6 +44,7 @@ public class ForgotPassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int result = 0;
+		UserDao userDao = new UserDao();
 
 		if (request.getParameter("btn_register") != null) {
 			String username = request.getParameter("Username");
