@@ -8,17 +8,9 @@
 <html lang="it">
 <head>
 <title>Customer Line Up</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <link rel="stylesheet" href="css/modifyBooking.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/dropdown.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	$(function() {
@@ -39,41 +31,10 @@
 </script>
 
 </head>
-<header> 
-	<nav role="navigation">
-		<div class="logo">
-			<h4>customer line up</h4>
-		</div>
-		<ul class="nav-links">
-			<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
-				<div class="dropdown-content">
-					<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a> 
-					<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>
-				</div>
-			</li>
-			<li class="dropdown"><a href="#" class="dropbtn">Store</a>
-				<div class="dropdown-content">
-					<a href="http://localhost:8080/clup/storeSetup">Gestione negozio</a>
-					<a href="http://localhost:8080/clup/getCategoryServlet">Gestione categorie</a>
-				</div>
-			</li>
-			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
-          		<div class="dropdown-content">
-        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
-        			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
-          		</div>
-        	</li>
-        	<li><a href="#">Benvenuto <%= user %></a></li>
-
-		</ul>
-		<div class="burger">
-			<div class="line1"></div>
-			<div class="line2"></div>
-			<div class="line3"></div>
-		</div>
-	</nav>
-</header>
+<jsp:include page="navbarManager.jsp">
+<jsp:param value="<%= idUser %>" name="idUser"/>
+<jsp:param value="<%= user %>" name="user"/>
+</jsp:include>
 <body>
 	<div class="testbox">
 		<form id="editform" action="AddServlet" class="formContainer"
@@ -157,37 +118,7 @@
 		}
 	</script>
 </body>
-<footer class="footer" style="position: inherit">
-<div class="l-footer">
-	<h1>
-		<img src="https://i.postimg.cc/y62wcLBq/logo.png" alt="">
-	</h1>
-	<p>Customer Line Up</p>
-</div>
-<ul class="r-footer">
-
-	<li class="features">
-		<h2>Account</h2>
-		<ul class="box h-box">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Prenota un ticket</a></li>
-			<li><a href="#">Gestione prenotazioni</a></li>
-			<li><a href="#">Gestione account</a></li>
-
-		</ul>
-	</li>
-	<li>
-		<h2>Legal</h2>
-		<ul class="box">
-			<li><a href="#">Privacy Policy</a></li>
-			<li><a href="#">Terms of Use</a></li>
-		</ul>
-	</li>
-</ul>
-<div class="b-footer">
-	<p>All rights reserved by ©CustomerLineUp 2021</p>
-</div>
-</footer>
+<jsp:include page="footer.jsp"/>
 </html>
 <script>
 	function validateDate() {

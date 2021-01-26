@@ -1,3 +1,7 @@
+<%
+	String user = session.getAttribute("name") + "";
+	int idUser = (Integer) session.getAttribute("idUser"); 
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,30 +26,10 @@
 	</script>
 <title>Customer Line Up</title>
 </head>
-<header>
-    <nav>
-      <div class="logo">
-        <h4>customer line up</h4>
-      </div>
-      <ul class="nav-links">
-        <li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
-        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
-          <div class="dropdown-content">
-        	<a href="http://localhost:8080/clup/BookingServlet">Visualizza Prenotazioni</a>
-        	<a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a>       	
-          </div>
-        </li>
-        <li><a href="#">Store</a></li>
-        <li><a href="#">User</a></li>
-
-      </ul>
-      <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </nav>
-  </header>
+<jsp:include page="navbarManager.jsp">
+<jsp:param value="<%= idUser %>" name="idUser"/>
+<jsp:param value="<%= user %>" name="user"/>
+</jsp:include>
 <body>
     <div class="testbox">
       <form id="editform" action="ModifyServlet" class="formContainer" method="post" onsubmit="return validateDate();">
@@ -68,7 +52,7 @@
             		<input id="finishTime" type="time" name="finishTime" placeholder="Orario di fine"/>
           	</div>
           	<div class="btn-block">
-          		<button type="submit">Submit</button>
+          		<button type="submit">Modifica</button>
         	</div>
         </fieldset>
       </form>
@@ -84,39 +68,7 @@
 	}
 </script>
   </body>
-  <footer class="footer">
-  <div class="l-footer">
-  <h1>
-  <img src="https://i.postimg.cc/y62wcLBq/logo.png" alt=""></h1>
-  <p>Customer Line Up</p>
-  </div>
-  <ul class="r-footer">
-
-  <li class="features">
-    <h2>
-  Account</h2>
-  <ul class="box h-box">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Prenota un ticket</a></li>
-  <li><a href="#">Gestione prenotazioni</a></li>
-  <li><a href="#">Gestione account</a></li>
-
-  </ul>
-  </li>
-  <li>
-    <h2>
-  Legal</h2>
-  <ul class="box">
-  <li><a href="#">Privacy Policy</a></li>
-  <li><a href="#">Terms of Use</a></li>
-  </ul>
-  </li>
-  </ul>
-  <div class="b-footer">
-  <p>
-  All rights reserved by ©CustomerLineUp 2021 </p>
-  </div>
-  </footer>
+<jsp:include page="footer.jsp"/>
 </html>
 	<script>
 		function validateDate(){
