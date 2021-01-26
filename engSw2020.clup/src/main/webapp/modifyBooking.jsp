@@ -1,6 +1,13 @@
 <%
-	String user = session.getAttribute("name") + "";
-	int idUser = (Integer) session.getAttribute("idUser"); 
+	String user = "";
+	int idUser = 0;
+	int role = 0;
+	if((Integer)session.getAttribute("role")==1)
+	{
+		user = session.getAttribute("name") + "";
+		idUser = (Integer) session.getAttribute("idUser"); 
+		role = (Integer) session.getAttribute("role");
+	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -26,10 +33,19 @@
 	</script>
 <title>Customer Line Up</title>
 </head>
-<jsp:include page="navbarManager.jsp">
-<jsp:param value="<%= idUser %>" name="idUser"/>
-<jsp:param value="<%= user %>" name="user"/>
-</jsp:include>
+<% if((Integer)session.getAttribute("role")==1){%>
+
+		<jsp:include page="navbarManager.jsp">
+		<jsp:param value="<%= idUser %>" name="idUser"/>
+		<jsp:param value="<%= user %>" name="user"/>
+		</jsp:include>
+		<jsp:include page="footerManager.jsp"/>
+<%} %>
+<% if((Integer)session.getAttribute("role")==0) {%>
+		<jsp:include page="navbarCustomer.jsp"/>
+		<jsp:include page="footerCustomer.jsp"/>
+	<%} %>
+
 <body>
     <div class="testbox">
       <form id="editform" action="ModifyServlet" class="formContainer" method="post" onsubmit="return validateDate();">

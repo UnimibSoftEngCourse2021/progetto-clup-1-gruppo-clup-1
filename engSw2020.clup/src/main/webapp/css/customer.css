@@ -113,10 +113,13 @@
       font-size: 24px;
       border-radius: 5px;
       cursor: pointer; 
+      background-color:seagreen;
       }
 body{
-	 min-height: 400px;
+	min-height: 400px;
   	margin-bottom: 30%;
    	clear: both;
+    font-family: Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }     
  

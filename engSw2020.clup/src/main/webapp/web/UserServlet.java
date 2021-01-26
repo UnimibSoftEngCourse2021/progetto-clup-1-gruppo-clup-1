@@ -44,7 +44,7 @@ public class UserServlet extends HttpServlet {
 			user = userDao.getUserInformation(Integer.parseInt(request.getParameter("iduser")));
 			if (user == null) {
 				request.setAttribute("errorMsg", "User non trovato");
-				request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+				request.getRequestDispatcher("/userInformation.jsp").forward(request, response);
 			} else {
 				request.setAttribute("user", user);
 				request.getRequestDispatcher("/userInformation.jsp").forward(request, response);
@@ -53,11 +53,9 @@ public class UserServlet extends HttpServlet {
 			user = userDao.getCustomerUserInformation(Integer.parseInt(request.getParameter("iduser")));
 			if (user == null) {
 				request.setAttribute("errorMsg", "User non trovato");
-				request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
+				request.getRequestDispatcher("/customerInformation.jsp").forward(request, response);
 			} else {
 				request.setAttribute("user", user);
-				
-
 				request.getRequestDispatcher("/customerInformation.jsp").forward(request, response);
 			}
 		}
@@ -70,6 +68,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		User user = new User();
 		final Logger logger = Logger.getLogger(LoginDao.class.getName());
 		HttpSession session = request.getSession();
 		int idRole = ((Integer) session.getAttribute("role")).intValue();
@@ -78,6 +77,7 @@ public class UserServlet extends HttpServlet {
 
 			UserDao userDao = new UserDao();
 			try {
+				
 				int idUser = Integer.parseInt(request.getParameter("idUser"));
 				String name = request.getParameter("name").trim();
 				String surname = request.getParameter("surname").trim();
@@ -86,10 +86,13 @@ public class UserServlet extends HttpServlet {
 				String telephoneNumber = request.getParameter("telephoneNumber").trim();
 				Date birthdayDate = Date.valueOf(request.getParameter("birthdayDate"));
 				int result = 0;
-				result = userDao.modifyUserInfo(idUser, name, surname, email, userName, telephoneNumber, birthdayDate);
+				result = userDao.modifyUserInfo(idUser, name, surname, email, userName, telephoneNumber, birthdayDate);				
 				if (result == 1) {
+					user = userDao.getUserInformation(idUser);
 					request.setAttribute("iduser", idUser);
-					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+					request.setAttribute("user", user);
+					request.setAttribute("successMsg", "Modifica dei dati completata con successo!");
+					request.getRequestDispatcher("/userInformation.jsp").forward(request, response);
 				}
 			} catch (IOException e) {
 				logger.log(Level.FINE, e.toString());
@@ -112,9 +115,11 @@ public class UserServlet extends HttpServlet {
 					password = new_password;
 				result = userDao.modifyCustomerUserInfo(idUser, name, surname, email, userName, telephoneNumber, birthdayDate, password);
 				if (result == 1) {
+					user = userDao.getUserInformation(idUser);
+					request.setAttribute("user", user);
 					request.setAttribute("iduser", idUser);
-					request.setAttribute("successMsgModifyData", "Modifica dei dati completata con successo!");
-					request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
+					request.setAttribute("successMsg", "Modifica dei dati completata con successo!");
+					request.getRequestDispatcher("/customerUserInformation.jsp").forward(request, response);
 				}
 			} catch (IOException e) {
 				logger.log(Level.FINE, e.toString());

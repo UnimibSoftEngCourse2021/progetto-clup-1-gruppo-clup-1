@@ -31,6 +31,7 @@
 </script>
 
 </head>
+
 <jsp:include page="navbarManager.jsp">
 <jsp:param value="<%= idUser %>" name="idUser"/>
 <jsp:param value="<%= user %>" name="user"/>
