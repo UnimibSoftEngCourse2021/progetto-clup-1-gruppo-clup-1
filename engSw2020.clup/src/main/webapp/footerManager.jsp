@@ -7,9 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
 
-</body>
 <footer class="footer">
 	<div class="l-footer">
 		<h1>
@@ -21,10 +19,10 @@
 		<li class="features">
 			<h2>Account</h2>
 			<ul class="box h-box">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Prenota un ticket</a></li>
-				<li><a href="#">Gestione prenotazioni</a></li>
-				<li><a href="#">Gestione account</a></li>
+				<li><a href="http://localhost:8080/clup/homepageManager.jsp">Home</a></li>
+				<li><a href="http://localhost:8080/clup/addBooking.jsp">Aggiungi Prenotazione</a></li>
+				<li><a href="http://localhost:8080/clup/BookingServlet">Gestione prenotazioni</a></li>
+				<li><a href="http://localhost:8080/clup/LogoutServlet">Logout</a></li>
 
 			</ul>
 		</li>

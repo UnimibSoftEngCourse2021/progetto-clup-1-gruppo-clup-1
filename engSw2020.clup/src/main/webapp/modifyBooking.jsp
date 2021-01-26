@@ -68,7 +68,7 @@
 	}
 </script>
   </body>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footerManager.jsp"/>
 </html>
 	<script>
 		function validateDate(){

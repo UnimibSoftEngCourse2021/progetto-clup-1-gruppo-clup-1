@@ -100,6 +100,6 @@ function validateData() {
   <i id="edit" class="fa fa-pencil" style="color:seagreen; font-size:24px; cursor:pointer"></i>
 </div>
 </form>
-<jsp:include page="footer.jsp"/>
 </body>
+<jsp:include page="footerManager.jsp"/>
 </html> 

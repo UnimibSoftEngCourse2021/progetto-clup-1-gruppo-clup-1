@@ -98,10 +98,9 @@
 			<button id="addCategory" type="submit">Inserisci</button>
 	</div>
 
-<jsp:include page="footer.jsp"/>
 
 </body>
-
+<jsp:include page="footerManager.jsp"/>
 
 </html>
 <script>

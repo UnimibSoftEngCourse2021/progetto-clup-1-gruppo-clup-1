@@ -140,6 +140,8 @@
                   </div>
                   </div>    
                </div>
+               <br>
+               <hr>
 	<div class="card mb-4">
  		<div class="card-header">
    			<i class="fas fa-table mr-1"></i>
@@ -163,8 +165,11 @@
   			</table>  	
   		</div>
  		</div>
+ 		 	<div id="push"></div> 
  	</div>
- 	<jsp:include page="footer.jsp"/>
+	
 </body>
+
+<jsp:include page="footerManager.jsp"/>
 
 </html>

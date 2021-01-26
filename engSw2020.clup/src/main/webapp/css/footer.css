@@ -8,6 +8,7 @@ text-transform: uppercase;
 font-size: 65px;
 font-weight: 700;
 }
+
 .footer {
 display: flex;
 position: fixed;
@@ -18,7 +19,8 @@ height: 30%;
 flex-flow: row wrap;
 padding: 50px;
 color: #fff;
-background-color: black;;
+background-color: black;
+
 }
 
 .footer > * {

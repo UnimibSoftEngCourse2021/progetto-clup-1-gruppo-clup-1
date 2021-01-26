@@ -237,8 +237,8 @@ int idUser = (Integer) session.getAttribute("idUser");
 </form>
 
 </div>
-<jsp:include page="footer.jsp"/>
 </body>
+<jsp:include page="footerManager.jsp"/>
 
 
 </html>

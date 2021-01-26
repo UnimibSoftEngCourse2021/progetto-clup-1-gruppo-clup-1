@@ -4,15 +4,13 @@
     -moz-box-sizing: border-box;
 }
 body{
-	min-height: 400px;
-  	margin-bottom: 30%;
+	min-height: 100%;
    	clear: both;
     font-family: Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     
   
 }
-
 
 /* Table Styles */
 

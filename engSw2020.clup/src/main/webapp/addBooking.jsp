@@ -118,7 +118,7 @@
 		}
 	</script>
 </body>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footerManager.jsp"/>
 </html>
 <script>
 	function validateDate() {
@@ -136,7 +136,7 @@
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
 
 		if (date.value == null || date.value == ""
-				|| (bookingDate.getMonth()<todayDate.getMonth() && bookingDate.getDate() < todayDate.getDate())) {
+				|| bookingDate.getMonth()<todayDate.getMonth() || bookingDate.getDate() < todayDate.getDate()) {
 			alert("Inserire una data valida");
 			date.style.background = "#f08080";
 			date.focus();

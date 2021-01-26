@@ -82,9 +82,8 @@
 
 
 
-
-<jsp:include page="footer.jsp"/>
 </body>
+<jsp:include page="footerManager.jsp"/>
 </html>
 
 
