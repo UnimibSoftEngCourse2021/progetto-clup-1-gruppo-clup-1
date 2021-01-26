@@ -2,6 +2,8 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,35 +20,34 @@ import main.webapp.model.Store;
  */
 public class GetStore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetStore() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static Logger log = Logger.getLogger(GetStore.class.getName());
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookingDao bookingDao = new BookingDao();
-		ArrayList<Store> stores = new ArrayList<Store>();
-		stores = bookingDao.getStores(request.getParameter("city"));
-		String json = new Gson().toJson(stores);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
+	public GetStore() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BookingDao bookingDao = new BookingDao();
+		ArrayList<Store> stores = new ArrayList<Store>();
+		stores = bookingDao.getStores(request.getParameter("city"));
+		try {
+			String json = new Gson().toJson(stores);
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

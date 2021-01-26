@@ -42,29 +42,26 @@ public class StoreSetup extends HttpServlet {
 		try {
 			store = storeDao.getStoreInfo(idStoreUser);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 
 		}
-		request.setAttribute("Name", store.getName());
-		request.setAttribute("Descrizione", store.getDesprition());
-		request.setAttribute("NumeroDiTelefono", store.getTelephoneNumber());
-		request.setAttribute("Indirizzo", store.getAddress());
-		request.setAttribute("City", store.getCity());
-		request.setAttribute("Capienza", store.getCapacity());
-		request.setAttribute("CapienzaPrenotabile", store.getBookableCapacity());
-		request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
+		try {
+			request.setAttribute("Name", store.getName());
+			request.setAttribute("Descrizione", store.getDesprition());
+			request.setAttribute("NumeroDiTelefono", store.getTelephoneNumber());
+			request.setAttribute("Indirizzo", store.getAddress());
+			request.setAttribute("City", store.getCity());
+			request.setAttribute("Capienza", store.getCapacity());
+			request.setAttribute("CapienzaPrenotabile", store.getBookableCapacity());
+			request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
 
-	}
+		} catch (ServletException e) {
+			log.log(Level.FINE, e.toString());
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		}
+
 	}
 
 }

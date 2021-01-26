@@ -32,16 +32,21 @@ public class BookingServlet extends HttpServlet {
 		try {
 			bookingList = bookingDao.getBooking(idStoreUser);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 
 		}
+		try {
 		req.setAttribute("bookingList", bookingList);
 
 	    req.getRequestDispatcher("/bookings.jsp").forward(req, res);
+		}catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+
+		}catch (ServletException e) {
+			log.log(Level.FINE, e.toString());
+
+		}
 		
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
+	
 }

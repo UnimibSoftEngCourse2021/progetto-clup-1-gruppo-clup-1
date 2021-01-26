@@ -19,45 +19,40 @@ import main.webapp.DAO.BookingDao;
  */
 public class CountBookingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CountBookingServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Logger log = Logger.getLogger(CountBookingServlet.class.getName());
+	public CountBookingServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Logger log = Logger.getLogger(CountBookingServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
 		HttpSession session = request.getSession();
 		int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
 		int result = 0;
 		try {
 			result = bookingDao.getCountBooking(idStoreUser);
-			
-		}
-		catch(Exception e){
+
+		} catch (Exception e) {
 			log.log(Level.FINE, e.toString());
 		}
-		
-		String json = new Gson().toJson(result);
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
-	}
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			String json = new Gson().toJson(result);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

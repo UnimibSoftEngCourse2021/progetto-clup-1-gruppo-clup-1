@@ -20,49 +20,43 @@ import main.webapp.DAO.CategoryDao;
 public class GetMaxCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(GetMaxCategoryServlet.class.getName());
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetMaxCategoryServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryDao categoryDao = new CategoryDao();
-		String name ="";
-		HttpSession session = request.getSession();
-		int idStore = (Integer)session.getAttribute("id");
-		int idCategory=0;
-		try 
-		{
-			idCategory=categoryDao.getMaxIdCategory(idStore);
-			if(idCategory > 0) 
-			{
-				name = categoryDao.getNameFromId(idCategory);
-			}
-		}
-		catch(Exception e) 
-		{
-			log.log(Level.FINE, e.toString());
-		}
-		String json = new Gson().toJson(name);
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
+	public GetMaxCategoryServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		CategoryDao categoryDao = new CategoryDao();
+		String name = "";
+		HttpSession session = request.getSession();
+		int idStore = (Integer) session.getAttribute("id");
+		int idCategory = 0;
+		try {
+			idCategory = categoryDao.getMaxIdCategory(idStore);
+			if (idCategory > 0) {
+				name = categoryDao.getNameFromId(idCategory);
+			}
+		} catch (Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		try {
+			String json = new Gson().toJson(name);
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

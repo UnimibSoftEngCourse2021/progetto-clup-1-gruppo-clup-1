@@ -1,5 +1,6 @@
 <%
 	String name = request.getParameter("user") + "";
+
 	int idUser = Integer.parseInt(request.getParameter("idUser"));
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

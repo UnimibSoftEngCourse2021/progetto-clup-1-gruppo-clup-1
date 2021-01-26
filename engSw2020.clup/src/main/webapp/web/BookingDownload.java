@@ -62,7 +62,13 @@ public class BookingDownload extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logger log = Logger.getLogger(BookingDownload.class.getName());
+		try {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		}catch (IOException e) {
+        	log.log(Level.FINE, e.toString());
+
+        }
 		try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
@@ -76,14 +82,6 @@ public class BookingDownload extends HttpServlet {
         	log.log(Level.FINE, e.toString());
 
         }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 	
 	

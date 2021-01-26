@@ -18,25 +18,27 @@ import main.webapp.DAO.BookingDao;
  */
 public class DeletionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeletionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Logger log = Logger.getLogger(DeletionServlet.class.getName());
+	public DeletionServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Logger log = Logger.getLogger(DeletionServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
 		HttpSession session = request.getSession();
-		int role = ((Integer)session.getAttribute("role"));
+		int role = ((Integer) session.getAttribute("role"));
 
-	    int result = 0;
+		int result = 0;
 		try {
 			result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
 		} catch (NumberFormatException e) {
@@ -46,21 +48,16 @@ public class DeletionServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
-	    if(result==1 && role == 1 )
-	    {	    	
-	    	response.sendRedirect("BookingServlet");
-	    }
-	    if(result==1 && role == 0 )
-	    {
-	    	response.sendRedirect("customerBooking.jsp");
-	    }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	    
+		try {
+			if (result == 1 && role == 1) {
+				response.sendRedirect("BookingServlet");
+			}
+			if (result == 1 && role == 0) {
+				response.sendRedirect("customerBooking.jsp");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.log(Level.FINE, e.toString());
+		}
 	}
 }

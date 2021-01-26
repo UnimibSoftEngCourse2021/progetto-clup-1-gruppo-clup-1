@@ -44,13 +44,21 @@ public class AddCategoryServlet extends HttpServlet {
 		try {
 			id = categoryDao.getIdCategoryByName(category);
 			result = categoryDao.insertCategory(idStore, id);
-			if (result > 0) {
-				request.setAttribute("InsertResult", "OK");
-				request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
-			} else {
-				request.setAttribute("InsertResult", "KO");
-				request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+			try {
+				if (result > 0) {
+					request.setAttribute("InsertResult", "OK");
+					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+				} else {
+					request.setAttribute("InsertResult", "KO");
+					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+				}
+			} catch (ServletException e) {
+				log.log(Level.FINE, e.toString());
 			}
+			catch (IOException e) {
+				log.log(Level.FINE, e.toString());
+			}
+
 		} catch (SQLException e) {
 			log.log(Level.FINE, e.toString());
 		}

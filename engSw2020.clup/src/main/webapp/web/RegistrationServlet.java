@@ -60,7 +60,7 @@ public class RegistrationServlet extends HttpServlet {
             } catch (Exception e) {
             	logger.log(Level.FINE, e.toString());
             }
-            
+            try {
     		request.setAttribute("successMsg","Register Successfully...! Please login"); //register success messeage            
             if(result == 1) 
             {
@@ -77,7 +77,12 @@ public class RegistrationServlet extends HttpServlet {
 
             	request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
             	
-            }     
+            } 
+            }catch (IOException e) {
+            	logger.log(Level.FINE, e.toString());
+            }catch (ServletException e) {
+            	logger.log(Level.FINE, e.toString());
+            }
         }
 	}
 

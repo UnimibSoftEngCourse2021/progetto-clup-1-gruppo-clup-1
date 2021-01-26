@@ -23,58 +23,71 @@ import main.webapp.DAO.BookingDao;
  */
 public class ModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ModifyServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModifyServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Logger log = Logger.getLogger(ModifyServlet.class.getName());
-		int id = Integer.parseInt(request.getParameter("idBooking"));
-		Date date = Date.valueOf(request.getParameter("date"));		
-		String requestArrivalTime = request.getParameter("arrivalTime");
-		requestArrivalTime += ":00";
-		Time arrivalTime = Time.valueOf(requestArrivalTime);
-		String requestFinishTime = request.getParameter("finishTime");
-		requestFinishTime += ":00";
-		Time finishTime = Time.valueOf(requestFinishTime);
-		BookingDao bookingDao = new BookingDao();
-	    int result = 0;
-	    HttpSession session = request.getSession();
-		int idRole = ((Integer) session.getAttribute("role")).intValue();
+
 		try {
-			result = bookingDao.modifyBooking(id,date,arrivalTime,finishTime);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			int id = Integer.parseInt(request.getParameter("idBooking"));
+			Date date = Date.valueOf(request.getParameter("date"));
+			String requestArrivalTime = request.getParameter("arrivalTime");
+			requestArrivalTime += ":00";
+			Time arrivalTime = Time.valueOf(requestArrivalTime);
+			String requestFinishTime = request.getParameter("finishTime");
+			requestFinishTime += ":00";
+			Time finishTime = Time.valueOf(requestFinishTime);
+			BookingDao bookingDao = new BookingDao();
+			int result = 0;
+			HttpSession session = request.getSession();
+			int idRole = ((Integer) session.getAttribute("role")).intValue();
+			try {
+				result = bookingDao.modifyBooking(id, date, arrivalTime, finishTime);
+			} catch (SQLException e) {
+				log.log(Level.FINE, e.toString());
+			}
+			try {
+				if (result == 1 && idRole == 1) {
+					response.sendRedirect("BookingServlet");
+				}
+				if (result == 0 && idRole == 1) {
+					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+				}
+				if (result == 1 && idRole == 0) {
+					request.getRequestDispatcher("/customerBooking.jsp").forward(request, response);
+					;
+				}
+				if (result == 0 && idRole == 0) {
+					request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
+				}
+			} catch (IOException e) {
+				log.log(Level.FINE, e.toString());
+			}catch (ServletException e) {
+				log.log(Level.FINE, e.toString());
+			}
+		} catch (NumberFormatException e) {
 			log.log(Level.FINE, e.toString());
-		}
-	    if(result==1 && idRole == 1)
-	    {	    	
-	    	response.sendRedirect("BookingServlet");
-	    }
-	    if(result == 0 && idRole == 1) {
-	    	 request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
-	    }
-	    if(result==1 && idRole == 0)
-	    {	    	
-	    	request.getRequestDispatcher("/customerBooking.jsp").forward(request, response);;
-	    }
-	    if(result == 0 && idRole == 0) {
-	    	 request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
-	    }
+		} 
 
 	}
 

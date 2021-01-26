@@ -75,6 +75,7 @@
       </div>
     </nav>
   </header>
+  
 <body>
 <%
 session.setAttribute("StatusInfo", 1);

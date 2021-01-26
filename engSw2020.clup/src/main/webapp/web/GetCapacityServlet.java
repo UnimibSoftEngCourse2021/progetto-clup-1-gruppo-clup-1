@@ -20,41 +20,39 @@ import main.webapp.DAO.StoreDao;
 public class GetCapacityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(GetCapacityServlet.class.getName());
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetCapacityServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		StoreDao storeDao = new StoreDao();
-		HttpSession session = request.getSession();
-		int capacity=0;
-		int idStore = ((Integer) session.getAttribute("id")).intValue();
-		try {
-			capacity=storeDao.getCapacity(idStore);
-		}
-		catch(Exception e){
-			log.log(Level.FINE, e.toString());
-		}
-		 String json = new Gson().toJson(capacity);
-
-		 response.setContentType("application/json");
-		 response.setCharacterEncoding("UTF-8");
-		 response.getWriter().write(json);
+	public GetCapacityServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		StoreDao storeDao = new StoreDao();
+		HttpSession session = request.getSession();
+		int capacity = 0;
+		int idStore = ((Integer) session.getAttribute("id")).intValue();
+		try {
+			capacity = storeDao.getCapacity(idStore);
+		} catch (Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
+		try {
+			String json = new Gson().toJson(capacity);
+
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

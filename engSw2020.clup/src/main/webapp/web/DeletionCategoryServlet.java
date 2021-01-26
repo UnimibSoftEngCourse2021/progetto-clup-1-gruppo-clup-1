@@ -39,21 +39,17 @@ public class DeletionCategoryServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
+		try {
 	    if(result==1)
 	    {	    	
 	    	response.sendRedirect("getCategoryServlet");
 	    }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		}
+		catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

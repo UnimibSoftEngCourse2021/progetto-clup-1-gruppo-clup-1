@@ -29,54 +29,51 @@ public class UpdateStoreInfo extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 Logger log = Logger.getLogger(UpdateStoreInfo.class.getName());		int result = 0;
-		HttpSession session = request.getSession();
-		int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
-		String descrizione = request.getParameter("descrizione");
-		String telefono = request.getParameter("Telefono");
-		String indirizzo = request.getParameter("Indirizzo");
-		String city = request.getParameter("city");
-		int capienza = Integer.parseInt(request.getParameter("quantity"));
-		int capienzaPrenotabile = Integer.parseInt(request.getParameter("postiPrenotabili"));
-		Store store = new Store();
-		store.setIdStore(idStoreUser);
-		store.setDesprition(descrizione);
-		store.setTelephoneNumber(telefono);
-		store.setAddress(indirizzo);
-		store.setCity(city);
-		store.setCapacity(capienza);
-		store.setBookableCapacity(capienzaPrenotabile);
-		StoreDao storeDao = new StoreDao();
+		Logger log = Logger.getLogger(UpdateStoreInfo.class.getName());
+		int result = 0;
 		try {
-			result = storeDao.updateData(store);
-			if (result > 0) {
-				request.setAttribute("msg", "OK");
-				request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
-			} else {
-				request.setAttribute("msg", "Errore durante l'aggiornamento. Riprovare");
-				request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			int idStoreUser = ((Integer) session.getAttribute("idStore")).intValue();
+			String descrizione = request.getParameter("descrizione");
+			String telefono = request.getParameter("Telefono");
+			String indirizzo = request.getParameter("Indirizzo");
+			String city = request.getParameter("city");
+			int capienza = Integer.parseInt(request.getParameter("quantity"));
+			int capienzaPrenotabile = Integer.parseInt(request.getParameter("postiPrenotabili"));
+			Store store = new Store();
+			store.setIdStore(idStoreUser);
+			store.setDesprition(descrizione);
+			store.setTelephoneNumber(telefono);
+			store.setAddress(indirizzo);
+			store.setCity(city);
+			store.setCapacity(capienza);
+			store.setBookableCapacity(capienzaPrenotabile);
+			StoreDao storeDao = new StoreDao();
+			try {
+				result = storeDao.updateData(store);
+				if (result > 0) {
+					request.setAttribute("msg", "OK");
+					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+				} else {
+					request.setAttribute("msg", "Errore durante l'aggiornamento. Riprovare");
+					request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
 
+				}
+			} catch (SQLException e) {
+				log.log(Level.FINE, e.toString());
+			}catch (ServletException e) {
+				log.log(Level.FINE, e.toString());
+			}catch (IOException e) {
+				log.log(Level.FINE, e.toString());
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (NumberFormatException e) {
 			log.log(Level.FINE, e.toString());
 		}
-		doGet(request, response);
 	}
 
 }

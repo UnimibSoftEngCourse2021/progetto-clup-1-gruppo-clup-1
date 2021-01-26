@@ -28,16 +28,6 @@ public class ForgotPassword extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -53,7 +43,6 @@ public class ForgotPassword extends HttpServlet {
 			System.out.println(username);
 			System.out.println(password);
 
-		
 			try {
 				System.out.println("CIAO");
 
@@ -65,17 +54,26 @@ public class ForgotPassword extends HttpServlet {
 
 				logger.log(Level.FINE, e.toString());
 			}
-			System.out.println(result);
-			if (result == 1) {
-				request.setAttribute("successMsg", "Cambio password effettuato con successo");
-				request.setAttribute("TitleMsg", "Esito cambio password");
-				request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
+			try {
+				if (result == 1) {
+					request.setAttribute("successMsg", "Cambio password effettuato con successo");
+					request.setAttribute("TitleMsg", "Esito cambio password");
+					request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
 
-			} else {
-				request.setAttribute("TitleMsg", "Esito cambio password");
-				request.setAttribute("errorMsg", "Errore durante il cambio password. Riprovare!");
-				request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
+				} else {
+					request.setAttribute("TitleMsg", "Esito cambio password");
+					request.setAttribute("errorMsg", "Errore durante il cambio password. Riprovare!");
+					request.getRequestDispatcher("successSignUp.jsp").forward(request, response);
 
+				}
+			} catch (IOException e) {
+				System.out.println(e);
+
+				logger.log(Level.FINE, e.toString());
+			}catch (ServletException e) {
+				System.out.println(e);
+
+				logger.log(Level.FINE, e.toString());
 			}
 		}
 

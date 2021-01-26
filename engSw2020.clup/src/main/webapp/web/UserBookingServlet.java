@@ -2,6 +2,8 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,48 +21,47 @@ import main.webapp.model.Booking;
  */
 public class UserBookingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserBookingServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static Logger log = Logger.getLogger(UserBookingServlet.class.getName());
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookingDao bookingdao = new BookingDao();
-		ArrayList<Booking> bookingList;
-		HttpSession session = request.getSession();
-		int idUser = ((Integer)session.getAttribute("id"));
-		int status = ((Integer)session.getAttribute("StatusBooking"));
-		System.out.println(status);
-		if(status > 0)
-		{
-			bookingList = bookingdao.getAllUserBooking(idUser);
-		}
-		else
-		{
-			bookingList = bookingdao.getUserBooking(idUser);
-		}
-		
-		String json = new Gson().toJson(bookingList);
-		System.out.println(json);
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
-
+	public UserBookingServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BookingDao bookingdao = new BookingDao();
+		ArrayList<Booking> bookingList;
+		try {
+			HttpSession session = request.getSession();
+			int idUser = ((Integer) session.getAttribute("id"));
+			int status = ((Integer) session.getAttribute("StatusBooking"));
+			System.out.println(status);
+			if (status > 0) {
+				bookingList = bookingdao.getAllUserBooking(idUser);
+			} else {
+				bookingList = bookingdao.getUserBooking(idUser);
+			}
+			try {
+				String json = new Gson().toJson(bookingList);
+				System.out.println(json);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+			} catch (IOException e) {
+				log.log(Level.FINE, e.toString());
+			}
+		} catch (NumberFormatException e) {
+			log.log(Level.FINE, e.toString());
+		}
+
 	}
 
 }

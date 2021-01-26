@@ -48,10 +48,13 @@ public class GetCategoryServlet extends HttpServlet {
 			request.setAttribute("AllCategoryList", AllCategoryList);
 	    	request.getRequestDispatcher("/category.jsp").forward(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			log.log(Level.FINE, e.toString());		}
-		
-	
+			log.log(Level.FINE, e.toString());
+		}catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}catch (ServletException e) {
+			log.log(Level.FINE, e.toString());
+		}
+
 	}
 
 }

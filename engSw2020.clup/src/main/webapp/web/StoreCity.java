@@ -2,6 +2,8 @@ package main.webapp.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,22 +32,19 @@ public class StoreCity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger log = Logger.getLogger(StoreCity.class.getName());
+
+		try {
 		BookingDao bookingDao = new BookingDao();
 		ArrayList<String> city = new ArrayList<String>();
 		city = bookingDao.getCities();
 		String json = new Gson().toJson(city);
-		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
-	}
+		}catch (IOException e) {
+			log.log(Level.FINE, e.toString());
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		}
 	}
-
 }

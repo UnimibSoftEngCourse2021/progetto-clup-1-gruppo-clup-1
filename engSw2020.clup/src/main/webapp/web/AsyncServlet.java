@@ -21,43 +21,43 @@ import main.webapp.model.Booking;
  */
 public class AsyncServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AsyncServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AsyncServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Logger log = Logger.getLogger(AsyncServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
-    	HttpSession session = request.getSession();
-    	int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
+		HttpSession session = request.getSession();
+		int idStoreUser = ((Integer) session.getAttribute("id")).intValue();
 		ArrayList<Booking> bookingList = null;
 		try {
 			bookingList = bookingDao.getLatestBooking(idStoreUser);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 
 		}
-		 String json = new Gson().toJson(bookingList);
+		try {
+			String json = new Gson().toJson(bookingList);
 
-		 response.setContentType("application/json");
-		 response.setCharacterEncoding("UTF-8");
-		 response.getWriter().write(json);
-	}
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (IOException e) {
+			log.log(Level.FINE, e.toString());
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		}
+
 	}
 
 }
