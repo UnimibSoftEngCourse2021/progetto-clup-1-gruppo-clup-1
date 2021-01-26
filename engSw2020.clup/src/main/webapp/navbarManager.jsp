@@ -1,5 +1,7 @@
+<%@ page import="org.owasp.encoder.Encode" %>
+
 <%
-	String name = request.getParameter("user") + "";
+
 
 	int idUser = Integer.parseInt(request.getParameter("idUser"));
 %>
@@ -38,7 +40,7 @@
         			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
           		</div>
         	</li>
-        	<li><a href="#">Benvenuto <%= name %></a></li>
+        	<li><a href="#">Benvenuto <%= Encode.forHtml(request.getParameter("user")) %></a></li>
 
 		</ul>
 		<div class="burger">

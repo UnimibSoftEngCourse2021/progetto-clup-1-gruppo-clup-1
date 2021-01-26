@@ -1,3 +1,5 @@
+<%@ page import="org.owasp.encoder.Encode" %>
+
 <% int idUser = (Integer) session.getAttribute("idUser");  
     String user = session.getAttribute("name") + "";
 %>

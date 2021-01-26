@@ -1,3 +1,5 @@
+<%@ page import="org.owasp.encoder.Encode" %>
+
 <% 
    int iduser = (Integer) session.getAttribute("id");
    
@@ -108,7 +110,7 @@
 						placeholder="Orario di fine" />
 				</div>
 				<div class="item">					
-					<input id="idStore" type="hidden" name="idStore" value="<%=request.getParameter("idStore")%>" />
+					<input id="idStore" type="hidden" name="idStore" value="<%= Encode.forHtml(request.getParameter("idStore")) %>" />
 				</div>
 				<div id="categoryDiv" style="width:3%">
 				<label>Categorie</label><br>

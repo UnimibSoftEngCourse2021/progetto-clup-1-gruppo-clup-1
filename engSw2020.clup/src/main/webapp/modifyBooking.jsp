@@ -1,3 +1,5 @@
+<%@ page import="org.owasp.encoder.Encode" %>
+
 <%
 	String user = session.getAttribute("name") + "";
 	int idUser = (Integer) session.getAttribute("idUser"); 
@@ -36,7 +38,7 @@
         <fieldset>
           <legend>Booking Information</legend>
             <div class="item">
-            		<input id="idBooking" type="hidden" name="idBooking" value="<%=request.getParameter("idBooking")%>"/>
+            		<input id="idBooking" type="hidden" name="idBooking" value="<%= Encode.forHtml(request.getParameter("idBooking")) %>"/>
             </div>
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>

@@ -1,3 +1,5 @@
+<%@ page import="org.owasp.encoder.Encode" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -52,7 +54,7 @@
         <fieldset>
           <legend>Booking Information</legend>
             <div class="item">
-            		<input id="idBooking" type="hidden" name="idBooking" value="<%=request.getParameter("idBooking")%>"/>
+            		<input id="idBooking" type="hidden" name="idBooking" value="<%= Encode.forHtml(request.getParameter("idBooking")) %>"/>
             </div>
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>
