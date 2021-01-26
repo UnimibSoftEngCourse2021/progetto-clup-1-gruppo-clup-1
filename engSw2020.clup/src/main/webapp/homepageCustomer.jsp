@@ -56,10 +56,11 @@
 			</li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
           		<div class="dropdown-content">
-        			<a href="http://localhost:8080/clup/customerInformation.jsp">Informazioni Utente</a>
+        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
         			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
           		</div>
         	</li>
+        	
         	<li><a href="#">Benvenuto </a></li>
 
 		</ul>
