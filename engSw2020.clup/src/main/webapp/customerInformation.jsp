@@ -46,6 +46,9 @@
 		setTimeout(function() {
 			  $("#success").fadeOut().empty();
 			}, 10000);
+		setTimeout(function() {
+			  $("#failed").fadeOut().empty();
+			}, 10000);
 	})
 </script>
 </head>
@@ -73,27 +76,27 @@ session.setAttribute("StatusInfo", 1);
   <input type="hidden" name="idUser" >
 <div>
   <label>Nome</label>
-  <input id="editable" class="w3-input w3-border" name="name" type="text" value="${user.getName()}" disabled>
+  <input id="name" class="w3-input w3-border" name="name" type="text" value="${user.getName()}" disabled>
 </div>
 <div>
   <p><label>Cognome</label>
-  <input  id="editable" class="w3-input w3-border" name="surname" type="text" value="${user.getSurname()}" disabled></p>
+  <input  id="surname" class="w3-input w3-border" name="surname" type="text" value="${user.getSurname()}" disabled></p>
 </div>
 <div>
   <p><label>Data di nascita</label>
-  <input  id="editable" class="w3-input w3-border" name="birthdayDate" type="date" value="${user.getBirthdayDate()}" disabled></p>
+  <input  id="date" class="w3-input w3-border" name="birthdayDate" type="date" value="${user.getBirthdayDate()}" disabled></p>
 </div>
 <div>
   <p><label>Numero di telefono</label>
-  <input  id="editable" class="w3-input w3-border" name="telephoneNumber" type="text" value="${user.getTelephoneNumber()}" disabled></p>
+  <input  id="telephoneNumber" class="w3-input w3-border" name="telephoneNumber" type="text" value="${user.getTelephoneNumber()}" disabled></p>
 </div>
 <div>
   <p><label>E-mail</label>
-  <input  id="editable" class="w3-input w3-border" name="email" type="text" value="${user.getEmail()}" disabled></p>
+  <input  id="email" class="w3-input w3-border" name="email" type="text" value="${user.getEmail()}" disabled></p>
 </div>
 <div>
   <p><label>Username</label>
-  <input  id="editable" class="w3-input w3-border" name="username" type="text" value="${user.getUserName()}" disabled></p>
+  <input  id="username" class="w3-input w3-border" name="username" type="text" value="${user.getUserName()}" disabled></p>
  </div>
  <div>
   <p><label>Password</label>
@@ -138,5 +141,18 @@ session.setAttribute("StatusInfo", 1);
 			newPwd.style.background = '#f08080';
 			return false;
 		}
+		
+		var name = $("#name").val().trim();
+	    $("#name").val(name);
+		var surname = $("#surname").val().trim();
+	    $("#surname").val(surname);
+		var date = $("#date").val().trim();
+	    $("#date").val(date);
+		var telephone = $("#telephoneNumber").val().trim();
+	    $("#telephoneNumber").val(telephone);
+		var email = $("#email").val().trim();
+	    $("#email").val(email);
+		var userName = $("#username").val().trim();
+	    $("#username").val(userName);
 	}
 </script>
