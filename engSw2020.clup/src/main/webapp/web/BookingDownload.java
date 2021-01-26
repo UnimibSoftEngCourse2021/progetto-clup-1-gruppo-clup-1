@@ -54,7 +54,6 @@ public class BookingDownload extends HttpServlet {
      */
     public BookingDownload() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

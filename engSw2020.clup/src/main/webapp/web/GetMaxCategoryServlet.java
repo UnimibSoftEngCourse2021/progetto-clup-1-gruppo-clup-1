@@ -26,7 +26,6 @@ public class GetMaxCategoryServlet extends HttpServlet {
 	 */
 	public GetMaxCategoryServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

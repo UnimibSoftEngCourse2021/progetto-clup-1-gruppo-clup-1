@@ -26,7 +26,6 @@ public class GetCapacityServlet extends HttpServlet {
 	 */
 	public GetCapacityServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

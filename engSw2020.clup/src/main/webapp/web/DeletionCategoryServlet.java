@@ -23,7 +23,6 @@ public class DeletionCategoryServlet extends HttpServlet {
      */
     public DeletionCategoryServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,7 +35,6 @@ public class DeletionCategoryServlet extends HttpServlet {
 		try {
 			result = categoryDao.deleteCategory(Integer.parseInt(request.getParameter("idCategory")));
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		} catch (SQLException e) {
 			log.log(Level.FINE, e.toString());

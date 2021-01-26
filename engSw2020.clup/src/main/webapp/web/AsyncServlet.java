@@ -27,7 +27,6 @@ public class AsyncServlet extends HttpServlet {
 	 */
 	public AsyncServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

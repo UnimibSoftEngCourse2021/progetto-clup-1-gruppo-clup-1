@@ -25,7 +25,6 @@ public class UpdateStoreInfo extends HttpServlet {
 	 */
 	public UpdateStoreInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

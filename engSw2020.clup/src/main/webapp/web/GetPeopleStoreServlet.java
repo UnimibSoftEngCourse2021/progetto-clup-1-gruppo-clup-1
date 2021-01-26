@@ -26,7 +26,6 @@ public class GetPeopleStoreServlet extends HttpServlet {
      */
     public GetPeopleStoreServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

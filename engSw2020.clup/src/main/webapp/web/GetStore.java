@@ -27,7 +27,6 @@ public class GetStore extends HttpServlet {
 	 */
 	public GetStore() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -27,7 +27,6 @@ public class AddServlet extends HttpServlet {
 	 */
 	public AddServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -79,10 +78,8 @@ public class AddServlet extends HttpServlet {
 				}
 				result = bookingDao.insertBooking(date, arrivalTime, finishTime, idStore, idUser);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				log.log(Level.FINE, e.toString());
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				log.log(Level.FINE, e.toString());
 			}
 			try {
@@ -96,14 +93,11 @@ public class AddServlet extends HttpServlet {
 					request.getRequestDispatcher("/addBooking.jsp").forward(request, response);
 				}
 			} catch (ServletException e) {
-				// TODO Auto-generated catch block
 				log.log(Level.FINE, e.toString());
 			}catch (IOException e) {
-				// TODO Auto-generated catch block
 				log.log(Level.FINE, e.toString());
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
 	}

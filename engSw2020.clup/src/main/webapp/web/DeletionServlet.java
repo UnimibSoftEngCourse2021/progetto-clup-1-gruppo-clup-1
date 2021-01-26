@@ -24,7 +24,6 @@ public class DeletionServlet extends HttpServlet {
 	 */
 	public DeletionServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,10 +41,8 @@ public class DeletionServlet extends HttpServlet {
 		try {
 			result = bookingDao.deleteBooking(Integer.parseInt(request.getParameter("idBooking")));
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
 		try {
@@ -56,7 +53,6 @@ public class DeletionServlet extends HttpServlet {
 				response.sendRedirect("customerBooking.jsp");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			log.log(Level.FINE, e.toString());
 		}
 	}

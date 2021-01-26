@@ -27,7 +27,6 @@ public class GetBookingCategory extends HttpServlet {
 	 */
 	public GetBookingCategory() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

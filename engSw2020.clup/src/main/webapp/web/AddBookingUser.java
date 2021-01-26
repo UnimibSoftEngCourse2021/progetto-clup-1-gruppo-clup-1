@@ -25,7 +25,6 @@ public class AddBookingUser extends HttpServlet {
 	 */
 	public AddBookingUser() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

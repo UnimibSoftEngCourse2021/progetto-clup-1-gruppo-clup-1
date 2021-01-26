@@ -25,7 +25,6 @@ public class CountBookingServlet extends HttpServlet {
 	 */
 	public CountBookingServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -25,7 +25,6 @@ public class StoreSetup extends HttpServlet {
 	 */
 	public StoreSetup() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

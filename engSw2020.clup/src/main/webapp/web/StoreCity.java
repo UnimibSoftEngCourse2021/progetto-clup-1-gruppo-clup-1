@@ -25,7 +25,6 @@ public class StoreCity extends HttpServlet {
      */
     public StoreCity() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

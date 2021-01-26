@@ -24,7 +24,6 @@ public class AddCategoryServlet extends HttpServlet {
 	 */
 	public AddCategoryServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
