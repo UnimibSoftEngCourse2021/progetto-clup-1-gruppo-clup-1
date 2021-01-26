@@ -146,7 +146,7 @@
 
 
 	</div>
-
+	
 	<script>
 		var a = document.getElementById("fee").value;
 		var b = document.getElementById("fee1").value;
@@ -191,7 +191,8 @@
 </html>
 <script>
 	function validateDate() {
-
+		
+		
 		var date = document.getElementById("editform").elements[1];
 		var startTime = document.getElementById("editform").elements[2];
 		var endTime = document.getElementById("editform").elements[3];
@@ -246,6 +247,11 @@
 				return false;
 			}
 		}
+		
+		userName.value = userName.value.trim();
+		userSurname.value = userSurname.value.trim();
+		userEmail.value = userEmail.value.trim();
+		userTelephoneNumber.value = userTelephoneNumber.value.trim();
 	}
 </script>
 

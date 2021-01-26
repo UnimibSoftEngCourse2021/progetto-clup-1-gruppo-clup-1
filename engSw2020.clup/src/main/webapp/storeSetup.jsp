@@ -188,6 +188,10 @@
 			city.focus();
 			return false;
 		}
-
+		
+		description.value = description.value.trim();
+		telefono.value = telefono.value.trim();
+		indirizzo.value = indirizzo.value.trim();
+		city.value = city.value.trim();
 	}
 </script>
