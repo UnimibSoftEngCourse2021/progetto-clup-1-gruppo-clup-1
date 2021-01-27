@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
  
         LoginDao loginDao = new LoginDao(); 
         
-        try {
+        try {        	
         ConnectionResult userValidate = loginDao.authenticateUser(loginBean);  
         if(userValidate.getResult().equals("SUCCESS") && userValidate.getUser().getIdRole() == 1) 
          {

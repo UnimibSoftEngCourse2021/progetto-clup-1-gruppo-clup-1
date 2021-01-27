@@ -19,6 +19,7 @@ import main.webapp.DAO.CategoryInBookingDao;
  */
 public class AddBookingUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger(AddServlet.class.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,7 +34,6 @@ public class AddBookingUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Logger log = Logger.getLogger(AddServlet.class.getName());
 		BookingDao bookingDao = new BookingDao();
 		CategoryInBookingDao categoryInBookingDao = new CategoryInBookingDao();
 		int[] result_insert = new int[2];
@@ -70,6 +70,22 @@ public class AddBookingUser extends HttpServlet {
 			log.log(Level.FINE, e.toString());
 		}
 
+	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+		doGet(request, response);
+		}catch (IOException e) {
+			log.log(Level.FINE, e.toString());
+		}catch (ServletException e) {
+			log.log(Level.FINE, e.toString());
+		}catch (Exception e) {
+			log.log(Level.FINE, e.toString());
+		}
 	}
 
 }

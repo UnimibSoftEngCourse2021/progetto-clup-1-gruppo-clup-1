@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/dropdown.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"></script> <!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"></script> <!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"></script> <!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function(){
 		getCategory();
@@ -36,12 +36,10 @@
 				$("#selectedDtaeVal").html(date);
 			}
 		});
-
 		$("#datepicker").datepicker();
 	});
 </script>
 <script>
-
 	function getCategory(){
 		var idStore = $("#idStore").val();
 		console.log(idStore);
@@ -162,7 +160,6 @@
 </html>
 <script>
 	function validateDate() {
-
 		var date = document.getElementById("editform").elements[1];
 		var startTime = document.getElementById("editform").elements[2];
 		var endTime = document.getElementById("editform").elements[3];
@@ -173,7 +170,6 @@
 		var userSurname = document.getElementById("editform").elements[7];
 		var userEmail = document.getElementById("editform").elements[8];
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
-
 		if (date.value == null || date.value == ""
 				|| (bookingDate.getMonth()<todayDate.getMonth() && bookingDate.getDate() < todayDate.getDate())) {
 			alert("Inserire una data valida");
@@ -181,29 +177,24 @@
 			date.focus();
 			return false;
 		}
-
 		if (startTime.value == null || startTime.value == "") {
 			alert("Inserire un orario di arrivo valido");
 			startTime.style.background = "#f08080";
 			startTime.focus();
 			return false;
 		}
-
 		if (endTime.value == null || endTime.value == "") {
 			alert("Inserire un orario di fine valido");
 			endTime.style.background = "#f08080";
 			endTime.focus();
 			return false;
 		}
-
 		var time = startTime.value.split(":");
 		var startHour = time[0];
 		var startMinutes = time[1];
-
 		var time1 = endTime.value.split(":");
 		var endHour = time1[0];
 		var endMinutes = time1[1];
-
 		if (startHour > endHour) {
 			alert("L'orario di arrivo deve essere minore dell'orario di fine");
 			startTime.style.background = "#f08080";
