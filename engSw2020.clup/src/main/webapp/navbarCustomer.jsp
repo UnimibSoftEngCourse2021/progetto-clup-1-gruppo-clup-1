@@ -1,3 +1,4 @@
+<% int idUser = ((Integer)session.getAttribute("id")); %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,7 +24,7 @@
 			</li>
 			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
           		<div class="dropdown-content">
-        			<a href="http://localhost:8080/clup/customerInformation.jsp">Informazioni Utente</a>
+        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
         			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
           		</div>
         	</li>
