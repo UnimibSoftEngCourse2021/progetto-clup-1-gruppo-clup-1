@@ -1,8 +1,15 @@
 <%@ page import="org.owasp.encoder.Encode" %>
 
 <%
-	String user = session.getAttribute("name") + "";
-	int idUser = (Integer) session.getAttribute("idUser"); 
+	String user = "";
+	int idUser = 0;
+	int role = 0;
+	if((Integer)session.getAttribute("role")==1)
+	{
+		user = session.getAttribute("name") + "";
+		idUser = (Integer) session.getAttribute("idUser"); 
+		role = (Integer) session.getAttribute("role");
+	}
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,9 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/modifyBooking.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/dropdown.css">
+	<link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
   	  $( function() {
@@ -28,11 +33,21 @@
 	</script>
 <title>Customer Line Up</title>
 </head>
-<jsp:include page="navbarManager.jsp">
-<jsp:param value="<%= idUser %>" name="idUser"/>
-<jsp:param value="<%= user %>" name="user"/>
-</jsp:include>
+<% if((Integer)session.getAttribute("role")==1){%>
+
+		<jsp:include page="navbarManager.jsp">
+		<jsp:param value="<%= idUser %>" name="idUser"/>
+		<jsp:param value="<%= user %>" name="user"/>
+		</jsp:include>
+		
+<%} %>
+<% if((Integer)session.getAttribute("role")==0) {%>
+		<jsp:include page="navbarCustomer.jsp"/>
+		
+	<%} %>
+
 <body>
+	<div class="page-wrap">
     <div class="testbox">
       <form id="editform" action="ModifyServlet" class="formContainer" method="post" onsubmit="return validateDate();">
         <fieldset>
@@ -59,7 +74,7 @@
         </fieldset>
       </form>
      </div>
- 
+ </div>
 <script >
 	var a = document.getElementByID("fee").value;
 	var b = document.getElementByID("fee1").value;
@@ -70,7 +85,13 @@
 	}
 </script>
   </body>
-<jsp:include page="footer.jsp"/>
+<% if((Integer)session.getAttribute("role")==1){%>
+
+		<jsp:include page="footerManager.jsp"/>
+<%} %>
+<% if((Integer)session.getAttribute("role")==0) {%>
+		<jsp:include page="footerCustomer.jsp"/>
+	<%} %>
 </html>
 	<script>
 		function validateDate(){

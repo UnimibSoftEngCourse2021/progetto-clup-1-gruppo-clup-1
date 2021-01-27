@@ -1,6 +1,4 @@
-html {
-      min-height: 100%;
-      }
+
 body, div, form, input, select, textarea, label, p { 
       padding: 0;
       margin: 0;
@@ -16,15 +14,22 @@ h1 {
       font-size: 40px;
       color: #fff;
       z-index: 2;
- line-height: 83px;
+ 	  line-height: 83px;
       }
 body{
-      min-height: 400px;
-  	margin-bottom: 30%;
    	clear: both;
     font-family: Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
       }
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: 10%; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
 input[type=radio], input[type="checkbox"] {
     display: inline !important;
 }

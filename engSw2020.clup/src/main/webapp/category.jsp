@@ -8,7 +8,7 @@
 <html lang="it">
 <head>
 <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">-->
-<link rel="stylesheet" href="css/bookings.css?ts=<?=time()?>&quot">
+<link rel="stylesheet" href="css/category.css?ts=<?=time()?>&quot">
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -21,122 +21,77 @@
 <jsp:param value="<%= idUser %>" name="idUser"/>
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
-<div>
-	<br>
 
-	<h2 style="text-align: center; color: black; font-size: 16pt;">
-		<strong>Elenco categorie di prodotti</strong>
-	</h2>
-
-
-</div>
 
 <body>
+<div class="page-wrap">
+	<div>
+		<br>
+		<h2 style="text-align: center; color: black; font-size: 16pt;">
+			<strong>Elenco categorie di prodotti</strong>
+		</h2>
+	</div>
 	<div class="table-wrapper">
-	
-		
-	<table  summary="TableWithCategory"  class="fl-table">
-		<thead>
-			<tr>
-				<th id="IDCategoria">ID</th>
-				<th id="NomeCategoria">Nome</th>
-				<th id="DescrizioneCategoria">Descrizione</th>
-				<th id="OperazioneCategoria">Operazione</th>
-
-			</tr>
-		</thead>
+		<table  summary="TableWithCategory"  class="fl-table">
+			<thead>
+				<tr>
+					<th id="IDCategoria">ID</th>
+					<th id="NomeCategoria">Nome</th>
+					<th id="DescrizioneCategoria">Descrizione</th>
+					<th id="OperazioneCategoria">Operazione</th>
+				</tr>
+			</thead>
 			<tbody>
 				<c:forEach items="${categoryList}" var="category">
 					<tr>
 						<td id="idRiga" >${category.getIdCategory()}</td>
 						<td >${category.getName()}</td>
 						<td >${category.getDescription()}</td>
-						<td>
-							
+						<td>							
 						<form name="form1" action="deletionCategoryServlet" method="POST">
-							
-							<a
-								href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
-								class="button"><i class="fa fa-trash"></i></a>
+							<a href="http://localhost:8080/clup/deletionCategoryServlet?idCategory=${category.getIdCategory()}"
+							class="button"><i class="fa fa-trash"></i></a>
 						</form>
+						</td>
 					</tr>
 				</c:forEach>
-	</table>	
-
-	<div id="myModal" class="modal">
-			
-		<div class="modal-content">
-  			<form>
+		</table>	
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+  				<form>
    					 <div class="modal-header">
     					<h3>Aggiunta categoria</h3>
     					<br>
-      					<span class="close">&times;</span>
-      
-    			 	 </div>
-    			<div class="modal-body">
-     				
-  			</form>
-  <form name="form3" action="addCategoryServlet" method="POST">
-  <label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
-  						<select id = "categoryNameToAdd" name="categoryNameToAdd" style="width:100%">
-       						<c:forEach items="${AllCategoryList}" var="AllCategoryList">
-       							<option value="${AllCategoryList.getName()}">${AllCategoryList.getName()}</option>
-							</c:forEach>
-						</select>
-  						<br>
-  	<div class="btn-block">
-  
-  	<button type="submit">Inserisci</button>
+      					<span class="close">&times;</span>      
+    			 	 </div>    		
+     			</form>
+				<div class="modal-body">
+  					<form name="form3" action="addCategoryServlet" method="POST">
+  						<label for="fname">Selezionare la categoria da aggiungere al negozio:</label><br>
+  							<select id = "categoryNameToAdd" name="categoryNameToAdd" style="width:100%">
+       							<c:forEach items="${AllCategoryList}" var="AllCategoryList">
+       								<option value="${AllCategoryList.getName()}">${AllCategoryList.getName()}</option>
+								</c:forEach>
+							</select>
+  							<br>
+  							<div class="btn-block">
+  								<button type="submit">Inserisci</button>
+							</div>
+					</form>
 				</div>
-				</form>
-</div>
-</div>		
+			</div>		
 		<br>
-	</div>
-	
-	<div class="btn-block">
+		</div>	
+		<div class="btn-block">
 			<button id="addCategory" type="submit">Inserisci</button>
+		</div>
 	</div>
-
-<jsp:include page="footer.jsp"/>
-
+</div>
 </body>
-
-
+<jsp:include page="footerManager.jsp"/>
 </html>
-<script>
-  const navSlide = () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li');
-
-    //Toggle Nav
-    burger.addEventListener('click', ()=>{
-      nav.classList.toggle('nav-active');
-
-      //Animate Links
-      navLinks.forEach((link, index)=>{
-        if(link.style.animation){
-          link.style.animation = ''
-        }else{
-              link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
-
-        }
-      });
-
-      //burger animation
-      burger.classList.toggle('toggle');
 
 
-    });
-
-
-
-
-  }
-
-  navSlide();
-</script>
 
 
 <script>

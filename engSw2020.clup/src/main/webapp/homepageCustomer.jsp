@@ -7,12 +7,13 @@
 <html lang="it">
 <head>
 <link rel="stylesheet" href="css/customer.css?ts=<?=time()?>&quot">
-<link rel="stylesheet" href="css/dropdown.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/card.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<<<<<<< HEAD
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
+=======
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+>>>>>>> dev_FixCustomer
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script>
@@ -41,48 +42,22 @@
 	})
 </script>
 </head>
-<header> 
-	    <nav role="navigation">
-		<div class="logo">
-			<h4>customer line up</h4>
-		</div>
-		<ul class="nav-links">
-			<li><a href="http://localhost:8080/clup/homepageCustomer.jsp">Home</a></li>
-			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Prenotazioni</a>
-				<div class="dropdown-content">
-					<a href="http://localhost:8080/clup/customerBooking.jsp">Visualizza storico prenotazioni</a> 
-					
-				</div>
-			</li>
-			<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Gestione Account</a>
-          		<div class="dropdown-content">
-        			<a href="http://localhost:8080/clup/UserServlet?iduser=<%= idUser %>">Informazioni Utente</a>
-        			<a href="http://localhost:8080/clup/LogoutServlet">Logout</a>       	
-          		</div>
-        	</li>
-        	
-        	<li><a href="#">Benvenuto </a></li>
+<jsp:include page="navbarCustomer.jsp"/>
 
-		</ul>
-      <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </nav>
-</header>
 <body>
 <%
 session.setAttribute("StatusBooking", 0);
 %>
 <div>
 <c:if test="${successMsg!=null}">
- <div id="success" class="alert alert-success">
+ <div style="color:green;" id="success" class="alert alert-success">
     <strong>Prenotazione completata!</strong> <%= request.getAttribute("successMsg") %>
   </div>
 </c:if>
 
+
 </div>
+<div class="page-wrap">
    <div class = "content-wrapper">
    	<div class = "content">
    		<div class="row">
@@ -115,7 +90,7 @@ session.setAttribute("StatusBooking", 0);
                 	<div class="card-body">
 					<form action="customerAddBooking.jsp" method="GET">
 					<input id="idStore" type="hidden" name="idStore">
-					<input type="submit" class="btn btn-block" value="Prenota ora">
+					<input type="submit" class="btn-block" value="Prenota ora">
 					</form>
                     </div>
                 </div>
@@ -123,6 +98,8 @@ session.setAttribute("StatusBooking", 0);
    	  	</div>	
    	</div>
    </div> 
+   <br>
+   <hr>
    <div class="card mb-4">
  		<div class="card-header">
    			<i class="fas fa-table mr-1"></i>
@@ -146,37 +123,9 @@ session.setAttribute("StatusBooking", 0);
   		</div>
  		</div>
  	</div>
+  </div>
 </body>
- 	<footer class="footer">
-	<div class="l-footer">
-		<h1>
-			<img src="https://i.postimg.cc/y62wcLBq/logo.png" alt="">
-		</h1>
-		<p>Customer Line Up</p>
-	</div>
-	<ul class="r-footer">
-		<li class="features">
-			<h2>Account</h2>
-			<ul class="box h-box">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Prenota un ticket</a></li>
-				<li><a href="#">Gestione prenotazioni</a></li>
-				<li><a href="#">Gestione account</a></li>
-
-			</ul>
-		</li>
-		<li>
-			<h2>Legal</h2>
-			<ul class="box">
-				<li><a href="#">Privacy Policy</a></li>
-				<li><a href="#">Terms of Use</a></li>
-			</ul>
-		</li>
-	</ul>
-	<div class="b-footer">
-		<p>All rights reserved by ©CustomerLineUp 2021</p>
-	</div>
-</footer>
+<jsp:include page="footerCustomer.jsp"/>
 </html>
 <script>
 	     function getData(){

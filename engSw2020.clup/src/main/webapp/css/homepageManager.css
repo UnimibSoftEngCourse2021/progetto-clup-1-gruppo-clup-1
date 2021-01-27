@@ -2,17 +2,21 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-}
-body{
-	min-height: 400px;
-  	margin-bottom: 30%;
-   	clear: both;
-    font-family: Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    
-  
+    margin:0;
 }
 
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -150px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
 
 /* Table Styles */
 

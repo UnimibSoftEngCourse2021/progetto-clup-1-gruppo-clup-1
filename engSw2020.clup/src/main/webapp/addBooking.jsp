@@ -33,11 +33,13 @@
 </script>
 
 </head>
+
 <jsp:include page="navbarManager.jsp">
 <jsp:param value="<%= idUser %>" name="idUser"/>
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
 <body>
+  <div class="page-wrap">
 	<div class="testbox">
 		<form id="editform" action="AddServlet" class="formContainer"
 			method="post" onsubmit="return validateDate();">
@@ -119,8 +121,9 @@
 			document.getElementByID("result").innerHTML = result;
 		}
 	</script>
+	</div>
 </body>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footerManager.jsp"/>
 </html>
 <script>
 	function validateDate() {
@@ -138,7 +141,7 @@
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
 
 		if (date.value == null || date.value == ""
-				|| (bookingDate.getMonth()<todayDate.getMonth() && bookingDate.getDate() < todayDate.getDate())) {
+				|| bookingDate.getMonth()<todayDate.getMonth() || bookingDate.getDate() < todayDate.getDate()) {
 			alert("Inserire una data valida");
 			date.style.background = "#f08080";
 			date.focus();

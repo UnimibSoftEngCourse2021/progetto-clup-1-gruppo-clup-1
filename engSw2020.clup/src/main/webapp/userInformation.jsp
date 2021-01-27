@@ -56,6 +56,12 @@ function validateData() {
 					
 			
 		});
+		setTimeout(function() {
+			  $("#success").fadeOut().empty();
+			}, 10000);
+		setTimeout(function() {
+			  $("#success").fadeOut().empty();
+			}, 10000);
 	})
 </script>
 </head>
@@ -64,7 +70,17 @@ function validateData() {
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
 <body>
-
+<c:if test="${errorMsg!=null}">
+ <div style="color:red;" id="failed" class="alert alert-success">
+    <strong>Modifica non avvenuta, utente non trovato!</strong> <%= request.getAttribute("errorMsg") %>
+  </div>
+</c:if>
+<c:if test="${successMsg!=null}">
+ <div style="color:green;" id="success" class="alert alert-success">
+    <strong>Modifica avvenuta correttamente!</strong> <%= request.getAttribute("successMsg") %>
+  </div>
+</c:if>
+<div class="page-wrap">>
 <form id="editForm" class="w3-container w3-card-4 w3-light-grey" action="UserServlet" method="POST" onsubmit="return validateData();">
 
   <h3 style="font-weight:bold; text-align:center;">Informazioni utente</h3>
@@ -100,6 +116,7 @@ function validateData() {
   <i id="edit" class="fa fa-pencil" style="color:seagreen; font-size:24px; cursor:pointer"></i>
 </div>
 </form>
-<jsp:include page="footer.jsp"/>
+</div>
 </body>
+<jsp:include page="footerManager.jsp"/>
 </html> 
