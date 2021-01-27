@@ -7,10 +7,8 @@
 <title>Customer Line Up</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/dropdown.css">
 <link rel="stylesheet" href="css/modifyBooking.css">
+<link rel="stylesheet" href="css/pagewrap.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -67,6 +65,7 @@ session.setAttribute("StatusInfo", 1);
     <strong>Modifica avvenuta correttamente!</strong> <%= request.getAttribute("successMsg") %>
   </div>
 </c:if>
+<div class="page-wrap">
 <form class="w3-container w3-card-4 w3-light-grey" action="UserServlet" method="POST" onsubmit="return validate();">
  <div style="text-align:center;"> 
  
@@ -116,7 +115,7 @@ session.setAttribute("StatusInfo", 1);
 </div>
 </form>
 
-
+</div>
 <jsp:include page="footerCustomer.jsp"/>
 </body>
 </html> 

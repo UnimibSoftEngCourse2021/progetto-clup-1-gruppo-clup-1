@@ -10,12 +10,12 @@
 <body>
 
 </body>
- 	<footer class="footer">
+ 	<footer class="site-footer">
 	<div class="l-footer">
 		<h1>
 			<img src="https://i.postimg.cc/y62wcLBq/logo.png" alt="">
 		</h1>
-		<p>Customer Line Up</p>
+		<br>
 	</div>
 	<ul class="r-footer">
 		<li class="features">

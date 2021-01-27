@@ -20,6 +20,7 @@
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
 <body>
+	<div class="page-wrap">
 	<form class="w3-container w3-card-4 w3-light-grey"
 		action="updateStoreInfo" method="Post" onsubmit="return validate();">
 		<h3 style="font-weight: bold; text-align: center">Gestione
@@ -79,7 +80,7 @@
 		</div>
 		<br>
 	</form>
-
+</div>
 
 
 </body>

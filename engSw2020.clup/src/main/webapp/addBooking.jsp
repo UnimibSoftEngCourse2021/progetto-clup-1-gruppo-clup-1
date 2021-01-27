@@ -37,6 +37,7 @@
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
 <body>
+  <div class="page-wrap">
 	<div class="testbox">
 		<form id="editform" action="AddServlet" class="formContainer"
 			method="post" onsubmit="return validateDate();">
@@ -118,6 +119,7 @@
 			document.getElementByID("result").innerHTML = result;
 		}
 	</script>
+	</div>
 </body>
 <jsp:include page="footerManager.jsp"/>
 </html>

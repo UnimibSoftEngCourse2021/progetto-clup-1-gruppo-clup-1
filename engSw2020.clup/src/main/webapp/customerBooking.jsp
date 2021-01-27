@@ -6,9 +6,6 @@
 <head>
 <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="css/bookings.css?ts=<?=time()?>&quot">
-<link rel="stylesheet" href="css/dropdown.css">
-<link rel="stylesheet" href="css/footer.css?ts=<?=time()?>&quot">
-<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -158,13 +155,13 @@
   </script>
  </div>
 	
-</header>
 </head>
 
 <body>
 <%
 session.setAttribute("StatusBooking", 1);
 %>
+<div class="page-wrap">
 <div class="table-wrapper">
   <form name="form1" method="post" action="DeletionServlet">
     <table summary="TableWithBooking" id="bookingTable" class="fl-table">
@@ -184,11 +181,12 @@ session.setAttribute("StatusBooking", 1);
         </tr>
         </thead>
         <tbody id="table-body">
-        		</tbody>
+        </tbody>
     </table>
   </form>
   <br>
-
+</div>
+</div>
 </body>
 <jsp:include page="footerCustomer.jsp"/>
 </html>

@@ -52,6 +52,7 @@ session.setAttribute("StatusBooking", 0);
 
 
 </div>
+<div class="page-wrap">
    <div class = "content-wrapper">
    	<div class = "content">
    		<div class="row">
@@ -117,6 +118,7 @@ session.setAttribute("StatusBooking", 0);
   		</div>
  		</div>
  	</div>
+  </div>
 </body>
 <jsp:include page="footerCustomer.jsp"/>
 </html>

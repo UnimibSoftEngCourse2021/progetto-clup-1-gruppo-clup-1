@@ -1,3 +1,13 @@
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: 60px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
 .table-wrapper{
     margin: 10px 70px 70px;
     box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );

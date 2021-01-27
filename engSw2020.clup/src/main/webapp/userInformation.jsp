@@ -80,6 +80,7 @@ function validateData() {
     <strong>Modifica avvenuta correttamente!</strong> <%= request.getAttribute("successMsg") %>
   </div>
 </c:if>
+<div class="page-wrap">>
 <form id="editForm" class="w3-container w3-card-4 w3-light-grey" action="UserServlet" method="POST" onsubmit="return validateData();">
 
   <h3 style="font-weight:bold; text-align:center;">Informazioni utente</h3>
@@ -115,6 +116,7 @@ function validateData() {
   <i id="edit" class="fa fa-pencil" style="color:seagreen; font-size:24px; cursor:pointer"></i>
 </div>
 </form>
+</div>
 </body>
 <jsp:include page="footerManager.jsp"/>
 </html> 

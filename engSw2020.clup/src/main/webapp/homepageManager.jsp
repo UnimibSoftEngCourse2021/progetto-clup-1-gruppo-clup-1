@@ -101,7 +101,7 @@
     <strong>Prenotazione completata!</strong> <%= request.getAttribute("successMsg") %>
   </div>
 </c:if>
-  <div class="content-wrapper">
+  <div class="content-wrapper page-wrap">
         <div class="content">						 
                   <!-- Top Statistics -->
                   <div class="row">
@@ -139,7 +139,7 @@
                     </div>
                   </div>
                   </div>    
-               </div>
+               
                <br>
                <hr>
 	<div class="card mb-4">
@@ -167,7 +167,7 @@
  		</div>
  		 	<div id="push"></div> 
  	</div>
-	
+  </div>
 </body>
 
 <jsp:include page="footerManager.jsp"/>

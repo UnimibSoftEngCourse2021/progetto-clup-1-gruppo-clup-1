@@ -188,6 +188,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 
 
 <body>
+<div class="page-wrap">
 <div class="table-wrapper">
   <form name="form1" method="post" action="DeletionServlet">
     <table summary="TableWithBooking" id="bookingTable" class="fl-table">
@@ -236,6 +237,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 
 </form>
 
+</div>
 </div>
 </body>
 <jsp:include page="footerManager.jsp"/>

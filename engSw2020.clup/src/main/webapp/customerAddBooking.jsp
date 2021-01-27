@@ -11,14 +11,12 @@
 <title>Customer Line Up</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link rel="stylesheet" href="css/modifyBooking.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/dropdown.css">
+<link rel="stylesheet" href="css/pagewrap.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <script>
 	$(document).ready(function(){
 		getCategory();
@@ -60,6 +58,7 @@
     <strong>Prenotazione fallita!</strong> <%= request.getAttribute("errorMsg") %>
   </div>
 </c:if>
+<div class="page-wrap">
 	<div class="testbox">
 		<form id="editform" action="AddBookingUser" class="formContainer" method="post" onsubmit="return validateDate();">
 			<fieldset>
@@ -97,8 +96,10 @@
 
 
 	</div>
+	</div>
+	<jsp:include page="footerCustomer.jsp"/>
 </body>
-<jsp:include page="footerCustomer.jsp"/>
+
 </html>
 <script>
 	function validateDate() {
@@ -115,7 +116,7 @@
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
 
 		if (date.value == null || date.value == ""
-				|| (bookingDate.getMonth()<todayDate.getMonth() && bookingDate.getDate() < todayDate.getDate())) {
+				|| bookingDate.getMonth()<todayDate.getMonth() || bookingDate.getDate() < todayDate.getDate()) {
 			alert("Inserire una data valida");
 			date.style.background = "#f08080";
 			date.focus();
