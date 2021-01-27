@@ -1,4 +1,4 @@
-<%@ page import="org.owasp.encoder.Encode" %>
+<% //@ page import="org.owasp.encoder.Encode" %>
 
 <%
 	String user = "";
@@ -53,7 +53,7 @@
         <fieldset>
           <legend>Booking Information</legend>
             <div class="item">
-            		<input id="idBooking" type="hidden" name="idBooking" value="<%= Encode.forHtml(request.getParameter("idBooking")) %>"/>
+            		<input id="idBooking" type="hidden" name="idBooking" value="<%= /*Encode.forHtml*/request.getParameter("idBooking")/*)*/ %>"/>
             </div>
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>
@@ -85,13 +85,7 @@
 	}
 </script>
   </body>
-<% if((Integer)session.getAttribute("role")==1){%>
-
-		<jsp:include page="footerManager.jsp"/>
-<%} %>
-<% if((Integer)session.getAttribute("role")==0) {%>
-		<jsp:include page="footerCustomer.jsp"/>
-	<%} %>
+		<jsp:include page="footer.jsp"/>
 </html>
 	<script>
 		function validateDate(){
@@ -101,7 +95,7 @@
 			var endTime = document.getElementById("editform").elements[4];
 			var todayDate = new Date();
 			var bookingDate = new Date(date.value);
-			console.log(startTime.value);
+
 			if(date.value==null || date.value=="" ||bookingDate<todayDate){
 				alert("Inserire una data valido");
 				date.style.background="#f08080";

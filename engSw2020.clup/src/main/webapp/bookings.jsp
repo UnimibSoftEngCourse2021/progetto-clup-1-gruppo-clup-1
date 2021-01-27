@@ -206,6 +206,7 @@ int idUser = (Integer) session.getAttribute("idUser");
         </tr>
         </thead>
         <tbody>
+        	<jsp:useBean id="now" class="java.util.Date"/>
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
             		<td>${booking.getUser().getName()}</td>
@@ -214,33 +215,26 @@ int idUser = (Integer) session.getAttribute("idUser");
             		<td>${booking.getUser().getTelephoneNumber()}</td>            		
             		<td class="bookingDate">${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
-            		<td>${booking.getFinishTime()}</td>           		
+            		<td>${booking.getFinishTime()}</td>
+            		<c:if test="${booking.getBookingDate() > now}">      		
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
             		class="button"><i class="fa fa-trash"></i></a>
             		<a href="http://localhost:8080/clup/modifyBooking.jsp?idBooking=${booking.getIdBooking()}" class="button"><i class="fa fa-pencil"></i></a>
-            		</td>            		
+            		</td>
+            		</c:if>
+            		<c:if test="${booking.getBookingDate() < now}">      		
+            		<td><strong style="color:red;">NON MODIFICABILE</strong></td>
+            		</c:if>                        		
         		</tr>
     		</c:forEach>
         <tbody>
     </table>
   </form>
   <br>
-    
-  <form name="formDownload" method="GET" action="bookingDownload">
-  <div class="container">
-  <div class="row">
-    <div style="text-align:center;" class="col text-center">
-	<button class="btn"><i class="fa fa-download" ></i> Download</button>
-    </div>
-  </div>
-</div>
-
-</form>
-
 </div>
 </div>
 </body>
-<jsp:include page="footerManager.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 
 </html>

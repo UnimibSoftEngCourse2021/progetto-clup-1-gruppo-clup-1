@@ -97,7 +97,7 @@
 
 	</div>
 	</div>
-	<jsp:include page="footerCustomer.jsp"/>
+	<jsp:include page="footer.jsp"/>
 </body>
 
 </html>

@@ -123,7 +123,7 @@ session.setAttribute("StatusBooking", 0);
  	</div>
   </div>
 </body>
-<jsp:include page="footerCustomer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </html>
 <script>
 	     function getData(){

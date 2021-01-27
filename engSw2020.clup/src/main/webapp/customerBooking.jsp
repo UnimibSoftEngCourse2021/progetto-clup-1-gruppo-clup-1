@@ -188,7 +188,7 @@ session.setAttribute("StatusBooking", 1);
 </div>
 </div>
 </body>
-<jsp:include page="footerCustomer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </html>
 <script>
   const navSlide = () => {

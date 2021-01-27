@@ -117,7 +117,7 @@ session.setAttribute("StatusInfo", 1);
 </form>
 
 </div>
-<jsp:include page="footerCustomer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html> 
 
