@@ -49,6 +49,7 @@ public class UserDao {
 					user.setSurname(resultSet.getString("Surname"));
 					user.setTelephoneNumber(resultSet.getString("TelephoneNumber"));
 					user.setUserName(resultSet.getString("Username"));
+					user.setPassword(resultSet.getString("Password"));
 				}
 				return user;
 			} catch (Exception e) {

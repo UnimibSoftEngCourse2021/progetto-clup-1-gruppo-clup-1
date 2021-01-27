@@ -236,7 +236,7 @@ session.setAttribute("StatusBooking", 1);
 	        	 console.log(today);
 	        	 if(item.dateAsString < today)
 	        		 {
-	        		 $("<td>").text("NON MODIFICABILE").wrapInner("<strong />").appendTo($tr);
+	        		 $("<td>").text("NON MODIFICABILE").wrapInner("<strong />").css("color", "red").appendTo($tr);
 	        		 }
 	        	 else{
 	        		 $('<td><a href =' + strDel + '  class="button"><i class="fa fa-trash"></i></a> <a href =' + strMod + ' class="button"><i class="fa fa-pencil"></i></a></td></td>').appendTo($tr);

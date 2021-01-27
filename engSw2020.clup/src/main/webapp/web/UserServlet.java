@@ -140,7 +140,7 @@ public class UserServlet extends HttpServlet {
 					request.setAttribute("user", user);
 					request.setAttribute("iduser", idUser);
 					request.setAttribute("successMsg", "Modifica dei dati completata con successo!");
-					request.getRequestDispatcher("/customerUserInformation.jsp").forward(request, response);
+					request.getRequestDispatcher("/customerInformation.jsp").forward(request, response);
 				}
 			} catch (IOException e) {
 				logger.log(Level.FINE, e.toString());

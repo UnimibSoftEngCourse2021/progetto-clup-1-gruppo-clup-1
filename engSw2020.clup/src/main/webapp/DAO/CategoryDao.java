@@ -52,7 +52,7 @@ public class CategoryDao {
 	}
 
 	public int deleteCategory(int Idcategory) throws SQLException {
-		String query = "DELETE FROM category WHERE idCategory = ?";
+		String query = "DELETE FROM categoryinstore WHERE idCategory = ?";
 		int result = 0;
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
