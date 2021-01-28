@@ -24,7 +24,7 @@ public class BookingDao {
 
 		String query = "Select Name, Surname, Email,  TelephoneNumber, idBooking, bookingDate, ArrivalTime, FinishTime "
 				+ "FROM User INNER JOIN clup_engsw2020.Booking ON " + "User.idUser = clup_engsw2020.booking.idUser "
-				+ "WHERE booking.idStore = ? ";
+				+ "WHERE booking.idStore = ? ORDER BY bookingDate ";
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
 				PreparedStatement preparedStatement = con.prepareStatement(query)) {
@@ -76,27 +76,38 @@ public class BookingDao {
 		return result;
 	}
 
+	
+	
 	public int modifyBooking(int id, Date date, Time arrivalTime, Time finishTime) throws SQLException {
 		String query = "UPDATE booking SET ArrivalTime = ?, FinishTime = ?, bookingDate = ? WHERE idBooking = ? ";
 		int result = 0;
-		try (Connection con = DBConnection.createConnection();
-				Statement statement = con.createStatement();
-				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+		int idStore = this.getIdStoreFromBooking(id);
+		if(checkAvailability(idStore,arrivalTime,finishTime,date)) 
+		{
+			try (Connection con = DBConnection.createConnection();
+					Statement statement = con.createStatement();
+					PreparedStatement preparedStatement = con.prepareStatement(query)) 
+			{
 
-			preparedStatement.setTime(1, arrivalTime);
-			preparedStatement.setTime(2, finishTime);
-			preparedStatement.setDate(3, date);
-			preparedStatement.setInt(4, id);
-			result = preparedStatement.executeUpdate();
-			System.out.println("CIAO");
-
-			return result;
-		} catch (Exception e) {
-			log.log(Level.FINE, e.toString());
+				preparedStatement.setTime(1, arrivalTime);
+				preparedStatement.setTime(2, finishTime);
+				preparedStatement.setDate(3, date);
+				preparedStatement.setInt(4, id);
+				result = preparedStatement.executeUpdate();
+				System.out.println("CIAO");
+			
+				return result;
+			} 
+			catch (Exception e) 
+			{
+				log.log(Level.FINE, e.toString());
+			}
 		}
 		return result;
 	}
-
+	
+	
+	
 	public int[] insertBooking(Date date, Time arrivalTime, Time finishTime, int idStore, int idUser)
 			throws SQLException {
 		int[] result = new int[2];
@@ -394,6 +405,35 @@ public class BookingDao {
 			log.log(Level.FINE, e.toString());
 		}
 		return people;
+	}
+	
+	public int getIdStoreFromBooking(int idBooking) 
+	{
+		String query = "SELECT * FROM booking WHERE idBooking = ?";
+		int idStore = 0;
+		try(Connection con = DBConnection.createConnection();
+				Statement statement = con.createStatement();
+				PreparedStatement preparedStmt = con.prepareStatement(query);)
+		{
+			preparedStmt.setInt(1, idBooking);
+			try(ResultSet resultSet = preparedStmt.executeQuery();)
+			{
+				while(resultSet.next()) 
+				{
+					idStore=resultSet.getInt("idStore");
+				}				
+			}
+			catch(Exception e) 
+			{
+				log.log(Level.FINE, e.toString());
+			}
+			return idStore;
+		}
+		catch(Exception e) 
+		{
+			log.log(Level.FINE, e.toString());
+		}
+		return idStore;
 	}
 
 }

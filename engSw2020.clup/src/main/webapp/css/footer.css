@@ -9,7 +9,7 @@
   width: 100%;
   color: #fff;
   background-color: black;
-  height:35%;
+  height:15%;
 }
 header p {
 padding: 50px;
@@ -31,7 +31,7 @@ flex:  1 100%;
 
 .l-footer {
 margin-right: 1.25em;
-margin-bottom: 2em;
+/*margin-bottom: 2em;*/
 }
 
 h2 {
