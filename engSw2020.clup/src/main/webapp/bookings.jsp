@@ -202,7 +202,6 @@ int idUser = (Integer) session.getAttribute("idUser");
             <th id="Prenotazione">Prenotazione</th>
             <th id="OraArrivo">Ora di arrivo</th>
             <th id="OraFine">Ora di fine</th>
-            <th>time</th>
             <th id="Operazione">Operazione</th>
                                     
         </tr>
@@ -221,7 +220,6 @@ int idUser = (Integer) session.getAttribute("idUser");
             		<td class="bookingDate">${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
             		<td>${booking.getFinishTime()}</td>
-            		<td>${time}</td>
             		<c:if test="${booking.getBookingDate() gt myDate}">
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
             		class="button"><i class="fa fa-trash"></i></a>
