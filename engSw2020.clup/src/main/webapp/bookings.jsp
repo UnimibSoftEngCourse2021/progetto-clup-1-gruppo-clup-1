@@ -181,7 +181,7 @@ int idUser = (Integer) session.getAttribute("idUser");
   const month = n.toLocaleString('default', { month: 'long' });
   y = n.getFullYear();
   d = n.getDate();
-  document.getElementById("date").innerHTML = "Prenotazioni del " + d + " " + month + " " + y;
+  document.getElementById("date").innerHTML = "Storico prenotazioni completo";
   document.getElementById("myDate").valueAsDate = n;
   </script>
  </div>
