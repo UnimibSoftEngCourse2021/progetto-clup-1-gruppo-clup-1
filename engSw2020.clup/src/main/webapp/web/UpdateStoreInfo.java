@@ -56,10 +56,11 @@ public class UpdateStoreInfo extends HttpServlet {
 			try {
 				result = storeDao.updateData(store);
 				if (result > 0) {
-					request.setAttribute("msg", "OK");
-					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+					request.setAttribute("successMsg", "Modifica al negozio completata correttamente");
+					//request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
+					response.sendRedirect("storeSetup");
 				} else {
-					request.setAttribute("msg", "Errore durante l'aggiornamento. Riprovare");
+					request.setAttribute("errorMsg", "Errore durante l'aggiornamento. Riprovare");
 					request.getRequestDispatcher("/storeSetup.jsp").forward(request, response);
 
 				}

@@ -308,18 +308,26 @@ public class BookingDao {
 	
 	public Boolean checkAvailability(int idStore, Time ArrivalTime, Time finishTime, Date bookingDate) {
 		int capacity=0;
-		int filled = 0;
-		String query = "SELECT COUNT(idBooking) AS persone, bookableCapacity FROM booking INNER JOIN store ON booking.idStore=store.idStore WHERE bookingDate = ? AND arrivalTime<? AND FinishTime>? AND booking.idStore = ?" ;
+		int[] filled = new int[2];
+		String[] query = {"SELECT COUNT(idBooking) AS persone, bookableCapacity FROM booking INNER JOIN store ON booking.idStore=store.idStore WHERE bookingDate = ? AND arrivalTime<=? AND FinishTime>=? AND booking.idStore = ?" ,
+		                  "SELECT COUNT(idBooking) AS persone, bookableCapacity FROM booking INNER JOIN store ON booking.idStore=store.idStore WHERE bookingDate = ? AND arrivalTime<=? AND FinishTime>=? AND booking.idStore = ?"};
+		for(int i=0;i<2;i++) {
 		try (Connection con = DBConnection.createConnection();
 				Statement statement = con.createStatement();
-				PreparedStatement preparedStatement = con.prepareStatement(query)){
+				PreparedStatement preparedStatement = con.prepareStatement(query[i])){
+			if(i==0) {
 			preparedStatement.setDate(1, bookingDate);
 			preparedStatement.setTime(2,ArrivalTime);
 			preparedStatement.setTime(3, ArrivalTime);
-			preparedStatement.setInt(4, idStore);
+			preparedStatement.setInt(4, idStore);}
+			if(i==1) {
+			preparedStatement.setDate(1, bookingDate);
+			preparedStatement.setTime(2,finishTime);
+			preparedStatement.setTime(3, finishTime);
+			preparedStatement.setInt(4, idStore);}
 			try(ResultSet resultSet = preparedStatement.executeQuery()){
 				while(resultSet.next()) {
-					filled=resultSet.getInt("persone");
+					filled[0]=resultSet.getInt("persone");
 					capacity = resultSet.getInt("bookableCapacity");
 				}
 			}			
@@ -330,7 +338,8 @@ public class BookingDao {
 		catch(Exception e) {
 			log.log(Level.FINE, e.toString());
 		}
-		if(capacity >= filled) {
+		}
+		if(capacity >= filled[0] && capacity >= filled[1] ) {
 		return true;
 		}
 		else {
@@ -382,7 +391,8 @@ public class BookingDao {
 		return bookingList;
 	}
 	public int getPeopleAtStore(int idStore) {
-		String query="SELECT COUNT(idBooking) as persone FROM booking WHERE bookingDate = current_date() AND arrivalTime<date_add(now(), INTERVAL 1 hour) AND FinishTime>date_add(now(), INTERVAL 1 hour) AND booking.idStore=?";
+		String query="SELECT COUNT(idBooking) as persone FROM booking WHERE bookingDate = current_date() AND arrivalTime<current_time() AND FinishTime>current_time() AND booking.idStore=?"; 
+				//"SELECT COUNT(idBooking) as persone FROM booking WHERE bookingDate = current_date() AND arrivalTime<date_add(now(), INTERVAL 1 hour) AND FinishTime>date_add(now(), INTERVAL 1 hour) AND booking.idStore=?";
 		int people=0;
 		try(Connection con = DBConnection.createConnection();
 			Statement statement = con.createStatement();

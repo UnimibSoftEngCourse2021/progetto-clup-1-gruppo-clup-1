@@ -20,6 +20,16 @@
 <jsp:param value="<%= user %>" name="user"/>
 </jsp:include>
 <body>
+<c:if test="${errorMsg!=null}">
+ <div style="color:red;" id="failed" class="alert alert-success">
+    <strong>Modifica non avvenuta!</strong> <%= request.getAttribute("errorMsg") %>
+  </div>
+</c:if>
+<c:if test="${successMsg!=null}">
+ <div style="color:green;" id="success" class="alert alert-success">
+    <strong>Modifica avvenuta correttamente!</strong> <%= request.getAttribute("successMsg") %>
+  </div>
+</c:if>
 	<div class="page-wrap">
 	<form class="w3-container w3-card-4 w3-light-grey"
 		action="updateStoreInfo" method="Post" onsubmit="return validate();">

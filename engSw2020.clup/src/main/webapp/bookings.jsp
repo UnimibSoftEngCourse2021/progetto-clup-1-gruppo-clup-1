@@ -5,6 +5,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="it">
 <head>
@@ -201,12 +202,16 @@ int idUser = (Integer) session.getAttribute("idUser");
             <th id="Prenotazione">Prenotazione</th>
             <th id="OraArrivo">Ora di arrivo</th>
             <th id="OraFine">Ora di fine</th>
+            <th>time</th>
             <th id="Operazione">Operazione</th>
                                     
         </tr>
         </thead>
         <tbody>
+        	<jsp:useBean id="date" class="java.util.Date"/>
+        	<fmt:formatDate var="time" value="${date}" type="time"/>
         	<jsp:useBean id="now" class="java.util.Date"/>
+        	<fmt:formatDate value = "${now}" pattern = "yyyy-MM-dd"  var="myDate" />
 			<c:forEach items="${bookingList}" var="booking">
         		<tr>  
             		<td>${booking.getUser().getName()}</td>
@@ -216,13 +221,25 @@ int idUser = (Integer) session.getAttribute("idUser");
             		<td class="bookingDate">${booking.getBookingDate()}</td>
             		<td>${booking.getArrivalTime()}</td>
             		<td>${booking.getFinishTime()}</td>
-            		<c:if test="${booking.getBookingDate() > now}">      		
+            		<td>${time}</td>
+            		<c:if test="${booking.getBookingDate() gt myDate}">
             		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
             		class="button"><i class="fa fa-trash"></i></a>
             		<a href="http://localhost:8080/clup/modifyBooking.jsp?idBooking=${booking.getIdBooking()}" class="button"><i class="fa fa-pencil"></i></a>
             		</td>
             		</c:if>
-            		<c:if test="${booking.getBookingDate() < now}">      		
+            		<c:if test="${booking.getBookingDate() eq myDate}">
+            		<c:if test="${booking.getArrivalTime() gt time }">
+            		<td><a href ="http://localhost:8080/clup/DeletionServlet?idBooking=${booking.getIdBooking()}"
+            		class="button"><i class="fa fa-trash"></i></a>
+            		<a href="http://localhost:8080/clup/modifyBooking.jsp?idBooking=${booking.getIdBooking()}" class="button"><i class="fa fa-pencil"></i></a>
+            		</td>
+            		</c:if>
+            		<c:if test="${booking.getArrivalTime() lt time }">
+            		<td><strong style="color:red;">NON MODIFICABILE</strong></td>
+            		</c:if>
+            		</c:if>    
+            		<c:if test="${booking.getBookingDate() lt myDate}">      		
             		<td><strong style="color:red;">NON MODIFICABILE</strong></td>
             		</c:if>                        		
         		</tr>

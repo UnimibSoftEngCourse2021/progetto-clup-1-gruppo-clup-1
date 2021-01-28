@@ -67,10 +67,13 @@ public class ModifyServlet extends HttpServlet {
 			}
 			try {
 				if (result == 1 && idRole == 1) {
+					request.setAttribute("successModify", "Modifica avvenuta correttamente");
 					response.sendRedirect("BookingServlet");
 				}
 				if (result == 0 && idRole == 1) {
-					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+					request.setAttribute("idBooking", id);
+					request.setAttribute("errorMsg", "Modifica non avvenuta");
+					request.getRequestDispatcher("/modifyBooking.jsp").forward(request, response);
 				}
 				if (result == 1 && idRole == 0) {
 					request.getRequestDispatcher("/customerBooking.jsp").forward(request, response);

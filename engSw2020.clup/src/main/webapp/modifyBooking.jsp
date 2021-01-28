@@ -1,4 +1,4 @@
-<% //@ page import="org.owasp.encoder.Encode" %>
+<%@ page import="org.owasp.encoder.Encode" %>
 
 <%
 	String user = "";
@@ -13,6 +13,7 @@
 %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="it">
 <head>
@@ -47,13 +48,18 @@
 	<%} %>
 
 <body>
+<c:if test="${errorMsg!=null}">
+ <div style="color:red;" id="failed" class="alert alert-success">
+    <strong>Modifica non avvenuta!</strong> <%= request.getAttribute("errorMsg") %>
+  </div>
+</c:if>
 	<div class="page-wrap">
     <div class="testbox">
       <form id="editform" action="ModifyServlet" class="formContainer" method="post" onsubmit="return validateDate();">
         <fieldset>
           <legend>Booking Information</legend>
             <div class="item">
-            		<input id="idBooking" type="hidden" name="idBooking" value="<%= /*Encode.forHtml*/request.getParameter("idBooking")/*)*/ %>"/>
+            		<input id="idBooking" type="hidden" name="idBooking" value="<%= Encode.forHtml(request.getParameter("idBooking")) %>"/>
             </div>
             <div class="item">
             	<label for="bookingDate">Data Prenotazione <span>*</span></label>
@@ -96,12 +102,23 @@
 			var todayDate = new Date();
 			var bookingDate = new Date(date.value);
 
-			if(date.value==null || date.value=="" ||bookingDate<todayDate){
-				alert("Inserire una data valido");
-				date.style.background="#f08080";
-				date.focus();
-				return false;				
-			}		
+			if (date.value == null || date.value == ""
+				|| bookingDate.getMonth()<todayDate.getMonth()) {
+			alert("Inserire una data valida");
+			date.style.background = "#f08080";
+			date.focus();
+			return false;
+		}
+		else if(bookingDate.getMonth()==todayDate.getMonth())
+			{
+				if(bookingDate.getDate()<todayDate.getDate()){
+					alert("Inserire una data valida");
+					date.style.background = "#f08080";
+					date.focus();
+					return false;
+				}		
+			}
+
 			
 			if(startTime.value==null || startTime.value==""){
 				alert("Inserire un orario di arrivo valido");
