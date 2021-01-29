@@ -42,7 +42,7 @@
          var getdata = setInterval(getData,5000);
          var getcount = setInterval(getCountBooking,1000);
          var getpeople = setInterval(getPeople,1000);
-         var getcategory = setInterval(getCategory,1000);
+         //var getcategory = setInterval(getCategory,1000);
 	     function getData(){
     	  $.get("AsyncServlet", function(responseJson) {   
     		  $("#table-body").empty();
@@ -78,11 +78,11 @@
 			});
 		}
 		
-		function getCategory(){
+		/*function getCategory(){
 			$.get("GetMaxCategoryServlet",function(responseJson){
 				$("#category").text(responseJson);
 			})
-		}
+		}*/
 		
 		setTimeout(function() {
 			  $("#success").fadeOut().empty();

@@ -57,7 +57,7 @@
     <div class="testbox">
       <form id="editform" action="ModifyServlet" class="formContainer" method="post" onsubmit="return validateDate();">
         <fieldset>
-          <legend>Booking Information</legend>
+          <legend>Informazioni della prenotazione</legend>
             <div class="item">
             		<input id="idBooking" type="hidden" name="idBooking" value="<%= Encode.forHtml(request.getParameter("idBooking")) %>"/>
             </div>

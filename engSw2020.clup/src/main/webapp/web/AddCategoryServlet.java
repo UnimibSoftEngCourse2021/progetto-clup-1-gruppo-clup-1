@@ -46,10 +46,10 @@ public class AddCategoryServlet extends HttpServlet {
 			try {
 				if (result > 0) {
 					request.setAttribute("InsertResult", "OK");
-					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+					request.getRequestDispatcher("/category.jsp").forward(request, response);
 				} else {
 					request.setAttribute("InsertResult", "KO");
-					request.getRequestDispatcher("/homepageManager.jsp").forward(request, response);
+					request.getRequestDispatcher("/category.jsp").forward(request, response);
 				}
 			} catch (ServletException e) {
 				log.log(Level.FINE, e.toString());

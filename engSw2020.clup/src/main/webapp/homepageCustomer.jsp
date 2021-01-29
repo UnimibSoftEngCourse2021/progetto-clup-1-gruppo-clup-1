@@ -86,7 +86,7 @@ session.setAttribute("StatusBooking", 0);
             <div class="col-xl-3 col-sm-6">
             	<div class="card card-mini mb-4">
                 	<div class="card-body">
-					<form action="customerAddBooking.jsp" method="GET">
+					<form action="customerAddBooking.jsp" method="GET" onsubmit="return checkValue();">
 					<input id="idStore" type="hidden" name="idStore">
 					<input type="submit" class="btn-block" value="Prenota ora">
 					</form>
@@ -161,5 +161,17 @@ session.setAttribute("StatusBooking", 0);
 	    			 $option.html(item.idStore + "," + item.name + "," + item.city +"," +item.address);
 	    		 });
 	    	 });
+	     }
+	     function checkValue(){
+	    	 var cityName = $("#city option:selected").text();
+	    	 var store = $("#store option:selected").text();
+	    	 cityName=cityName.trim();
+	    	 store = store.trim();
+
+	    	 if(cityName=="Selezionare una città..." || store =="Selezionare un negozio...")
+	    		 {
+	    		 	alert("Selezionare una città e uno store validi");
+	    		 	return false;
+	    		 }
 	     }
 </script>		

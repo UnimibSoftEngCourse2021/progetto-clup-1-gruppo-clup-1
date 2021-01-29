@@ -105,7 +105,7 @@
 
 
 				<div class="btn-block">
-					<button type="submit">Submit</button>
+					<button type="submit">Aggiungi</button>
 				</div>
 			</fieldset>
 		</form>

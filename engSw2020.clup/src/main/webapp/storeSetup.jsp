@@ -69,12 +69,12 @@
 			<label>Indirizzo</label> <input class="w3-input w3-border"
 				id="indirizzo" name="Indirizzo"
 				value="<%out.println(request.getAttribute("Indirizzo"));%>"
-				type="text">
+				type="text" readonly>
 		</p>
 		<p>
 			<label>Città</label> <input class="w3-input w3-border" id="city"
 				name="city" value="<%out.println(request.getAttribute("City"));%>"
-				type="text">
+				type="text" readonly>
 		</p>
 		<p>
 			<label>Capienza</label> <input type="number" id="quantity"
@@ -101,10 +101,22 @@
 
 <script>
 	function validate() {
+		console.log("sono qui");
 		var description = document.getElementById("descrizione");
 		var telefono = document.getElementById("telefono");
 		var indirizzo = document.getElementById("indirizzo");
 		var city = document.getElementById("city");
+		var capacity = document.getElementById("quantity");
+		var bookableCapacity = document.getElementById("postiPrenotabili");
+		var v1=parseInt(capacity.value,10)
+		var v2=parseInt(bookableCapacity.value);
+		
+		if(v1<v2){
+			window.alert("La capacità totale deve essere maggiore o uguale dei posti prenotabili");
+			capacity.style.background = "#f08080";
+			capacity.focus();
+			return false;
+			}
 
 		if (description.value == null || description.value == "") {
 			window.alert("Inserire la descrizione");
@@ -130,6 +142,17 @@
 			city.focus();
 			return false;
 		}
+		if (capacity.value == null || capacity.value == "") {
+			window.alert("Inserire la descrizione");
+			capacity.style.background = '#f08080';
+			capacity.focus();
+			return false;
+		}
+		if (bookableCapacity.value == null || bookableCapacity.value == "") {
+			window.alert("Inserire la descrizione");
+			bookableCapacity.style.background = '#f08080';
+			bookableCapacity.focus();
+			return false;}
 		
 		description.value = description.value.trim();
 		telefono.value = telefono.value.trim();
