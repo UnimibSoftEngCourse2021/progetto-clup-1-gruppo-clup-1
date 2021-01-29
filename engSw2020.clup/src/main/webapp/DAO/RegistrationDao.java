@@ -32,7 +32,7 @@ public class RegistrationDao {
 			preparedStatement.setString(6, user.getEmail());
 			preparedStatement.setString(7, user.getUserName());
 			preparedStatement.setString(8, user.getPassword());
-			preparedStatement.setInt(9, 1);
+			preparedStatement.setInt(9, 2);
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
