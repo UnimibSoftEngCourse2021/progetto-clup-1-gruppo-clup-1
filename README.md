@@ -57,11 +57,21 @@ In ordine sono da eseguire:
    ```
    Window - Show View - Other - Server - Servers;
    ```
-4. Per eseguire l'applicazione 
+   Nella view che si apre
    ```
-   Tasto destro - Run As - Run on Server - Selezionare il server 
+   Tasto destro - New - Server;
    ```
-5. Dal browser preferito collegarsi su:
+   Selezionare Apache Tomcat 9.0 e aggiungere il progetto
+   
+4. Prima di eseguire l'applicazione è consigliabile effettuare un update con maven
+   ```
+   Tasto destro sul progetto - Maven - Update Project;
+   ```
+5. Per eseguire l'applicazione 
+   ```
+   Tasto destro sul progetto - Run As - Run on Server - Selezionare il server 
+   ```
+6. Dal browser preferito collegarsi su:
    ```
    http://localhost:8080/clup/
    ```
