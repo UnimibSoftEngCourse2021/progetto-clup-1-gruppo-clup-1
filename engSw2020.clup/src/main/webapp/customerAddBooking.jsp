@@ -114,11 +114,27 @@
 		var userEmail = document.getElementById("editform").elements[8];
 		var userTelephoneNumber = document.getElementById("editform").elements[9];
 		if (date.value == null || date.value == ""
-				|| bookingDate.getMonth()<todayDate.getMonth() || bookingDate.getDate() < todayDate.getDate()) {
-			alert("Inserire una data valida");
-			date.style.background = "#f08080";
-			date.focus();
-			return false;
+			|| bookingDate.getMonth()<todayDate.getMonth()) {
+		alert("Inserire una data valida");
+		date.style.background = "#f08080";
+		date.focus();
+		return false;
+	}
+	else if(bookingDate.getMonth()==todayDate.getMonth())
+		{
+			if(bookingDate.getDate()<todayDate.getDate()){
+				alert("Inserire una data valida");
+				date.style.background = "#f08080";
+				date.focus();
+				return false;
+			}		
+		}
+	else if(bookingDate.getYear() < todayDate.getYear())
+		{
+		alert("Inserire una data valida");
+		date.style.background = "#f08080";
+		date.focus();
+		return false;
 		}
 		if (startTime.value == null || startTime.value == "") {
 			alert("Inserire un orario di arrivo valido");

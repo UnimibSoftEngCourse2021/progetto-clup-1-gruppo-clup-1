@@ -42,7 +42,7 @@
          var getdata = setInterval(getData,5000);
          var getcount = setInterval(getCountBooking,1000);
          var getpeople = setInterval(getPeople,1000);
-         //var getcategory = setInterval(getCategory,1000);
+         var getcategory = setInterval(getCategory,1000);
 	     function getData(){
     	  $.get("AsyncServlet", function(responseJson) {   
     		  $("#table-body").empty();
@@ -78,11 +78,11 @@
 			});
 		}
 		
-		/*function getCategory(){
+		function getCategory(){
 			$.get("GetMaxCategoryServlet",function(responseJson){
 				$("#category").text(responseJson);
 			})
-		}*/
+		}
 		
 		setTimeout(function() {
 			  $("#success").fadeOut().empty();
@@ -132,7 +132,7 @@
                     <div class="col-xl-3 col-sm-6">
                       <div class="card card-mini mb-4">
                         <div class="card-body">
-                          <h2 id="category" class="mb-1">Alimentari</h2>
+                          <h2 id="category" class="mb-1"></h2>
                           <p>Categoria piu' richiesta oggi</p>
                         </div>
                       </div>

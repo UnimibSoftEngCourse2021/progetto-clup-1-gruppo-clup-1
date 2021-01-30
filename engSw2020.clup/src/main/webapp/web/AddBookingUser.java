@@ -60,7 +60,7 @@ public class AddBookingUser extends HttpServlet {
 		try {
 			if (result == 1) {
 				request.setAttribute("successMsg", "Prenotazione avvenuta con successo");
-				request.getRequestDispatcher("/homepageCustomer.jsp").forward(request, response);
+				response.sendRedirect("homepageCustomer.jsp");
 			}
 			if (result == 0) {
 				request.setAttribute("errorMsg", "Orario non disponibile per la prenotazione");

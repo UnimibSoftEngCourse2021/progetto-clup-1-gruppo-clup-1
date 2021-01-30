@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
 <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Customer Line Up</title>
 <script>
 	$(document).ready(function(){
 		getData();
@@ -71,7 +71,7 @@ session.setAttribute("StatusBooking", 0);
                     </div>
                 </div>
             </div>
-   			<div class="col-xl-3 col-sm-6">
+   			<div class="col-xl-3 col-xl-6">
             	<div class="card card-mini mb-4">
                 	<div class="card-body">
                 	<h2>Seleziona un negozio</h2>

@@ -41,8 +41,9 @@ public class DeletionCategoryServlet extends HttpServlet {
 		}
 		try {
 	    if(result==1)
-	    {	    	
+	    {
 	    	response.sendRedirect("getCategoryServlet");
+	    	//response.sendRedirect("getCategoryServlet");
 	    }
 		}
 		catch (IOException e) {

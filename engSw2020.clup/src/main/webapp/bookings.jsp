@@ -15,7 +15,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Customer Line Up</title>
 	<script type="text/javascript">
 		function callservlet(idBooking) {
 
@@ -106,6 +106,7 @@ int idUser = (Integer) session.getAttribute("idUser");
 			 $("tr").show();
 			 $("#myName").val("");
 			 $("#myDate").val("");
+			 $("#date").text("Storico prenotazioni completo");
 		 })
 	});
 	</script>

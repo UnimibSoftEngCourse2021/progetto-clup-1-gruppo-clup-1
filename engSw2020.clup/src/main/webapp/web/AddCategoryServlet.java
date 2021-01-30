@@ -46,7 +46,9 @@ public class AddCategoryServlet extends HttpServlet {
 			try {
 				if (result > 0) {
 					request.setAttribute("InsertResult", "OK");
-					request.getRequestDispatcher("/category.jsp").forward(request, response);
+			    	response.sendRedirect("getCategoryServlet");
+
+					//request.getRequestDispatcher("/category.jsp").forward(request, response);
 				} else {
 					request.setAttribute("InsertResult", "KO");
 					request.getRequestDispatcher("/category.jsp").forward(request, response);

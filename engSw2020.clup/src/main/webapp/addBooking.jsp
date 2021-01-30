@@ -158,6 +158,13 @@
 					return false;
 				}		
 			}
+		else if(bookingDate.getYear() < todayDate.getYear())
+		{
+		alert("Inserire una data valida");
+		date.style.background = "#f08080";
+		date.focus();
+		return false;
+		}
 
 		if (startTime.value == null || startTime.value == "") {
 			alert("Inserire un orario di arrivo valido");
